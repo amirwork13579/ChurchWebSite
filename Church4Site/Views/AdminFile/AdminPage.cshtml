@@ -1,0 +1,83 @@
+﻿@model Church4Site.Entities.EventsDataViewModel
+
+
+<head>
+    <link href="~/css/AdminPage.css" rel="stylesheet">
+</head>
+
+
+<div class="navbar">
+    <div class="logo">MySite</div>
+    <div class="nav-links">
+        <a class="nav-link text-dark" asp-area="" asp-controller="AdminFile" asp-action="AdminPage">Admin</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="MainPage">MainPage</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Test">Test</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="LogIn">Login</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="LogOut">Logout</a>
+    </div>
+</div>
+
+<h1>Admin Page</h1>
+
+<h3>Submit an Event</h3>
+
+<form asp-action="SubmitEvent" method="post">
+    <div class="form-text">
+        <label>Name</label>
+        <input type="text" class="form-control" asp-for="NewEvent.Name" />
+        <label>Date and Time</label>
+        <input type="datetime" class="form-control" asp-for="NewEvent.Date" />
+        <label>Description</label>
+        <input type="text" class="form-control" asp-for="NewEvent.Description" />
+    </div>
+    <button type="submit" class="">Submit</button>
+</form>
+
+
+
+
+
+<h2>Upcoming Events</h2>
+
+
+<div class="events-grid">
+    @foreach (var ev in Model.Eventslst)
+    {
+        <div class="event-card">
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">@ev.Name</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        @ev.Description
+                    </p>
+                    <div class="card-info">
+                        <span class="card-date">📅 @ev.Date</span>
+                        <span class="card-time">⏰ 10:00 AM – 5:00 PM</span>
+                    </div>
+                    <a asp-controller="AdminFile" asp-action="Edit" asp-route-id="@ev.Id">Edit</a>
+                    <a asp-controller="AdminFile" asp-action="Delete" asp-route-id="@ev.Id">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+<h3>Submit a Sunday</h3>
+
+<form asp-action="SubmitEvent" method="post">
+    <div class="form-text">
+        <label>Name</label>
+        <input type="text" class="form-control" asp-for="NewEvent.Name" />
+        <label>Date and Time</label>
+        <input type="datetime" class="form-control" asp-for="NewEvent.Date" />
+        <label>Description</label>
+        <input type="text" class="form-control" asp-for="NewEvent.Description" />
+    </div>
+    <button type="submit" class="">Submit</button>
+</form>

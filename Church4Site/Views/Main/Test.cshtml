@@ -1,0 +1,47 @@
+﻿@model List<Church4Site.Entities.EventData>
+
+<head>
+    <link rel="stylesheet" href="../css/Test.css">
+</head>
+
+
+<h2>Upcoming Events</h2>
+
+
+<div class="events-grid">
+    @foreach (var ev in Model)
+    {
+        <div class="event-card">
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">@ev.Name</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-description">
+                        @ev.Description
+                    </p>
+                    <div class="card-info">
+                        <span class="card-date">📅 @ev.Date</span>
+                        <span class="card-time">⏰ 10:00 AM – 5:00 PM</span>
+                    </div>
+                    <a asp-controller="AdminFile" asp-action="Edit" asp-route-id="@ev.Id">Edit</a>
+                    <a asp-controller="AdminFile" asp-action="Delete" asp-route-id="@ev.Id">Delete</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,61 @@
+﻿@model Church4Site.Models.UserDto
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <link rel="stylesheet" href="~/css/Register.css">
+</head>
+<body>
+
+
+
+
+    <div class="navbar">
+        <div class="logo">MySite</div>
+        <div class="nav-links">
+            <a class="nav-link text-dark" asp-area="" asp-controller="AdminFile" asp-action="AdminPage">Admin</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Register">Register</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="MainPage">MainPage</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Test">Test</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="LogIn">Login</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="LogOut">Logout</a>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div class="login-container">
+        <h2>Welcome Back</h2>
+        <p>Please sign in to continue</p>
+
+        <form asp-action="Register">
+            <div class="input-group">
+                <label>Email</label>
+                <input asp-for="Username" type="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input asp-for="Password" type="password" placeholder="Enter your password" required>
+            </div>
+
+            <button type="submit" class="btn">Login</button>
+
+            <div class="links">
+                <a href="#">Forgot password?</a>
+                <a href="#">Create account</a>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

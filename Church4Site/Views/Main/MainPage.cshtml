@@ -1,0 +1,194 @@
+﻿@model List<Church4Site.Entities.EventData>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Home | [Church Name]</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="~/css/MainPage.css" rel="stylesheet">
+</head>
+<body>
+
+
+
+    <div class="navbar">
+        <div class="logo">MySite</div>
+        <div class="nav-links">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="LogOut">Logout</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Calendar">Calendar</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Youth">Youth</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="AdminFile" asp-action="AdminPage">Admin</a>
+            }
+            else
+            {
+                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Calendar">Calendar</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Register">Register</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="MainPage">MainPage</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Test">Test</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="LogIn">Login</a>
+            }
+            
+            
+        </div>
+    </div>
+
+
+
+
+    <div class="page">
+
+        <!-- Video section -->
+        <div class="video-section">
+            <video autoplay muted loop class="video-bg">
+                <source src="~/css/Videos/ChurchVideo.mkv" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="overlay-text">
+                Welcome to Church
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="warm-section">
+        <h2>Upcoming Events</h2>
+
+
+        <div class="events-grid">
+            @foreach (var ev in Model)
+            {
+                <div class="event-card">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">@ev.Name</h2>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-description">
+                                @ev.Description
+                            </p>
+                            <div class="card-info">
+                                <span class="card-date">📅 @ev.Date</span>
+                                <span class="card-time">⏰ 10:00 AM – 5:00 PM</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+    <div class="fade-section">
+        <img src="~/css/Images/black-women-in-church.jpg" alt="Image" class="fade-image">
+
+        <div class="center-text">
+            <h2>Your Title Here</h2>
+            <p>Your description text goes here.</p>
+        </div>
+    </div>
+
+
+
+
+    <div class="warm-fade-section">
+        <div class="center-text">
+            <h2>Your Title Here</h2>
+            <p>Your description text goes here.</p>
+        </div>
+
+        <img src="~/css/Images/youngchurch.jpg" alt="Image" class="fade-image-left">
+    </div>
+
+
+
+
+
+
+
+    
+
+    <section id="info" class="service-info">
+        <div class="container">
+            <h3>Service Times & Location</h3>
+            <div class="times-location">
+                <div class="info-card">
+                    <h4>Sunday Worship</h4>
+                    <p>10:00 AM (In-Person & Online)</p>
+                </div>
+                <div class="info-card">
+                    <h4>Mid-Week Study</h4>
+                    <p>Wednesday, 7:00 PM</p>
+                </div>
+                <div class="info-card">
+                    <h4>Our Location</h4>
+                    <p>[Street Address, City, Postcode]</p>
+                </div>
+            </div>
+            <a href="directions.html" class="btn secondary-btn">Get Directions</a>
+        </div>
+    </section>
+
+    <section class="who-we-are">
+        <div class="container">
+            <h3>A Place for Everyone</h3>
+            <p class="description">Whether you are exploring faith for the first time or looking for a new church family, you are welcome here. Come as you are, and discover a place where you can belong, grow, and make a difference.</p>
+
+            <div class="pillar-links">
+                <a href="new-visitors.html" class="pillar-card">
+                    <span class="emoji">👋</span>
+                    <h4>I'm New Here</h4>
+                    <p>Get all the details for your first visit.</p>
+                </a>
+                <a href="ministries.html" class="pillar-card">
+                    <span class="emoji">👨‍👩‍👧‍👦</span>
+                    <h4>Ministries</h4>
+                    <p>Discover groups for kids, youth, and adults.</p>
+                </a>
+                <a href="beliefs.html" class="pillar-card">
+                    <span class="emoji">📖</span>
+                    <h4>Our Beliefs</h4>
+                    <p>Learn about what we stand for.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <section class="cta-bottom">
+        <div class="container">
+            <h3>Ready to Connect?</h3>
+            <div class="action-buttons">
+                <a href="contact.html" class="btn primary-btn">Contact Us</a>
+                <a href="give.html" class="btn secondary-btn">Give Online</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 [Church Name]. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+            </div>
+            <div class="legal-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="sitemap.html">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

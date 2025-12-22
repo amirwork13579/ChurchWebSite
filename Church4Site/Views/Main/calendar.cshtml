@@ -1,0 +1,47 @@
+﻿
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Home | [Church Name]</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="~/css/Calendar.css" rel="stylesheet">
+</head>
+
+
+<div class="navbar">
+    <div class="logo">MySite</div>
+    <div class="nav-links">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="MainPage">MainPage</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Test">Test</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="LogIn">Login</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="LogOut">Logout</a>
+    </div>
+</div>
+
+<body>
+
+
+    <div class="video-background">
+        <video autoplay muted loop playsinline>
+            <source src="~/css/Videos/ChurchVideo.mkv" type="video/mp4">
+        </video>
+
+        <div class="content">
+
+            <div class="section-separator">
+                <h2>Join our Sundays</h2>
+                <p>Our Church hosts Sunday gatherings every week, all are welcome to join.</p>
+            </div>
+
+
+            <div class="calendar-wrapper">
+                <iframe src="https://calendar.google.com/calendar/embed?src=your_calendar_id&ctz=Europe/London"
+                        style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+            </div>
+
+        </div>
+    </div>
+
+</body>

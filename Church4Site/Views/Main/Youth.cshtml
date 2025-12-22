@@ -1,0 +1,88 @@
+﻿
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Home | [Church Name]</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="~/css/Youth.css" rel="stylesheet">
+</head>
+<body>
+
+
+
+    <div class="navbar">
+        <div class="logo">MySite</div>
+        <div class="nav-links">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="LogOut">Logout</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Calendar">Calendar</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="AdminFile" asp-action="AdminPage">Admin</a>
+            }
+            else
+            {
+
+                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Calendar">Calendar</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Register">Register</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="MainPage">MainPage</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Test">Test</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="LogIn">Login</a>
+            }
+
+
+        </div>
+    </div>
+
+
+
+    <div class="page">
+
+        <!-- Video section -->
+        <div class="video-section">
+            <video autoplay muted loop class="video-bg">
+                <source src="~/css/Videos/ChurchVideo.mkv" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="overlay-text">
+                Our Youth Mission 
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="fullwidth-yellow-borders">
+        <p>A Welcoming church to the young</p>
+    </div>
+
+
+
+    <div class="warm-fade-section">
+        <div class="center-text">
+            <h2>Your Title Here</h2>
+            <p>Your description text goes here.</p>
+        </div>
+
+        <img src="~/css/Images/youngchurch.jpg" alt="Image" class="fade-image-left">
+    </div>
+
+
+
+
+    <div class="fade-section">
+        <img src="~/css/Images/black-women-in-church.jpg" alt="Image" class="fade-image">
+
+        <div class="center-text">
+            <h2>Your Title Here</h2>
+            <p>Your description text goes here.</p>
+        </div>
+    </div>
+
+
+</body>

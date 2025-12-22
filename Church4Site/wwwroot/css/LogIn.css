@@ -1,0 +1,336 @@
+﻿/* --- Global & Layout Styles --- */
+:root {
+    --primary-color: #007bff; /* A nice blue for buttons/links */
+    --secondary-color: #6c757d; /* For secondary text */
+    --background-color: #1e1e2f; /* Dark background */
+    --card-background: #2b2b40; /* Slightly lighter card background */
+    --text-color: #e0e0e0; /* Light text */
+    --input-bg: #3c3c54;
+    --border-radius: 8px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* --- 1. Navigation Bar Styles --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #181825; /* Even darker navbar */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--primary-color);
+    letter-spacing: 1px;
+}
+
+.navbar-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin-left: 20px;
+    padding: 5px 10px;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+    .navbar-links a:hover,
+    .navbar-links a.active {
+        color: var(--primary-color);
+        border-bottom: 2px solid var(--primary-color);
+    }
+
+/* --- 2. Login Container & Card Styles --- */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 70px); /* Account for navbar height */
+    padding: 20px;
+}
+
+.login-card {
+    background-color: var(--card-background);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+    .login-card h2 {
+        margin-bottom: 10px;
+        color: var(--text-color);
+        font-size: 2em;
+    }
+
+    .login-card p {
+        color: var(--secondary-color);
+        margin-bottom: 30px;
+    }
+
+/* --- Form Styles --- */
+.form-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 600;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #4a4a68;
+        background-color: var(--input-bg);
+        color: var(--text-color);
+        border-radius: var(--border-radius);
+        transition: border-color 0.3s;
+    }
+
+    .form-group input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+    }
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    font-size: 0.9em;
+}
+
+    .form-options a {
+        color: var(--primary-color);
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+        .form-options a:hover {
+            color: #4da6ff;
+        }
+
+.login-button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    margin-bottom: 20px;
+}
+
+    .login-button:hover {
+        background-color: #0056b3;
+    }
+
+    .login-button:active {
+        transform: scale(0.99);
+    }
+
+.register-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navbar1{
+    flex-direction: row-reverse;
+}
+
+
+
+.navbar-header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Soft, subtle shadow */
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky; /* Makes it stick to the top */
+    top: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 1000; /* Ensure it's above other elements */
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Logo Styling */
+.logo a {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #333333; /* Dark text for contrast */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+    .logo a:hover {
+        color: #007bff; /* Primary color on hover */
+    }
+
+/* Navigation Links Container */
+.nav-links-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Main Link List */
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+    .nav-links li {
+        margin: 0 15px;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: #555555;
+        font-weight: 400;
+        padding: 5px 0;
+        position: relative;
+        transition: color 0.3s;
+    }
+
+        /* Active/Hover Underline Effect */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #007bff;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #007bff;
+        }
+
+            .nav-links a:hover::after,
+            .nav-links a.active::after {
+                width: 100%;
+            }
+
+/* Call-to-Action Button (CTA) */
+.cta-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 20px;
+    margin-left: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+    .cta-button:hover {
+        background-color: #0056b3;
+        transform: translateY(-1px);
+    }
+
+/* --- Mobile / Hamburger Menu Styling --- */
+
+/* Hide Hamburger Menu by default on Desktop */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+}
+
+    .menu-toggle .bar {
+        width: 100%;
+        height: 3px;
+        background-color: #333;
+        border-radius: 1px;
+        transition: all 0.3s ease-in-out;
+    }
+
+/* --- Media Query for Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .navbar-header {
+        padding: 15px 20px;
+    }
+
+    /* Show hamburger menu */
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* Hide the default links container */
+    .nav-links-container {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px; /* Adjust based on your header height */
+        left: 0;
+        background-color: #ffffff;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+        padding: 10px 0;
+        text-align: center;
+    }
+
+        /* Class added by JavaScript to show the menu */
+        .nav-links-container.active {
+            display: flex;
+        }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+    }
+
+        .nav-links li {
+            margin: 0;
+            padding: 10px 0;
+            border-bottom: 1px solid #f4f4f4;
+        }
+
+            .nav-links li:last-child {
+                border-bottom: none;
+            }
+
+        .nav-links a {
+            display: block;
+            padding: 10px 0;
+        }
+
+    .cta-button {
+        width: calc(100% - 40px);
+        margin: 15px 20px;
+    }
+}

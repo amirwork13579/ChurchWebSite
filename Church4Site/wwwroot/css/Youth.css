@@ -1,0 +1,228 @@
+﻿/*navbar---------------------------*/
+
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar styling */
+.navbar {
+    width: 100%;
+    background-color: #0a2a66; /* deep blue */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    position: fixed; /* stays at top */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* Logo */
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+}
+
+/* Links */
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 1em;
+    transition: color 0.3s ease;
+}
+
+    .nav-links a:hover {
+        color: #ffcc00; /* highlight on hover */
+    }
+
+/* Page content */
+.page-content {
+    padding-top: 80px; /* offset for fixed navbar */
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+/*video starts here -----------------------------------------*/
+
+
+.page {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+/* Video section fills the viewport */
+.video-section {
+    width: 100%;
+    height: 100vh; /* full viewport height */
+    overflow: hidden;
+}
+
+.video-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* cover entire section */
+    display: block;
+}
+
+/* Foreground content */
+.content {
+    background: #111; /* dark background for contrast */
+}
+
+.section {
+    height: 100vh; /* each section fills the viewport */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+}
+
+
+
+/*Text inside video========================================*/
+
+
+.overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* perfect centering */
+    color: white;
+    font-size: 3em;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7); /* makes text readable */
+}
+
+
+
+
+
+
+/*border text ===============================*/
+
+.fullwidth-yellow-borders {
+    width: 100%; /* full width */
+    border-top: 5px solid #ffd700; /* top yellow border */
+    border-bottom: 5px solid #ffd700; /* bottom yellow border */
+    padding: 20px 0; /* space around the text */
+    background: #fffbe6; /* optional soft warm background */
+    text-align: center; /* center the text */
+    box-sizing: border-box;
+}
+
+    .fullwidth-yellow-borders p {
+        margin: 0;
+        font-size: 20px;
+        color: #444;
+    }
+
+
+
+
+
+
+
+
+
+
+
+/*first image fadeout and text with background====================*/
+
+.fade-section {
+    width: 100%; /* full width */
+    background: #f7e4c8; /* warm background color */
+    position: relative;
+    padding: 40px 20px; /* spacing inside */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 40px; /* space between image and text */
+}
+
+/* Image that fades out to the right */
+.fade-image {
+    width: 800px; /* adjust as needed */
+    height: auto;
+    object-fit: cover;
+    mask-image: linear-gradient(to right, black 70%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 70%, transparent 100%);
+}
+
+/* Centered text */
+.center-text {
+    flex: 1;
+    text-align: center;
+}
+
+    .center-text h2 {
+        font-size: 32px;
+        margin-bottom: 10px;
+    }
+
+    .center-text p {
+        font-size: 18px;
+        color: #444;
+        line-height: 1.6;
+    }
+
+
+
+
+
+
+
+/*second image reversed==========================*/
+
+.warm-fade-section {
+    width: 100%; /* full width */
+    background: #e8a07a; /* warm beige/peach tone */
+    padding: 40px 20px; /* spacing inside */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 40px; /* space between text and image */
+}
+
+/* Image fades out to the LEFT */
+.fade-image-left {
+    width: 600px; /* adjust as needed */
+    height: auto;
+    object-fit: cover;
+    mask-image: linear-gradient(to left, black 70%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to left, black 70%, transparent 100%);
+}
+
+/* Centered text */
+.center-text {
+    flex: 1;
+    text-align: center;
+}
+
+    .center-text h2 {
+        font-size: 32px;
+        margin-bottom: 10px;
+    }
+
+    .center-text p {
+        font-size: 18px;
+        color: #444;
+        line-height: 1.6;
+    }

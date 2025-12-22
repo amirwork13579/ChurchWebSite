@@ -1,0 +1,10 @@
+﻿@model Church4Site.Entities.EventData
+
+<h1>are you sure you want to delete this?</h1>
+
+<h1>@Model.Name</h1>
+
+<form asp-action="Delete" method="post">
+    <button type="submit">Delete</button>
+
+</form>

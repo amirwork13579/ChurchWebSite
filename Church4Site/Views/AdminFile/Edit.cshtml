@@ -1,0 +1,19 @@
+﻿@model Church4Site.Entities.EventData
+
+<h5>Edit</h5>
+
+<form asp-action="Edit" method="post">
+    <div class="form-text">
+        <label>Name</label>
+        <input type="text" class="form-control" asp-for="Name" />
+        <label>Description</label>
+        <input type="text" class="form-control" asp-for="Description" />
+        <label>Date</label>
+        <input type="text" class="form-control" asp-for="Date" />
+
+
+        <input type="hidden" asp-for="Id" />
+    </div>
+    <button type="submit" class="">Submit</button>
+</form>
+

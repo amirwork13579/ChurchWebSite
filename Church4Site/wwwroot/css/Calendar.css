@@ -1,0 +1,127 @@
+﻿/*navbar---------------------------*/
+
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar styling */
+.navbar {
+    width: 100%;
+    background-color: #0a2a66; /* deep blue */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    position: fixed; /* stays at top */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* Logo */
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+}
+
+/* Links */
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 1em;
+    transition: color 0.3s ease;
+}
+
+    .nav-links a:hover {
+        color: #ffcc00; /* highlight on hover */
+    }
+
+/* Page content */
+.page-content {
+    padding-top: 80px; /* offset for fixed navbar */
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+
+
+
+/*Calendar=============================*/
+
+.calendar-wrapper {
+    display: flex;
+    justify-content: center; /* centers horizontally */
+    margin-top: 10px; /* pushes it down */
+}
+
+    .calendar-wrapper iframe {
+        max-width: 100%;
+        height: 600px;
+    }
+
+
+
+
+
+
+/*Separator text============================*/
+
+.section-separator {
+    text-align: center;
+    padding: 40px 20px;
+    margin: 60px 0;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    /* Optional subtle fade */
+    background: linear-gradient(to right, #ffffff00, #ffffff, #ffffff00);
+}
+
+    .section-separator h2 {
+        font-size: 28px;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .section-separator p {
+        font-size: 16px;
+        color: #555;
+        line-height: 1.6;
+    }
+
+
+/*background video =============================*/
+
+
+.video-background {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* full screen */
+    overflow: hidden;
+}
+
+    .video-background video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        transform: translate(-50%, -50%);
+        object-fit: cover;
+    }
+
+    .video-background .content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        color: white;
+    }
+
