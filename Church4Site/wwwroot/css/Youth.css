@@ -1,11 +1,21 @@
-﻿/*navbar---------------------------*/
-
-
-/* Reset */
+﻿/* Reset and helpers */
 * {
+    box-sizing: border-box;
+    
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html, body {
+    overflow-x: hidden;
+    height: 100%;
+}
+
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 /* Navbar styling */
@@ -67,25 +77,33 @@
     color: white;
 }
 
-/* Video section fills the viewport */
+/* Video section fills the viewport and becomes the positioned container
+   so absolute children (video, overlay) are anchored to it */
 .video-section {
     width: 100%;
     height: 100vh; /* full viewport height */
+    position: relative; /* <-- added so overlay centers relative to this section */
     overflow: hidden;
 }
 
-.video-bg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* cover entire section */
-    display: block;
-}
+    /* Ensure a <video> element or .video-bg covers the section and doesn't affect layout flow */
+    .video-section video,
+    .video-section .video-bg {
+        position: absolute;
+        inset: 0; /* top:0; right:0; bottom:0; left:0 */
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* cover entire section */
+        display: block;
+        z-index: 1;
+    }
 
 /* Foreground content */
 .content {
     background: #111; /* dark background for contrast */
 }
 
+/* section helper */
 .section {
     height: 100vh; /* each section fills the viewport */
     display: flex;
@@ -103,12 +121,14 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* perfect centering */
+    transform: translate(-50%, -50%); /* perfect centering relative to .video-section */
     color: white;
-    font-size: 3em;
+    font-size: clamp(1.2rem, 6vw, 3rem);
     font-weight: bold;
     text-align: center;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.7); /* makes text readable */
+    z-index: 2; /* ensure it stays above the video */
+    pointer-events: none; /* allow clicks to pass through to controls if needed */
 }
 
 
