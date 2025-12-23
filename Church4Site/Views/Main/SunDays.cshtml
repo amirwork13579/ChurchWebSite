@@ -1,90 +1,151 @@
 ﻿
-
 <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Home | [Church Name]</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="~/css/SunDays.css" rel="stylesheet">
+    <title>Video Background Site</title>
+    <link rel="stylesheet" href="~/css/SunDays.css">
+    <script src="~/js/site.js"></script>
 </head>
- 
-
-<div class="navbar">
-    <div class="logo">MySite</div>
-    <div class="nav-links">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a>
-        <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="MainPage">MainPage</a>
-        <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Test">Test</a>
-        <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="LogIn">Login</a>
-        <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="LogOut">Logout</a>
-    </div>
-</div>
-
-
-
-
 <body>
 
 
-    <div class="page">
-        <!-- Video section --> 
-        <div class="video-section">
-            <video autoplay muted loop class="video-bg">
-                <source src="~/css/Videos/ChurchVideo.mkv" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="overlay-text">
-                Our Sundays 
+
+    <header class="grace-header">
+        <div class="header-inner-flex">
+            <a href="#" class="main-identity">GRACE<span>CHURCH</span></a>
+
+            <div class="portal-trigger" id="portal-toggle">
+                <span class="line-element"></span>
+                <span class="line-element"></span>
+                <span class="line-element"></span>
+            </div>
+
+            <ul class="portal-wrapper">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li><a asp-area="" asp-controller="Main" asp-action="LogOut">Logout</a></li>
+                    <li><a asp-area="" asp-controller="Main" asp-action="Youth">Youth</a></li>
+                    <li><a asp-area="" asp-controller="Main" asp-action="Calendar">Calendar</a></li>
+                    <li><a asp-area="" asp-controller="Main" asp-action="MainPage">Main</a></li>
+                    <li><a asp-area="" asp-controller="AdminFile" asp-action="AdminPage">Admin</a></li>
+                }
+                else
+                {
+                    <li><a asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a></li>
+                    <li><a asp-area="" asp-controller="Main" asp-action="Calendar">Calendar</a></li>
+                    <li><a asp-area="" asp-controller="Main" asp-action="Youth">Youth</a></li>
+                    <li><a asp-area="" asp-controller="Main" asp-action="LogIn">Login</a></li>
+                    <li><a asp-area="" asp-controller="Main" asp-action="Register">Register</a></li>
+
+
+                }
+
+                <li><a href="#" class="portal-button">Visit Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+
+
+    <div class="hero-container">
+        <video class="bg-video" autoplay loop muted playsinline poster="fallback-image.jpg">
+            <source src="~/css/Videos/ChurchVideo.mkv" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <div class="overlay"></div>
+
+        <nav class="social-nav">
+            <a href="https://instagram.com" target="_blank">Instagram</a>
+            <a href="https://facebook.com" target="_blank">Facebook</a>
+            <a href="https://youtube.com" target="_blank">YouTube</a>
+        </nav>
+
+        <main class="center-content">
+            <h1>Sundays</h1>
+            <p>We welcome everyoe to join us on Sunday worship.</p>
+        </main>
+    </div>
+
+
+
+
+    <div class="double-border-box">
+        <div class="border-content">
+            <h3>ELEGANCE</h3>
+            <p>Refined Design</p>
+        </div>
+    </div>
+
+
+    <div class="warm-image-section">
+        <div class="image-mask-container">
+            <img src="~/css/Images/church.webp" alt="Descriptive Alt Text" class="fading-image">
+        </div>
+
+        <div class="warm-image-content">
+            <h2>Handcrafted Beauty</h2>
+            <p>Details that matter, quality that lasts.</p>
+        </div>
+    </div>
+
+
+
+
+    <div class="full-width-frame gray-bg">
+        <div class="center-border-box">
+            <div class="inner-text">
+                <h2>MODERN DESIGN</h2>
+                <p>ESTABLISHED 2025</p>
             </div>
         </div>
     </div>
 
 
 
-    <div class="fullwidth-yellow-borders">
-        <h1>Join us this sunday</h1>
-        <p>A Welcoming church to the young</p>
+
+
+    <div class="warm-image-left-section">
+        <div class="image-mask-left">
+            <img src="~/css/Images/youngchurch.jpg" alt="Artistic Scene" class="fading-image">
+        </div>
+
+        <div class="warm-content">
+            <h2>REVERSE VIEW</h2>
+            <p>A new perspective on design.</p>
+        </div>
     </div>
 
 
 
-    <div class="sundaytext">
-        <h4>Sundays at church are a peaceful pause in the week—a time to gather, reflect, and reconnect. The service brings encouraging messages, meaningful worship, and a sense of community. Afterward, people linger to talk, laugh, and share life together. It’s a simple, welcoming rhythm that helps you start the week grounded and refreshed.</h4>
-    </div>
 
-
-    <div class="warm-section">
-        <div class="image-text-block">
-            <div class="text-content">
-                <h2>Your Title Here</h2>
-                <p>
-                    This is your description text. It stays centered vertically
-                    next to the image, creating a clean and balanced layout.
-                </p>
+    <section class="church-lower-section">
+        <div class="church-frame">
+            <div class="visit-card">
+                <div class="card-inner">
+                    <span class="sub-tag">Welcome Home</span>
+                    <h2>Join Us This Sunday</h2>
+                    <div class="service-times">
+                        <p>9:00 AM &bull; 11:00 AM</p>
+                        <p>123 Grace Lane, Your City</p>
+                    </div>
+                    <a asp-controller="Main" asp-action="SunDays" class="cta-button">Plan Your Visit</a>
+                </div>
             </div>
-
-            <img src="~/css/Images/black-women-in-church.jpg" alt="Image">
         </div>
-    </div>
+
+        <nav class="church-socials">
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">YouTube</a>
+        </nav>
+    </section>
 
 
-
-  
-
-
-
-    <div class="hero">
-        <div class="hero-image"></div>
-
-        <div class="hero-text">
-            <h1>Want infomation on our Sundays?</h1>
-            <p>
-                <a asp-action="calendar">Click here to view our schedule</a>
-            </p>
-        </div>
-    </div>
 
 
 
 </body>
+</html>

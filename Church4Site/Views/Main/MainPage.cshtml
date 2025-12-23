@@ -14,8 +14,6 @@
 
 
 
-
-
     <header class="grace-header">
         <div class="header-inner-flex">
             <a href="#" class="main-identity">GRACE<span>CHURCH</span></a>
@@ -44,7 +42,6 @@
                     <li><a asp-area="" asp-controller="Main" asp-action="Register">Register</a></li>
 
 
-                    
                 }
                 
                 <li><a href="#" class="portal-button">Visit Us</a></li>
@@ -118,7 +115,7 @@
 
     <div class="warm-image-section">
         <div class="image-mask-container">
-            <img src="~/css/Images/church.webp" alt="Descriptive Alt Text" class="fading-image">
+            <img src="~/css/Images/black-women-in-church.jpg" alt="Descriptive Alt Text" class="fading-image">
         </div>
 
         <div class="warm-image-content">
@@ -167,7 +164,7 @@
                         <p>9:00 AM &bull; 11:00 AM</p>
                         <p>123 Grace Lane, Your City</p>
                     </div>
-                    <a href="#" class="cta-button">Plan Your Visit</a>
+                    <a asp-controller="Main" asp-action="SunDays" class="cta-button">Plan Your Visit</a>
                 </div>
             </div>
         </div>
