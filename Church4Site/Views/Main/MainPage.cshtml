@@ -6,57 +6,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Home | [Church Name]</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="~/css/MainPage.css" rel="stylesheet">
+    <title>Video Background Site</title>
+    <link rel="stylesheet" href="~/css/MainPage.css">
+    <script src="~/js/site.js"></script>
 </head>
 <body>
 
 
 
-    <div class="navbar">
-        <div class="logo">MySite</div>
-        <div class="nav-links">
-            @if (User.Identity.IsAuthenticated)
-            {
-                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="LogOut">Logout</a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Calendar">Calendar</a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Youth">Youth</a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="AdminFile" asp-action="AdminPage">Admin</a>
-            }
-            else
-            {
-                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Calendar">Calendar</a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Register">Register</a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="MainPage">MainPage</a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Test">Test</a>
-                <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="LogIn">Login</a>
-            }
-            
-            
-        </div>
-    </div>
 
+    <header class="grace-header">
+        <div class="header-inner-flex">
+            <a href="#" class="main-identity">GRACE<span>CHURCH</span></a>
 
-
-
-    <div class="page">
-
-        <!-- Video section -->
-        <div class="video-section">
-            <video autoplay muted loop class="video-bg">
-                <source src="~/css/Videos/ChurchVideo.mkv" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="overlay-text">
-                Welcome to Church
+            <div class="portal-trigger" id="portal-toggle">
+                <span class="line-element"></span>
+                <span class="line-element"></span>
+                <span class="line-element"></span>
             </div>
+
+            <ul class="portal-wrapper">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li><a asp-area="" asp-controller="Main" asp-action="LogOut">Logout</a></li>
+                    <li><a asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a></li>
+                    <li><a asp-area="" asp-controller="Main" asp-action="Calendar">Calendar</a></li>
+                    <li><a asp-area="" asp-controller="Main" asp-action="Youth">Youth</a></li>
+                    <li><a asp-area="" asp-controller="AdminFile" asp-action="AdminPage">Admin</a></li>
+                }
+                else
+                {
+                    <li><a asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a></li>
+                    <li><a asp-area="" asp-controller="Main" asp-action="Calendar">Calendar</a></li>
+                    <li><a asp-area="" asp-controller="Main" asp-action="Youth">Youth</a></li>
+                    <li><a asp-area="" asp-controller="Main" asp-action="LogIn">Login</a></li>
+                    <li><a asp-area="" asp-controller="Main" asp-action="Register">Register</a></li>
+
+
+                    
+                }
+                
+                <li><a href="#" class="portal-button">Visit Us</a></li>
+            </ul>
         </div>
+    </header>
+
+
+
+
+
+    <div class="hero-container">
+        <video class="bg-video" autoplay loop muted playsinline poster="fallback-image.jpg">
+            <source src="~/css/Videos/ChurchVideo.mkv" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <div class="overlay"></div>
+
+        <nav class="social-nav">
+            <a href="https://instagram.com" target="_blank">Instagram</a>
+            <a href="https://facebook.com" target="_blank">Facebook</a>
+            <a href="https://youtube.com" target="_blank">YouTube</a>
+        </nav>
+
+        <main class="center-content">
+            <h1>EXPLORE</h1>
+            <p>Experience the world in motion.</p>
+        </main>
     </div>
-
-
 
 
 
@@ -89,106 +106,81 @@
     </div>
 
 
-    <div class="warm-section2 fade-section">
-        <img src="~/css/Images/black-women-in-church.jpg" alt="Image" class="fade-image">
 
-        <div class="center-text">
-            <h2>Your Title Here</h2>
-            <p>Your description text goes here.</p>
+    <div class="double-border-box">
+        <div class="border-content">
+            <h3>ELEGANCE</h3>
+            <p>Refined Design</p>
+        </div>
+    </div>
+
+
+    <div class="warm-image-section">
+        <div class="image-mask-container">
+            <img src="~/css/Images/church.webp" alt="Descriptive Alt Text" class="fading-image">
+        </div>
+
+        <div class="warm-image-content">
+            <h2>Handcrafted Beauty</h2>
+            <p>Details that matter, quality that lasts.</p>
         </div>
     </div>
 
 
 
 
-    <div class="warm-section3 warm-fade-section">
-        <div class="center-text">
-            <h2>Your Title Here</h2>
-            <p>Your description text goes here.</p>
+    <div class="full-width-frame gray-bg">
+        <div class="center-border-box">
+            <div class="inner-text">
+                <h2>MODERN DESIGN</h2>
+                <p>ESTABLISHED 2025</p>
+            </div>
         </div>
-
-        <img src="~/css/Images/youngchurch.jpg" alt="Image" class="fade-image-left">
     </div>
 
 
 
 
 
+    <div class="warm-image-left-section">
+        <div class="image-mask-left">
+            <img src="~/css/Images/youngchurch.jpg" alt="Artistic Scene" class="fading-image">
+        </div>
+
+        <div class="warm-content">
+            <h2>REVERSE VIEW</h2>
+            <p>A new perspective on design.</p>
+        </div>
+    </div>
 
 
-    
 
-    <section id="info" class="service-info">
-        <div class="container">
-            <h3>Service Times & Location</h3>
-            <div class="times-location">
-                <div class="info-card">
-                    <h4>Sunday Worship</h4>
-                    <p>10:00 AM (In-Person & Online)</p>
-                </div>
-                <div class="info-card">
-                    <h4>Mid-Week Study</h4>
-                    <p>Wednesday, 7:00 PM</p>
-                </div>
-                <div class="info-card">
-                    <h4>Our Location</h4>
-                    <p>[Street Address, City, Postcode]</p>
+
+    <section class="church-lower-section">
+        <div class="church-frame">
+            <div class="visit-card">
+                <div class="card-inner">
+                    <span class="sub-tag">Welcome Home</span>
+                    <h2>Join Us This Sunday</h2>
+                    <div class="service-times">
+                        <p>9:00 AM &bull; 11:00 AM</p>
+                        <p>123 Grace Lane, Your City</p>
+                    </div>
+                    <a href="#" class="cta-button">Plan Your Visit</a>
                 </div>
             </div>
-            <a href="directions.html" class="btn secondary-btn">Get Directions</a>
         </div>
+
+        <nav class="church-socials">
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">YouTube</a>
+        </nav>
     </section>
 
-    <section class="who-we-are">
-        <div class="container">
-            <h3>A Place for Everyone</h3>
-            <p class="description">Whether you are exploring faith for the first time or looking for a new church family, you are welcome here. Come as you are, and discover a place where you can belong, grow, and make a difference.</p>
 
-            <div class="pillar-links">
-                <a href="new-visitors.html" class="pillar-card">
-                    <span class="emoji">👋</span>
-                    <h4>I'm New Here</h4>
-                    <p>Get all the details for your first visit.</p>
-                </a>
-                <a href="ministries.html" class="pillar-card">
-                    <span class="emoji">👨‍👩‍👧‍👦</span>
-                    <h4>Ministries</h4>
-                    <p>Discover groups for kids, youth, and adults.</p>
-                </a>
-                <a href="beliefs.html" class="pillar-card">
-                    <span class="emoji">📖</span>
-                    <h4>Our Beliefs</h4>
-                    <p>Learn about what we stand for.</p>
-                </a>
-            </div>
-        </div>
-    </section>
 
-    
 
-    <section class="cta-bottom">
-        <div class="container">
-            <h3>Ready to Connect?</h3>
-            <div class="action-buttons">
-                <a href="contact.html" class="btn primary-btn">Contact Us</a>
-                <a href="give.html" class="btn secondary-btn">Give Online</a>
-            </div>
-        </div>
-    </section>
-
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; 2025 [Church Name]. All Rights Reserved.</p>
-            <div class="social-links">
-                <a href="#">Facebook</a>
-                <a href="#">Instagram</a>
-            </div>
-            <div class="legal-links">
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="sitemap.html">Sitemap</a>
-            </div>
-        </div>
-    </footer>
 
 </body>
 </html>
