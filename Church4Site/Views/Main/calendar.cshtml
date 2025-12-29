@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Background Site</title>
-    <link rel="stylesheet" href="~/css/MainPage.css">
+    <link rel="stylesheet" href="~/css/Calendar.css">
     <script src="~/js/site.js"></script>
 </head>
 <body>
@@ -34,12 +34,10 @@
                 else
                 {
                     <li><a asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a></li>
-                    <li><a asp-area="" asp-controller="Main" asp-action="Calendar">Calendar</a></li>
                     <li><a asp-area="" asp-controller="Main" asp-action="Youth">Youth</a></li>
+                    <li><a asp-area="" asp-controller="Main" asp-action="MainPage">Main</a></li>
                     <li><a asp-area="" asp-controller="Main" asp-action="LogIn">Login</a></li>
                     <li><a asp-area="" asp-controller="Main" asp-action="Register">Register</a></li>
-
-
                 }
 
                 <li><a href="#" class="portal-button">Visit Us</a></li>
@@ -77,8 +75,48 @@
 
 
 
-   
 
+
+
+
+
+
+
+
+
+    <div class="page-wrapper">
+        <div class="event-grid">
+
+            <article class="event-card">
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=600&q=80" alt="Concert">
+                </div>
+                <div class="content">
+                    <h2 class="title">Summer Jazz Night</h2>
+                    <p class="description">Join us for an evening of soulful melodies and local food trucks at the waterfront.</p>
+                    <div class="meta-data">
+                        <span class="date">📅 July 15, 2025</span>
+                        <span class="time">⏰ 7:00 PM</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="event-card">
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=600&q=80" alt="Tech">
+                </div>
+                <div class="content">
+                    <h2 class="title">Innovation Summit</h2>
+                    <p class="description">A deep dive into the future of artificial intelligence and sustainable technology.</p>
+                    <div class="meta-data">
+                        <span class="date">📅 Aug 22, 2025</span>
+                        <span class="time">⏰ 10:00 AM</span>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </div>
 
 </body>
 </html>

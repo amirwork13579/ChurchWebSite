@@ -1,89 +1,110 @@
-﻿/* warm section */
-.warm-section {
-    width: 100%;
-    background: linear-gradient( to right, #ffb36b, #ff9a5c, #ff7f50 );
-    padding: 40px 20px;
-    color: #333;
-    text-align: center;
-    box-sizing: border-box;
-}
-
-.warm-section2 {
-    width: 100%;
-    /* Transition from a golden yellow to a deep burnt orange */
-    background: linear-gradient(to right, #f2994a, #f2c94c);
-    padding: 40px 20px;
-    color: #333;
-    text-align: center;
-    box-sizing: border-box;
-}
-
-.warm-section3 {
-    width: 100%;
-    /* Transition from a soft coral to a warm rose */
-    background: linear-gradient(to right, #ff9966, #ff5e62);
-    padding: 40px 20px;
-    color: #fff; /* Switched to white for better contrast on darker tones */
-    text-align: center;
-    box-sizing: border-box;
-}
-
+﻿
 
 /* card =============================*/
-.card {
-    max-width: 400px;
-    margin: 50px auto;
+
+/* Container with warm background */
+.habitat-floor {
+    background: linear-gradient(135deg, #fff9f0 0%, #ffcc80 100%);
+    padding: 30px 0;
+    min-height: 100vh;
+}
+
+.herd-container {
+    padding: 0 10px;
+}
+
+/* 2-Column Grid that grows rows automatically */
+.beehive-matrix {
+    display: grid;
+    /* This forces exactly 2 columns. 3rd item goes to Row 2, 5th to Row 3, etc. */
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Individual Card Styling */
+.fox-unit {
     background: #ffffff;
+    border: 1px solid #d4a373;
     border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
     overflow: hidden;
-    font-family: 'Segoe UI', Arial, sans-serif;
-}
-
-
-.card-header {
-    background: #0a2a66;
-    color: #fff;
-    padding: 20px;
-}
-
-.card-title {
-    font-size: 1.5em;
-    font-weight: bold;
-}
-
-.card-body {
-    padding: 20px;
-}
-
-.card-description {
-    font-size: 1em;
-    color: #333;
-    margin-bottom: 20px;
-    line-height: 1.5;
-}
-
-.card-info {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    font-size: 0.95em;
-    color: #555;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-    .card-info span {
-        display: flex;
-        align-items: center;
-        gap: 6px;
+.falcon-eye img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    display: block;
+}
+
+.koala-pouch {
+    padding: 12px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.lion-roar {
+    margin: 0 0 5px 0;
+    font-size: 1rem;
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+.owl-echo {
+    font-size: 0.8rem;
+    color: #7f8c8d;
+    line-height: 1.4;
+    margin-bottom: 12px;
+    /* Ensures description doesn't break row alignment */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.turtle-shell {
+    margin-top: auto;
+    border-top: 1px dashed #fceabb;
+    padding-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.ant-path {
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: #d35400;
+}
+
+/* Tablet and Desktop scaling */
+@media (min-width: 650px) {
+    .beehive-matrix {
+        gap: 25px;
     }
 
-.events-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(220px, 1fr));
-    gap: 30px;
+    .falcon-eye img {
+        height: 200px;
+    }
+
+    .lion-roar {
+        font-size: 1.4rem;
+    }
+
+    .ant-path {
+        font-size: 0.85rem;
+    }
+
+    .turtle-shell {
+        flex-direction: row;
+        justify-content: space-between;
+    }
 }
-
-
 
 
 

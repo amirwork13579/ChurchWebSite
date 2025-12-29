@@ -40,8 +40,6 @@
                     <li><a asp-area="" asp-controller="Main" asp-action="Youth">Youth</a></li>
                     <li><a asp-area="" asp-controller="Main" asp-action="LogIn">Login</a></li>
                     <li><a asp-area="" asp-controller="Main" asp-action="Register">Register</a></li>
-
-
                 }
                 
                 <li><a href="#" class="portal-button">Visit Us</a></li>
@@ -79,27 +77,34 @@
         <h2>Upcoming Events</h2>
 
 
-        <div class="events-grid">
-            @foreach (var ev in Model)
-            {
-                <div class="event-card">
+        <div class="">
+            
+                <div class="habitat-floor">
+                    <div class="herd-container">
+                        <div class="beehive-matrix">
+                            @foreach (var ev in Model)
+                            {
 
-                    <div class="card">
-                        <div class="card-header">
-                            <h2 class="card-title">@ev.Name</h2>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-description">
-                                @ev.Description
-                            </p>
-                            <div class="card-info">
-                                <span class="card-date">📅 @ev.Date</span>
-                                <span class="card-time">⏰ 10:00 AM – 5:00 PM</span>
-                            </div>
+                                <article class="fox-unit">
+                                    <div class="falcon-eye">
+                                        <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=500&q=80" alt="Service">
+                                    </div>
+                                    <div class="koala-pouch">
+                                        <h2 class="lion-roar">@ev.Name</h2>
+                                        <p class="owl-echo">@ev.Description</p>
+                                        <div class="turtle-shell">
+                                            <span class="ant-path">📅 @ev.Date</span>
+                                            <span class="ant-path">⏰ 9:00 AM</span>
+                                        </div>
+                                    </div>
+                                </article>
+                            }
+
+
                         </div>
                     </div>
                 </div>
-            }
+            
         </div>
     </div>
 
