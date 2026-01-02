@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<Church4DbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("IonosDataBase")));
+builder.Services.AddDbContext<Church4DbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("SqlDataBase")));
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 
@@ -49,7 +49,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+/*app.UseHttpsRedirection();*/
 app.UseRouting();
 
 app.UseAuthorization();
