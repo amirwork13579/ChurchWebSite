@@ -10,7 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<Church4DbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("SqlDataBase")));
+builder.Services.AddDbContext<Church4DbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("IonosServerDataBase")));
+/*connection strings= IonosServerDataBase SqlDataBase*/
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 
