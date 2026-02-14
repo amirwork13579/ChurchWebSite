@@ -1,83 +1,119 @@
-﻿@model Church4Site.Entities.EventsDataViewModel
+﻿@using System.Security.Claims
 
+@model Church4Site.Models.AdminViewModel
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Background Site</title>
     <link href="~/css/AdminPage.css" rel="stylesheet">
+    <script src="~/js/site.js"></script>
 </head>
+<body>
 
 
-<div class="navbar">
-    <div class="logo">MySite</div>
-    <div class="nav-links">
-        <a class="nav-link text-dark" asp-area="" asp-controller="AdminFile" asp-action="AdminPage">Admin</a>
-        <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a>
-        <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="MainPage">MainPage</a>
-        <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Test">Test</a>
-        <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="LogIn">Login</a>
-        <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="LogOut">Logout</a>
+    <div class="navbar">
+        <div class="logo">MySite</div>
+        <div class="nav-links">
+            <a class="nav-link text-dark" asp-area="" asp-controller="AdminFile" asp-action="AdminPage">Admin</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="MainPage">MainPage</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Test">Test</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="LogIn">Login</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="LogOut">Logout</a>
+        </div>
     </div>
-</div>
 
-<h1>Admin Page</h1>
+    <h1>Admin Page</h1>
 
-<h3>Submit an Event</h3>
+    <h3>Submit an Event</h3>
 
-<form asp-action="SubmitEvent" method="post">
-    <div class="form-text">
-        <label>Name</label>
-        <input type="text" class="form-control" asp-for="NewEvent.Name" />
-        <label>Date and Time</label>
-        <input type="datetime" class="form-control" asp-for="NewEvent.Date" />
-        <label>Description</label>
-        <input type="text" class="form-control" asp-for="NewEvent.Description" />
-    </div>
-    <button type="submit" class="">Submit</button>
-</form>
-
-
-
+    <form asp-action="SubmitEvent" method="post">
+        <div class="form-text">
+            <label>Name</label>
+            <input type="text" class="form-control" asp-for="NewEvent.Name" />
+            <label>Date and Time</label>
+            <input type="datetime" class="form-control" asp-for="NewEvent.Date" />
+            <label>Time</label>
+            <input type="text" class="form-control" asp-for="NewEvent.Time" />
+            <label>Description</label>
+            <input type="text" class="form-control" asp-for="NewEvent.Description" />
+        </div>
+        <button type="submit" class="">Submit</button>
+    </form>
 
 
-<h2>Upcoming Events</h2>
 
 
-<div class="events-grid">
-    @foreach (var ev in Model.Eventslst)
-    {
-        <div class="event-card">
 
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title">@ev.Name</h2>
-                </div>
-                <div class="card-body">
-                    <p class="card-description">
-                        @ev.Description
-                    </p>
-                    <div class="card-info">
-                        <span class="card-date">📅 @ev.Date</span>
-                        <span class="card-time">⏰ 10:00 AM – 5:00 PM</span>
+    <h2>Upcoming Events</h2>
+
+
+    <div class="events-grid">
+        @foreach (var ev in Model.EventsLst)
+        {
+            <div class="event-card">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">@ev.Name</h2>
                     </div>
-                    <a asp-controller="AdminFile" asp-action="Edit" asp-route-id="@ev.Id">Edit</a>
-                    <a asp-controller="AdminFile" asp-action="Delete" asp-route-id="@ev.Id">Delete</a>
+                    <div class="card-body">
+                        <p class="card-description">
+                            @ev.Description
+                        </p>
+                        <div class="card-info">
+                            <span class="card-date">📅 @ev.Date</span>
+                            <span class="card-time">⏰ @ev.Time</span>
+                        </div>
+                        <a asp-controller="AdminFile" asp-action="Edit" asp-route-id="@ev.Id">Edit</a>
+                        <a asp-controller="AdminFile" asp-action="Delete" asp-route-id="@ev.Id">Delete</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
-</div>
-
-
-
-<h3>Submit a Sunday</h3>
-
-<form asp-action="SubmitEvent" method="post">
-    <div class="form-text">
-        <label>Name</label>
-        <input type="text" class="form-control" asp-for="NewEvent.Name" />
-        <label>Date and Time</label>
-        <input type="datetime" class="form-control" asp-for="NewEvent.Date" />
-        <label>Description</label>
-        <input type="text" class="form-control" asp-for="NewEvent.Description" />
+        }
     </div>
-    <button type="submit" class="">Submit</button>
-</form>
+
+
+
+
+
+    <div class="userT-page-wrapper">
+        <div class="userT-container">
+            <h1 class="userT-main-title">Community Stories</h1>
+
+            <div class="userT-grid">
+                @foreach (var T in Model.MessagesLst)
+                {
+                    <div class="userT-card">
+                        <div class="userT-card-header">
+                            <div class="userT-avatar">JD</div>
+                            <div class="userT-meta">
+                                <h3 class="userT-author-name">John Doe</h3>
+                                <span class="userT-date">2 hours ago</span>
+                            </div>
+                        </div>
+                        <h4 class="userT-testimony-title">A New Beginning</h4>
+                        <p class="userT-content">
+                            @T.MessageFrom
+                        </p>
+                        @if (T.UserId.ToString() == User.FindFirstValue(ClaimTypes.NameIdentifier))
+                         {
+                            <a asp-controller="Main" asp-action="EditTestimonie" asp-route-Id="@T.Id">Edit</a>
+                        }
+                        <div class="userT-badge">Verified</div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+</body>
+</html>

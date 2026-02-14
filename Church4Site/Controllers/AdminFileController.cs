@@ -18,15 +18,17 @@ namespace Church4Site.Controllers
 
 
         [Authorize(Roles = "Admin")]
-        public IActionResult AdminPage()
+        public async Task<IActionResult> AdminPage()
         {
-            var vm = new EventsDataViewModel
+            var vm = new AdminViewModel
             {
                 NewEvent = new EventData(),
-                Eventslst = _context.Events.ToList()
+                EventsLst = await _context.Events.ToListAsync(),
+                MessagesLst = await _context.UserMessages.ToListAsync()
             };
             return View(vm);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> SubmitEvent(EventsDataViewModel event1) 
@@ -36,12 +38,7 @@ namespace Church4Site.Controllers
                 _context.Events.Add(event1.NewEvent);
                 await _context.SaveChangesAsync();
 
-                var vm = new EventsDataViewModel
-                {
-                    NewEvent = new EventData(),
-                    Eventslst = _context.Events.ToList()
-                };
-                return View("AdminPage", vm);
+                return RedirectToAction("AdminPage");
             }
             return Ok("invalid input");
         }

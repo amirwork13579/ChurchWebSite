@@ -29,6 +29,7 @@
                 {
                     <li><a asp-area="" asp-controller="Main" asp-action="LogOut">Logout</a></li>
                     <li><a asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a></li>
+                    <li><a asp-area="" asp-controller="Main" asp-action="Testimonies">Testimonies</a></li>
                     <li><a asp-area="" asp-controller="Main" asp-action="Calendar">Calendar</a></li>
                     <li><a asp-area="" asp-controller="Main" asp-action="Youth">Youth</a></li>
                     <li><a asp-area="" asp-controller="AdminFile" asp-action="AdminPage">Admin</a></li>
@@ -83,7 +84,6 @@
                         <div class="beehive-matrix">
                             @foreach (var ev in Model)
                             {
-
                                 <article class="fox-unit">
                                     <div class="falcon-eye">
                                         <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=500&q=80" alt="Service">
@@ -93,7 +93,7 @@
                                         <p class="owl-echo">@ev.Description</p>
                                         <div class="turtle-shell">
                                             <span class="ant-path">📅 @ev.Date</span>
-                                            <span class="ant-path">⏰ 9:00 AM</span>
+                                            <span class="ant-path">⏰ @ev.Time</span>
                                         </div>
                                     </div>
                                 </article>

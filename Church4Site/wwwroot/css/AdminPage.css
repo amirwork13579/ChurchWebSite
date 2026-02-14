@@ -121,3 +121,130 @@
     font-family: Arial, sans-serif;
     text-align: center;
 }
+
+
+
+
+
+
+/*user testimonies--------------------------------------*/
+
+
+/* Root Variables for easy styling */
+:root {
+    --userT-primary: #4a90e2;
+    --userT-bg: #f8fafd;
+    --userT-card-bg: #ffffff;
+    --userT-text: #333333;
+    --userT-text-light: #777777;
+}
+
+.userT-page-wrapper {
+    background-color: var(--userT-bg);
+    padding: 40px 20px;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+}
+
+.userT-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.userT-main-title {
+    text-align: center;
+    color: var(--userT-text);
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+/* Grid System */
+.userT-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Default: 1 column for mobile */
+    gap: 25px;
+}
+
+/* Tablet and Desktop Layout */
+@media (min-width: 768px) {
+    .userT-grid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+}
+
+/* Card Styling */
+.userT-card {
+    background: var(--userT-card-bg);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0,0,0,0.02);
+}
+
+    .userT-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+
+.userT-card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.userT-avatar {
+    width: 45px;
+    height: 45px;
+    background: var(--userT-primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 12px;
+}
+
+.userT-avatar-alt {
+    background: #6c5ce7;
+}
+
+.userT-author-name {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--userT-text);
+}
+
+.userT-date {
+    font-size: 0.85rem;
+    color: var(--userT-text-light);
+}
+
+.userT-testimony-title {
+    margin: 0 0 10px 0;
+    font-size: 1.25rem;
+    color: var(--userT-primary);
+}
+
+.userT-content {
+    color: #555;
+    line-height: 1.6;
+    font-style: italic;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Pushes badge to bottom if content is short */
+}
+
+.userT-badge {
+    display: inline-block;
+    background: #e1f0ff;
+    color: var(--userT-primary);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    align-self: flex-start;
+}
