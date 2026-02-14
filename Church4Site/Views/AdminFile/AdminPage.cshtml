@@ -9,40 +9,212 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Background Site</title>
     <link href="~/css/AdminPage.css" rel="stylesheet">
-    <script src="~/js/site.js"></script>
+    <script src="~/js/Admin.js?v=89787878"></script>
 </head>
 <body>
+
+
 
 
     <div class="navbar">
         <div class="logo">MySite</div>
         <div class="nav-links">
-            <a class="nav-link text-dark" asp-area="" asp-controller="AdminFile" asp-action="AdminPage">Admin</a>
-            <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a>
+            <a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="OurStaff">OurStaff</a>
+            <a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="Testimonies">Testimonies</a>            
             <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="MainPage">MainPage</a>
             <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Test">Test</a>
             <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="LogIn">Login</a>
             <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="LogOut">Logout</a>
         </div>
     </div>
+   
 
-    <h1>Admin Page</h1>
 
-    <h3>Submit an Event</h3>
+    @*event post form*@
+    <div class="devicefileopen-wrapper">
+        <form asp-action="Test" method="post" enctype="multipart/form-data" class="devicefileopen-modern-form">
+            <h2 class="devicefileopen-form-title">Create Event</h2>
 
-    <form asp-action="SubmitEvent" method="post">
-        <div class="form-text">
-            <label>Name</label>
-            <input type="text" class="form-control" asp-for="NewEvent.Name" />
-            <label>Date and Time</label>
-            <input type="datetime" class="form-control" asp-for="NewEvent.Date" />
-            <label>Time</label>
-            <input type="text" class="form-control" asp-for="NewEvent.Time" />
-            <label>Description</label>
-            <input type="text" class="form-control" asp-for="NewEvent.Description" />
+            <div class="devicefileopen-input-grid">
+                <div class="devicefileopen-field-group">
+                    <label class="devicefileopen-custom-label">Event Name</label>
+                    <input type="text" asp-for="NewEvent.Name" class="devicefileopen-custom-input" placeholder="e.g. Annual Gala" />
+                </div>
+
+                <div class="devicefileopen-field-group">
+                    <label class="devicefileopen-custom-label">Description</label>
+                    <textarea asp-for="NewEvent.Description" class="devicefileopen-custom-input devicefileopen-textarea" placeholder="Tell us about the event..."></textarea>
+                </div>
+
+                <div class="devicefileopen-row-flex">
+                    <div class="devicefileopen-field-group">
+                        <label class="devicefileopen-custom-label">Time</label>
+                        <input type="time" asp-for="NewEvent.Time" class="devicefileopen-custom-input" />
+                    </div>
+
+                    <div class="devicefileopen-field-group">
+                        <label class="devicefileopen-custom-label">Date</label>
+                        <input type="date" asp-for="NewEvent.Date" class="devicefileopen-custom-input" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="devicefileopen-av-card">
+                <div class="devicefileopen-av-content">
+                    <h3 class="devicefileopen-av-title">Event Cover Image</h3>
+                    <div class="devicefileopen-preview-container" onclick="document.getElementById('device-file-input1').click()">
+                        <img src="#" id="image-select-event" class="devicefileopen-preview-img" />
+                        <div class="devicefileopen-upload-overlay">
+                            <span>Tap to Change</span>
+                        </div>
+                    </div>
+                    <input type="file" name="imageFile" onchange="openDeviceFile(this, 'image-select-event')" accept="image/*" id="device-file-input1" hidden />
+                    <p class="devicefileopen-file-hint">Max size: 5MB (JPG, PNG)</p>
+                </div>
+            </div>
+
+            <button type="submit" class="devicefileopen-submit-btn">Publish Event</button>
+        </form>
+    </div>
+
+
+    
+
+
+
+
+
+    @*edit team member panal, 3 panals*@
+    <section class="schange-section">
+        <div class="schange-container">
+            <h2 class="schange-title">Choose a Section</h2>
+
+            <div class="schange-selector">
+                <button type="button" class="schange-btn" onclick="schangeShow('one')">Add New Team Member</button>
+                <button type="button" class="schange-btn" onclick="schangeShow('two')">Section Two</button>
+                <button type="button" class="schange-btn" onclick="schangeShow('three')">Section Three</button>
+            </div>
+
+            <!-- Section 1 -->
+            <div id="schange-one" class="schange-content">
+
+
+                @*event post form*@
+                <div class="devicefileopen-wrapper">
+                    <form asp-action="CreateTeamMember" method="post" enctype="multipart/form-data" class="devicefileopen-modern-form">
+                        <h2 class="devicefileopen-form-title">Create Team Member</h2>
+
+                        <div class="devicefileopen-input-grid">
+                            <div class="devicefileopen-field-group">
+                                <label class="devicefileopen-custom-label">Event Name</label>
+                                <input type="text" asp-for="NewTeamMember.Email" class="devicefileopen-custom-input" placeholder="e.g. Annual Gala" />
+                            </div>
+
+                            <div class="devicefileopen-field-group">
+                                <label class="devicefileopen-custom-label">Event Name</label>
+                                <input type="text" asp-for="NewTeamMember.Name" class="devicefileopen-custom-input" placeholder="e.g. Annual Gala" />
+                            </div>
+
+                            <div class="devicefileopen-field-group">
+                                <label class="devicefileopen-custom-label">Description</label>
+                                <textarea asp-for="NewTeamMember.Description" class="devicefileopen-custom-input devicefileopen-textarea" placeholder="Tell us about the event..."></textarea>
+                            </div>
+
+                            <div class="devicefileopen-row-flex">
+                                <div class="devicefileopen-field-group">
+                                    <label class="devicefileopen-custom-label">Time</label>
+                                    <input type="text" asp-for="NewTeamMember.Position" class="devicefileopen-custom-input" />
+                                </div>
+
+
+                                <div class="devicefileopen-field-group">
+        <label class="devicefileopen-custom-label">Make Event Public?</label>
+        <div class="devicefileopen-toggle-wrapper">
+            <input type="checkbox" asp-for="NewTeamMember.IsDisplayed" id="isPublicToggle" class="devicefileopen-checkbox-hidden" />
+            <label for="isPublicToggle" class="devicefileopen-toggle-slider"></label>
+            <span class="devicefileopen-toggle-text" id="toggleStatus">Private</span>
         </div>
-        <button type="submit" class="">Submit</button>
-    </form>
+    </div>
+           
+
+                                
+                            </div>
+                        </div>
+
+                        <div class="devicefileopen-av-card">
+                            <div class="devicefileopen-av-content">
+                                <h3 class="devicefileopen-av-title">Event Cover Image</h3>
+                                <div class="devicefileopen-preview-container" onclick="document.getElementById('device-file-input').click()">
+                                    <img src="#" id="image-select-teammember" class="devicefileopen-preview-img" />
+                                    <div class="devicefileopen-upload-overlay">
+                                        <span>Tap to Change</span>
+                                    </div>
+                                </div>
+                                <input type="file" name="imageFile" onchange="openDeviceFile(this, 'image-select-teammember')" accept="image/*" id="device-file-input" hidden />
+                                <p class="devicefileopen-file-hint">Max size: 5MB (JPG, PNG)</p>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="devicefileopen-submit-btn">Publish Event</button>
+                    </form>
+                </div>
+
+
+            </div>
+
+            <!-- Section 2 -->
+            <div id="schange-two" class="schange-content">
+                <h3 class="schange-heading">Section Two</h3>
+                <p class="schange-text">This is the second section's content.</p>
+            </div>
+
+            <!-- Section 3 -->
+            <div id="schange-three" class="schange-content">
+                <h3 class="schange-heading">Section Three</h3>
+                <p class="schange-text">Remove a Team Member.</p>
+
+                <form asp-action="DeleteTeamMember" method="post">
+                    <label for="teamMemberSelect">Select Team Member to Remove:</label>
+                    <select name="email">
+                        @foreach (var member in Model.TeamMembersLst)
+                        {
+                            <option value="@member.Email">@member.Email </option>
+                        }
+                    </select>
+                    <label>current email</label>
+                    <button type="submit">Submit now</button>
+                </form>
+
+                
+            </div>
+        </div>
+    </section>    
+
+
+
+
+    <div id="emailPopup" class="emailpopup-container" style="display: none">
+        <div class="emailpopup-card">
+            <div class="emailpopup-icon-box">
+                <svg class="emailpopup-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+            </div>
+            <div class="emailpopup-content">
+                <h4 class="emailpopup-title">Account Not Found</h4>
+                <p class="emailpopup-text">The email you entered isn't in our records.</p>
+            </div>
+            <button class="emailpopup-close" onclick="emailErrorModalClose()">&times;</button>
+        </div>
+    </div>
+
+
+
+
+
+
 
 
 
@@ -50,7 +222,7 @@
 
     <h2>Upcoming Events</h2>
 
-
+    @*displays a list of events*@
     <div class="events-grid">
         @foreach (var ev in Model.EventsLst)
         {
@@ -69,13 +241,34 @@
                             <span class="card-time">⏰ @ev.Time</span>
                         </div>
                         <a asp-controller="AdminFile" asp-action="Edit" asp-route-id="@ev.Id">Edit</a>
-                        <a asp-controller="AdminFile" asp-action="Delete" asp-route-id="@ev.Id">Delete</a>
+
+                        <button onclick="UserTOpenPopup(@ev.Id, '/AdminFile/Delete', 'Delete this event?')">Delete Event</button>
                     </div>
                 </div>
             </div>
         }
     </div>
 
+    @*delete popup*@
+    <div class="UserTPopup" id="UserTPopup">
+        <div class="UserTPopupContent">
+            <h3 class="UserTPopupTitle">Confirm Action</h3>
+            <p class="UserTPopupText" id="UserTPopupMessage">Are you sure you want to continue?</p>
+
+            <div class="UserTPopupButtons">
+                <button class="UserTPopupBtnCancel" onclick="UserTClosePopup()">Cancel</button>
+
+                <form id="UserTPopupForm" method="post">
+                    <input type="hidden" id="UserTPopupId" name="id" />
+                    <button type="submit" class="UserTPopupBtnConfirm">Yes, Continue</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    
 
 
 
@@ -84,26 +277,30 @@
         <div class="userT-container">
             <h1 class="userT-main-title">Community Stories</h1>
 
-            <div class="userT-grid">
-                @foreach (var T in Model.MessagesLst)
+            <h2 class="userT-section-subtitle">Pending Approval</h2>
+            <div class="userT-grid" id="pending-container">
+                @foreach (var T in Model.MessagesLst.Where(x => !x.IsApproved))
                 {
-                    <div class="userT-card">
-                        <div class="userT-card-header">
-                            <div class="userT-avatar">JD</div>
-                            <div class="userT-meta">
-                                <h3 class="userT-author-name">John Doe</h3>
-                                <span class="userT-date">2 hours ago</span>
-                            </div>
-                        </div>
-                        <h4 class="userT-testimony-title">A New Beginning</h4>
-                        <p class="userT-content">
-                            @T.MessageFrom
-                        </p>
-                        @if (T.UserId.ToString() == User.FindFirstValue(ClaimTypes.NameIdentifier))
-                         {
-                            <a asp-controller="Main" asp-action="EditTestimonie" asp-route-Id="@T.Id">Edit</a>
-                        }
-                        <div class="userT-badge">Verified</div>
+                    <div class="userT-card" id="msg-card-@T.Id">
+                        <p class="userT-content">User Email- @T.Users.Username</p>
+                        <p class="userT-content">Testimonie- @T.MessageFrom</p>
+                        <button type="button" onclick="toggleApproved(@T.Id)">Approve</button>
+                        <button onclick="UserTOpenPopup(@T.Id, '/AdminFile/DeleteTestimonies', 'Delete this event?')">Delete Testimonies</button>
+                    </div>
+                }
+            </div>
+
+            <hr />
+
+            <h2 class="userT-section-subtitle">Approved Stories</h2>
+            <div class="userT-grid" id="approved-container">
+                @foreach (var T in Model.MessagesLst.Where(x => x.IsApproved))
+                {
+                    <div class="userT-card" id="msg-card-@T.Id">
+                        <p class="userT-content">User Email- @T.Users.Username</p>
+                        <p class="userT-content">Testimonie- @T.MessageFrom</p>
+                        <button type="button" onclick="toggleApproved(@T.Id)">Unapprove</button>
+                        <button onclick="UserTOpenPopup(@T.Id, '/AdminFile/DeleteTestimonies', 'Delete this event?')">Delete Testimonies</button>
                     </div>
                 }
             </div>
@@ -111,8 +308,16 @@
     </div>
 
 
+  
 
 
+
+    @if (TempData["EmailNotFound"] != null)
+    {
+        <script>
+            alert("The email you entered does not exist.");
+        </script>
+    }
 
 
 </body>

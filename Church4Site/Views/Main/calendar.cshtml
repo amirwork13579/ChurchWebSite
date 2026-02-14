@@ -1,122 +1,126 @@
-﻿
+﻿@model List<Church4Site.Entities.EventData>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Background Site</title>
+    <title>Modern Login</title>
     <link rel="stylesheet" href="~/css/Calendar.css">
     <script src="~/js/site.js"></script>
 </head>
+
 <body>
 
 
+    @*background shapes*@
+    <div class="backgroundrandom-wrapper">
+        <div class="backgroundrandom-shape backgroundrandom-circle" style="--i:1; --c:#ff007f; --x:10vw; --size:120px;"></div>
+        <div class="backgroundrandom-shape backgroundrandom-rect" style="--i:2; --c:#00d4ff; --x:40vw; --size:180px;"></div>
+        <div class="backgroundrandom-shape backgroundrandom-blob" style="--i:3; --c:#ccff00; --x:70vw; --size:140px;"></div>
+        <div class="backgroundrandom-shape backgroundrandom-circle" style="--i:4; --c:#7000ff; --x:85vw; --size:100px;"></div>
+    </div>
 
-    <header class="grace-header">
-        <div class="header-inner-flex">
-            <a href="#" class="main-identity">GRACE<span>CHURCH</span></a>
 
-            <div class="portal-trigger" id="portal-toggle">
-                <span class="line-element"></span>
-                <span class="line-element"></span>
-                <span class="line-element"></span>
-            </div>
+    @*navbar*@
+    <nav class="seethronavbar-wrapper">
+        <div class="seethronavbar-container">
+            <a href="#" class="seethronavbar-logo">BL<span>W</span> Church</a>
 
-            <ul class="portal-wrapper">
-                @if (User.Identity.IsAuthenticated)
+            <button class="seethronavbar-toggle" id="navbar-hamburger" aria-label="Toggle Menu">
+                <span class="seethronavbar-icon"></span>
+            </button>
+
+            <ul class="seethronavbar-menu" id="navbar-menu">
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="OurStaff">OurStaff</a></li>
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a></li>
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="Testimonies">Testimonies</a></li>
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="MainPage">Main</a></li>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                 {
-                    <li><a asp-area="" asp-controller="Main" asp-action="LogOut">Logout</a></li>
-                    <li><a asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a></li>
-                    <li><a asp-area="" asp-controller="Main" asp-action="Youth">Youth</a></li>
-                    <li><a asp-area="" asp-controller="Main" asp-action="MainPage">Main</a></li>
-                    <li><a asp-area="" asp-controller="AdminFile" asp-action="AdminPage">Admin</a></li>
+                    <li><a class="seethronavbar-link" asp-area="" asp-controller="AdminFile" asp-action="AdminPage">Admin</a></li>
                 }
-                else
-                {
-                    <li><a asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a></li>
-                    <li><a asp-area="" asp-controller="Main" asp-action="Youth">Youth</a></li>
-                    <li><a asp-area="" asp-controller="Main" asp-action="MainPage">Main</a></li>
-                    <li><a asp-area="" asp-controller="Main" asp-action="LogIn">Login</a></li>
-                    <li><a asp-area="" asp-controller="Main" asp-action="Register">Register</a></li>
-                }
-
-                <li><a href="#" class="portal-button">Visit Us</a></li>
+                <li><a asp-action="ContactForm" class="seethronavbar-btn">Get Started</a></li>
             </ul>
         </div>
-    </header>
+    </nav>
 
 
 
 
 
-    <div class="hero-container">
-        <video class="bg-video" autoplay loop muted playsinline poster="fallback-image.jpg">
-            <source src="~/css/Videos/Churchvideo2.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
 
-        <div class="overlay"></div>
+    @*video hero section*@
+    <div class="videohero-master-wrapper">
+        <section class="videohero-section">
+            <div class="videohero-container">
+                <video class="videohero-video" autoplay muted loop playsinline>
+                    <source src="~/css/Videos/Churchvideo2.mp4" type="video/mp4">
+                </video>
 
-        <nav class="social-nav">
-            <a href="https://instagram.com" target="_blank">Instagram</a>
-            <a href="https://facebook.com" target="_blank">Facebook</a>
-            <a href="https://youtube.com" target="_blank">YouTube</a>
-        </nav>
+                <div class="videohero-overlay">
+                    <div class="videohero-center-content">
 
-        <main class="center-content">
-            <div class="calendar-wrapper">
-                <iframe src="https://calendar.google.com/calendar/embed?src=your_calendar_id&ctz=Europe/London"
-                        style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+
+                        <div class="calendar-wrapper">
+                            <iframe src="https://calendar.google.com/calendar/embed?src=YOUR_ID_HERE&ctz=UTC"
+                                    scrolling="no">
+                            </iframe>
+                        </div>
+     
+
+                    <nav class="videohero-footer">
+                        <a href="#" class="videohero-social">Instagram</a>
+                        <a href="#" class="videohero-social">Twitter</a>
+                        <a href="#" class="videohero-social">YouTube</a>
+                    </nav>
+                </div>
             </div>
-        </main>
+            </div>
+        </section>
     </div>
 
 
 
 
 
+    
 
 
 
 
+    @*section separator*@
+    <div class="sectionseparator-container">
+        <div class="sectionseparator-line"></div>
+        <span class="sectionseparator-text">Upcoming Events</span>
+        <div class="sectionseparator-line"></div>
+    </div>
 
 
 
 
-
-    <div class="page-wrapper">
-        <div class="event-grid">
-
-            <article class="event-card">
-                <div class="image-container">
-                    <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=600&q=80" alt="Concert">
-                </div>
-                <div class="content">
-                    <h2 class="title">Summer Jazz Night</h2>
-                    <p class="description">Join us for an evening of soulful melodies and local food trucks at the waterfront.</p>
-                    <div class="meta-data">
-                        <span class="date">📅 July 15, 2025</span>
-                        <span class="time">⏰ 7:00 PM</span>
+    @*event cards section*@
+    <section class="eventcards-section">
+        <div class="eventcards-container">
+            @foreach (var s in Model)
+            {
+                <div class="eventcards-card">
+                    <div class="eventcards-image-wrapper">
+                        <img src="@s.ImageUrl" alt="Event One" class="eventcards-img">
+                        <div class="eventcards-tag">Featured</div>
+                    </div>
+                    <div class="eventcards-content">
+                        <span class="eventcards-date">@s.Date</span>
+                        <span class="eventcards-date">@s.Time</span>
+                        <h3 class="eventcards-title">@s.Name</h3>
+                        <p class="eventcards-description">@s.Description</p>
+                        <a asp-action="Calendar" class="eventcards-link">Learn More</a>
                     </div>
                 </div>
-            </article>
-
-            <article class="event-card">
-                <div class="image-container">
-                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=600&q=80" alt="Tech">
-                </div>
-                <div class="content">
-                    <h2 class="title">Innovation Summit</h2>
-                    <p class="description">A deep dive into the future of artificial intelligence and sustainable technology.</p>
-                    <div class="meta-data">
-                        <span class="date">📅 Aug 22, 2025</span>
-                        <span class="time">⏰ 10:00 AM</span>
-                    </div>
-                </div>
-            </article>
-
+            }
         </div>
-    </div>
+    </section>
+
 
 </body>
 </html>

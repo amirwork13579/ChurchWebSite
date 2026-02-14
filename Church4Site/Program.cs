@@ -10,10 +10,29 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<Church4DbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("SqlDataBase")));
 /*connection strings= IonosServerDataBase SqlDataBase*/
+builder.Services.AddDbContext<Church4DbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlDataBase"),
+        sqlOptions =>
+        {
+            sqlOptions.EnableRetryOnFailure(
+                maxRetryCount: 5,
+                maxRetryDelay: TimeSpan.FromSeconds(30),
+                errorNumbersToAdd: null);
+        });
+
+    // Logging and Detailed Errors
+    options.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information)
+           .EnableDetailedErrors();
+           /*.EnableSensitiveDataLogging(); // Useful for seeing exactly what ID is failing*/
+});
+
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+
+builder.Services.AddScoped<IMainServices, MainServices>();
+
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
@@ -50,6 +69,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseStaticFiles();
 /*app.UseHttpsRedirection();*/
 app.UseRouting();
 

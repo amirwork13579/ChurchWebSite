@@ -8,5 +8,6 @@ namespace Church4Site.Models
         public DbSet<User> Users { get; set; }
         public DbSet<EventData> Events { get; set; }
         public DbSet<UserMessage> UserMessages { get; set; }
+        public DbSet<TeamMember> TeamMembers { get; set; }
     }
 }

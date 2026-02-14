@@ -1,0 +1,105 @@
+﻿@model Church4Site.Models.AdminViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Background Site</title>
+    <link rel="stylesheet" href="~/css/Test.css">
+    <script src="~/js/Test.js"></script>
+</head>
+<body>
+
+
+
+    <div class="devicefileopen-wrapper">
+        <form asp-action="Test" method="post" enctype="multipart/form-data" class="devicefileopen-modern-form">
+            <h2 class="devicefileopen-form-title">Create Event</h2>
+
+            <div class="devicefileopen-input-grid">
+                <div class="devicefileopen-field-group">
+                    <label class="devicefileopen-custom-label">Event Name</label>
+                    <input type="text" asp-for="NewEvent.Name" class="devicefileopen-custom-input" placeholder="e.g. Annual Gala" />
+                </div>
+
+                <div class="devicefileopen-field-group">
+                    <label class="devicefileopen-custom-label">Description</label>
+                    <textarea asp-for="NewEvent.Description" class="devicefileopen-custom-input devicefileopen-textarea" placeholder="Tell us about the event..."></textarea>
+                </div>
+
+                <div class="devicefileopen-row-flex">
+                    <div class="devicefileopen-field-group">
+                        <label class="devicefileopen-custom-label">Time</label>
+                        <input type="time" asp-for="NewEvent.Time" class="devicefileopen-custom-input" />
+                    </div>
+
+                    <div class="devicefileopen-field-group">
+                        <label class="devicefileopen-custom-label">Date</label>
+                        <input type="date" asp-for="NewEvent.Date" class="devicefileopen-custom-input" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="devicefileopen-av-card">
+                <div class="devicefileopen-av-content">
+                    <h3 class="devicefileopen-av-title">Event Cover Image</h3>
+                    <div class="devicefileopen-preview-container" onclick="document.getElementById('device-file-input').click()">
+                        <img src="/css/Images/church.webp" id="image-select-pressent" class="devicefileopen-preview-img" />
+                        <div class="devicefileopen-upload-overlay">
+                            <span>Tap to Change</span>
+                        </div>
+                    </div>
+                    <input type="file" name="imageFile" onchange="openDeviceFile(this)" accept="image/*" id="device-file-input" hidden />
+                    <p class="devicefileopen-file-hint">Max size: 5MB (JPG, PNG)</p>
+                </div>
+            </div>
+
+            <button type="submit" class="devicefileopen-submit-btn">Publish Event</button>
+        </form>
+    </div>
+
+
+
+
+
+    
+    <div>
+        <form asp-action="Test" enctype="multipart/form-data">
+
+            <div>
+                <label>Name</label>
+                <input type="text" asp-for="NewEvent.Name"/>
+
+                <label>des</label>
+                <input type="text" asp-for="NewEvent.Description" />
+
+                <label>Name</label>
+                <input type="time" asp-for="NewEvent.Time"/>
+
+                <label>Name</label>
+                <input type="date" asp-for="NewEvent.Date" />
+            </div>
+
+
+
+            <div class="av-card">
+                <div class="av">
+                    <h1>Avatar Picture</h1>
+
+                    <input type="file" name="imageFile" onchange="openDeviceFile(this)" accept="image/*" id="device-file-input" />
+
+                    <img src="/css/Images/church.webp" id="image-select-pressent" />
+
+                </div>
+            </div>
+
+            <button type="submit">Subbmit Event</button>
+
+
+        </form>
+    </div>
+
+
+</body>
+</html>

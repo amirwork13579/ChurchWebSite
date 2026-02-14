@@ -13,49 +13,137 @@
 
 
 
-
-    <div class="navbar">
-        <div class="logo">MySite</div>
-        <div class="nav-links">
-            <a class="nav-link text-dark" asp-area="" asp-controller="AdminFile" asp-action="AdminPage">Admin</a>
-            <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Register">Register</a>
-            <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a>
-            <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="MainPage">MainPage</a>
-            <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Test">Test</a>
-            <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="LogIn">Login</a>
-            <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="LogOut">Logout</a>
-        </div>
+    @*background shapes*@
+    <div class="backgroundrandom-wrapper">
+        <div class="backgroundrandom-shape backgroundrandom-circle" style="--i:1; --c:#ff007f; --x:10vw; --size:120px;"></div>
+        <div class="backgroundrandom-shape backgroundrandom-rect" style="--i:2; --c:#00d4ff; --x:40vw; --size:180px;"></div>
+        <div class="backgroundrandom-shape backgroundrandom-blob" style="--i:3; --c:#ccff00; --x:70vw; --size:140px;"></div>
+        <div class="backgroundrandom-shape backgroundrandom-circle" style="--i:4; --c:#7000ff; --x:85vw; --size:100px;"></div>
     </div>
 
 
+    @*navbar*@
+    <nav class="seethronavbar-wrapper">
+        <div class="seethronavbar-container">
+            <a href="#" class="seethronavbar-logo">DESIGN<span>CO</span></a>
+
+            <button class="seethronavbar-toggle" id="navbar-hamburger" aria-label="Toggle Menu">
+                <span class="seethronavbar-icon"></span>
+            </button>
+
+            <ul class="seethronavbar-menu" id="navbar-menu">
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="OurStaff">OurStaff</a></li>
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="Testimonies">Testimonies</a></li>
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="Calendar">Calendar</a></li>
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="OurBeliefs">Our Beliefs</a></li>
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="MainPage">Main</a></li>
+
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <li><a class="seethronavbar-link" asp-area="" asp-controller="AdminFile" asp-action="AdminPage">Admin</a></li>
+                }
+            </ul>
+        </div>
+    </nav>
 
 
 
 
-
-    <div class="login-container">
-        <h2>Welcome Back</h2>
-        <p>Please sign in to continue</p>
-
-        <form asp-action="Register">
-            <div class="input-group">
-                <label>Email</label>
-                <input asp-for="Username" type="email" placeholder="Enter your email" required>
+    @*register form*@
+    <div class="registerform-card-wrapper">
+        <form asp-action="Register" class="registerform-card" id="registrationForm">
+            <div class="registerform-header">
+                <h2 class="registerform-title">Join Us</h2>
+                <p class="registerform-subtitle">Create your account to continue</p>
             </div>
+            <div class="registerform-body">
+            
 
-            <div class="input-group">
-                <label>Password</label>
-                <input asp-for="Password" type="password" placeholder="Enter your password" required>
+                <div class="registerform-field">
+                    <label class="registerform-label">Email Address</label>
+                    <div class="registerform-input-wrapper">
+                        <input asp-for="@Model.Username" type="email" class="registerform-input" placeholder="name@company.com" required id="emailInput">
+                        <span class="registerform-check-icon"></span>
+                    </div>
+                </div>
+
+                <div class="registerform-field">
+                    <label class="registerform-label">Password</label>
+                    <div class="registerform-input-wrapper">
+                        <input asp-for="@Model.Password" type="password" id="registerform-pass" class="registerform-input" placeholder="••••••••" minlength="8" required>
+                        <span class="registerform-check-icon"></span>
+                    </div>
+                </div>
+
+                <div class="registerform-field">
+                    <label class="registerform-label">Confirm Password</label>
+                    <div class="registerform-input-wrapper">
+                        <input type="password" id="registerform-confirm" class="registerform-input" placeholder="••••••••" required>
+                        <span class="registerform-check-icon"></span>
+                    </div>
+                    <span id="registerform-error" class="registerform-error-msg">Passwords do not match</span>
+                </div>
+
+
             </div>
+            <button type="submit" class="registerform-submit-btn">Create Account</button>
 
-            <button type="submit" class="btn">Login</button>
-
-            <div class="links">
-                <a href="#">Forgot password?</a>
-                <a href="#">Create account</a>
+            <div class="registerform-footer">
+                Already have an account? 
+                <a asp-action="LogIn" class="registerform-link">Sign In</a>
             </div>
         </form>
     </div>
 
+
+
+
+
+    @*email exists popup*@
+    <div id="emailErrorModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-icon">⚠️</span>
+                <h2>Email Taken</h2>
+            </div>
+            <div class="modal-body">
+                <p>The email address you entered is already registered with an account.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="emailErrorModalClose()" class="modal-close-btn">Got it</button>
+            </div>
+        </div>
+    </div>
+
+
+          
+
+
+    @*js password confirm*@
+    <script>
+
+                document.addEventListener('DOMContentLoaded', () => {
+            const pass = document.getElementById('registerform-pass');
+            const confirm = document.getElementById('registerform-confirm');
+            const errorMsg = document.getElementById('registerform-error');
+
+            function checkPasswords() {
+                if (confirm.value.length > 0 && pass.value !== confirm.value) {
+                    confirm.setCustomValidity("Mismatch");
+                    errorMsg.style.display = 'block';
+                } else {
+                    confirm.setCustomValidity("");
+                    errorMsg.style.display = 'none';
+                }
+            }
+
+            pass.addEventListener('input', checkPasswords);
+            confirm.addEventListener('input', checkPasswords);
+        });
+
+    </script>
+
+
+    <script src="~/js/Register.js"></script>
 </body>
 </html>

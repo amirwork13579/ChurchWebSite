@@ -6,176 +6,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Background Site</title>
+    <title>Modern Login</title>
     <link rel="stylesheet" href="~/css/MainPage.css">
     <script src="~/js/site.js"></script>
 </head>
+
 <body>
 
 
+    @*background shapes*@
+    <div class="backgroundrandom-wrapper">
+        <div class="backgroundrandom-shape backgroundrandom-circle" style="--i:1; --c:#ff007f; --x:10vw; --size:120px;"></div>
+        <div class="backgroundrandom-shape backgroundrandom-rect" style="--i:2; --c:#00d4ff; --x:40vw; --size:180px;"></div>
+        <div class="backgroundrandom-shape backgroundrandom-blob" style="--i:3; --c:#ccff00; --x:70vw; --size:140px;"></div>
+        <div class="backgroundrandom-shape backgroundrandom-circle" style="--i:4; --c:#7000ff; --x:85vw; --size:100px;"></div>
+    </div>
 
-    <header class="grace-header">
-        <div class="header-inner-flex">
-            <a href="#" class="main-identity">GRACE<span>CHURCH</span></a>
 
-            <div class="portal-trigger" id="portal-toggle">
-                <span class="line-element"></span>
-                <span class="line-element"></span>
-                <span class="line-element"></span>
-            </div>
+    @*navbar*@
+    <nav class="seethronavbar-wrapper">
+        <div class="seethronavbar-container">
+            <a href="#" class="seethronavbar-logo">BL<span>W</span> Church</a>
 
-            <ul class="portal-wrapper">
-                @if (User.Identity.IsAuthenticated)
+            <button class="seethronavbar-toggle" id="navbar-hamburger" aria-label="Toggle Menu">
+                <span class="seethronavbar-icon"></span>
+            </button>
+
+            <ul class="seethronavbar-menu" id="navbar-menu">
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="AdminFile" asp-action="Test">Test</a></li>
+
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="OurStaff">OurStaff</a></li>
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="OurBeliefs">Our Beliefs</a></li>
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="Testimonies">Testimonies</a></li>
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="Calendar">Calendar</a></li>
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="Donate">Donate</a></li>
+                <li><a asp-action="ContactForm" class="seethronavbar-btn">Get Started</a></li>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                 {
-                    <li><a asp-area="" asp-controller="Main" asp-action="LogOut">Logout</a></li>
-                    <li><a asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a></li>
-                    <li><a asp-area="" asp-controller="Main" asp-action="Testimonies">Testimonies</a></li>
-                    <li><a asp-area="" asp-controller="Main" asp-action="Calendar">Calendar</a></li>
-                    <li><a asp-area="" asp-controller="Main" asp-action="Youth">Youth</a></li>
-                    <li><a asp-area="" asp-controller="AdminFile" asp-action="AdminPage">Admin</a></li>
+                    <li><a class="seethronavbar-link" asp-area="" asp-controller="AdminFile" asp-action="AdminPage">Admin</a></li>
                 }
-                else
-                {
-                    <li><a asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a></li>
-                    <li><a asp-area="" asp-controller="Main" asp-action="Calendar">Calendar</a></li>
-                    <li><a asp-area="" asp-controller="Main" asp-action="Youth">Youth</a></li>
-                    <li><a asp-area="" asp-controller="Main" asp-action="LogIn">Login</a></li>
-                    <li><a asp-area="" asp-controller="Main" asp-action="Register">Register</a></li>
-                }
-                
-                <li><a href="#" class="portal-button">Visit Us</a></li>
             </ul>
         </div>
-    </header>
+    </nav>
 
 
 
+  
 
 
-    <div class="hero-container">
-        <video class="bg-video" autoplay loop muted playsinline poster="fallback-image.jpg">
-            <source src="~/css/Videos/Churchvideo2.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+    @*video hero section*@
+    <div class="videohero-master-wrapper">
+        <section class="videohero-section">
+            <div class="videohero-container">
+                <video class="videohero-video" autoplay muted loop playsinline>
+                    <source src="~/css/Videos/Churchvideo2.mp4" type="video/mp4">
+                </video>
 
-        <div class="overlay"></div>
-
-        <nav class="social-nav">
-            <a href="https://instagram.com" target="_blank">Instagram</a>
-            <a href="https://facebook.com" target="_blank">Facebook</a>
-            <a href="https://youtube.com" target="_blank">YouTube</a>
-        </nav>
-
-        <main class="center-content">
-            <h1>EXPLORE</h1>
-            <p>Experience the world in motion.</p>
-        </main>
-    </div>
-
-
-
-    <div class="warm-section">
-        <h2>Upcoming Events</h2>
-
-
-        <div class="">
-                <div class="habitat-floor">
-                    <div class="herd-container">
-                        <div class="beehive-matrix">
-                            @foreach (var ev in Model)
-                            {
-                                <article class="fox-unit">
-                                    <div class="falcon-eye">
-                                        <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=500&q=80" alt="Service">
-                                    </div>
-                                    <div class="koala-pouch">
-                                        <h2 class="lion-roar">@ev.Name</h2>
-                                        <p class="owl-echo">@ev.Description</p>
-                                        <div class="turtle-shell">
-                                            <span class="ant-path">📅 @ev.Date</span>
-                                            <span class="ant-path">⏰ @ev.Time</span>
-                                        </div>
-                                    </div>
-                                </article>
-                            }
-                        </div> 
+                <div class="videohero-overlay">
+                    <div class="videohero-center-content">
+                        <h1 class="videohero-title">AESTHETIC</h1>
+                        <div class="videohero-line"></div>
+                        <p class="videohero-subtitle">Visual Experience</p>
                     </div>
-                </div>           
-        </div>
-    </div>
 
-
-
-    <div class="double-border-box">
-        <div class="border-content">
-            <h3>ELEGANCE</h3>
-            <p>Refined Design</p>
-        </div>
-    </div>
-
-
-    <div class="warm-image-section">
-        <div class="image-mask-container">
-            <img src="~/css/Images/black-women-in-church.jpg" alt="Descriptive Alt Text" class="fading-image">
-        </div>
-
-        <div class="warm-image-content">
-            <h2>Handcrafted Beauty</h2>
-            <p>Details that matter, quality that lasts.</p>
-        </div>
-    </div>
-
-
-
-
-    <div class="full-width-frame gray-bg">
-        <div class="center-border-box">
-            <div class="inner-text">
-                <h2>MODERN DESIGN</h2>
-                <p>ESTABLISHED 2025</p>
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-    <div class="warm-image-left-section">
-        <div class="image-mask-left">
-            <img src="~/css/Images/youngchurch.jpg" alt="Artistic Scene" class="fading-image">
-        </div>
-
-        <div class="warm-content">
-            <h2>REVERSE VIEW</h2>
-            <p>A new perspective on design.</p>
-        </div>
-    </div>
-
-
-
-
-    <section class="church-lower-section">
-        <div class="church-frame">
-            <div class="visit-card">
-                <div class="card-inner">
-                    <span class="sub-tag">Welcome Home</span>
-                    <h2>Join Us This Sunday</h2>
-                    <div class="service-times">
-                        <p>9:00 AM &bull; 11:00 AM</p>
-                        <p>123 Grace Lane, Your City</p>
-                    </div>
-                    <a asp-controller="Main" asp-action="SunDays" class="cta-button">Plan Your Visit</a>
+                    <nav class="videohero-footer">
+                        <a href="#" class="videohero-social">Instagram</a>
+                        <a href="#" class="videohero-social">Twitter</a>
+                        <a href="#" class="videohero-social">YouTube</a>
+                    </nav>
                 </div>
             </div>
+        </section>
+    </div>
+
+
+
+    @*section separator*@
+    <div class="sectionseparator-container">
+        <div class="sectionseparator-line"></div>
+        <span class="sectionseparator-text">Our Services</span>
+        <div class="sectionseparator-line"></div>
+    </div>
+
+
+
+
+    @*event cards section*@
+    <section class="eventcards-section">
+        <div class="eventcards-container">
+            @foreach(var s in Model)
+            {
+                <div class="eventcards-card">
+                    <div class="eventcards-image-wrapper">
+                        <img src="@s.ImageUrl" alt="Event One" class="eventcards-img">
+                        <div class="eventcards-tag">Featured</div>
+                    </div>
+                    <div class="eventcards-content">
+                        <span class="eventcards-date">@s.Date</span>
+                        <span class="eventcards-date">@s.Time</span>
+                        <h3 class="eventcards-title">@s.Name</h3>
+                        <p class="eventcards-description">@s.Description</p>
+                        <a asp-action="Calendar" class="eventcards-link">Learn More</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+
+
+
+    @*section separator*@
+    <div class="sectionseparator-container">
+        <div class="sectionseparator-line"></div>
+        <span class="sectionseparator-text">Our Services</span>
+        <div class="sectionseparator-line"></div>
+    </div>
+
+
+    @*image fadeout to the right*@
+    <section class="imagefaderight-section">
+        <div class="imagefaderight-container">
+
+            <div class="imagefaderight-visual-wrapper">
+                <img src="~/css/Images/church.webp" class="imagefaderight-img">
+            </div>
+
+            <div class="imagefaderight-content">
+                <h2 class="imagefaderight-title">Modern Design</h2>
+                <p class="imagefaderight-text">
+                    The image now features a deeper fade, starting earlier to blend
+                    perfectly with your background video and shapes.
+                </p>
+                <a href="#" class="imagefaderight-btn">Learn More</a>
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+    @*section separator*@
+    <div class="sectionseparator-container">
+        <div class="sectionseparator-line"></div>
+        <span class="sectionseparator-text">Our Services</span>
+        <div class="sectionseparator-line"></div>
+    </div>
+
+
+
+
+    @*image fadeout to the left*@
+    <section class="imagefadeleft-section">
+        <div class="imagefadeleft-container">
+
+            <div class="imagefadeleft-content">
+                <h2 class="imagefadeleft-title">REVERSED DESIGN</h2>
+                <p class="imagefadeleft-text">
+                    This version places the text on the left, while the image sits on the right
+                    and fades out toward the center.
+                </p>
+                <a href="#" class="imagefadeleft-btn">Explore</a>
+            </div>
+
+            <div class="imagefadeleft-visual-wrapper">
+                <img src="~/css/Images/youngchurch.jpg" class="imagefadeleft-img">
+            </div>
+
+        </div>
+    </section>
+
+
+    @*section separator*@
+    <div class="sectionseparator-container">
+        <div class="sectionseparator-line"></div>
+        <span class="sectionseparator-text">Our Services</span>
+        <ul>
+            @if(User.Identity.IsAuthenticated)
+            {
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="LogOut">LogOut</a></li>
+            }
+            else
+            {
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="Register">Register</a></li>
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="Login">Login</a></li>
+            }
+        </ul>
+        <div class="sectionseparator-line"></div>
+    </div>
+
+
+
+   
+
+    @*bottom section*@
+    <footer class="bottomsection-wrapper">
+        <div class="bottomsection-container">
+            <div class="bottomsection-column bottomsection-brand">
+                <h2 class="bottomsection-logo">DESIGN<span>CO</span></h2>
+                <p class="bottomsection-text">
+                    Crafting immersive digital experiences through minimalist design and high-performance visual storytelling.
+                </p>
+            </div>
+
+            <div class="bottomsection-column">
+                <h3 class="bottomsection-title">Navigation</h3>
+                <ul class="bottomsection-list">
+                    <li><a asp-action="Calendar" class="bottomsection-link">Church schedule</a></li>
+                    <li><a asp-action="Calendar" class="bottomsection-link">Church schedule</a></li>
+
+                    
+                </ul>
+            </div>
+
+            <div class="bottomsection-column bottomsection-newsletter">
+                <h3 class="bottomsection-title">Newsletter</h3>
+                <p class="bottomsection-text">Stay updated with our latest releases.</p>
+                <form class="bottomsection-form">
+                    <input type="email" class="bottomsection-input" placeholder="Your email">
+                    <button type="submit" class="bottomsection-submit">Join</button>
+                </form>
+            </div>
         </div>
 
-        <nav class="church-socials">
-            <a href="#">Instagram</a>
-            <a href="#">Facebook</a>
-            <a href="#">YouTube</a>
-        </nav>
-    </section>
+        <div class="bottomsection-base">
+            <p>&copy; 2026 DesignCo. All rights reserved.</p>
+        </div>
+    </footer>
+
 
 
 

@@ -1,0 +1,31 @@
+﻿@using System.Security.Claims
+
+@model Church4Site.Entities.UserMessage
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibrant Login</title>
+    <link rel="stylesheet" href="~/css/LogIn.css">
+</head>
+
+<body>
+
+    <form asp-action="EditTestimonieConfirm">
+        <h1>Youre Message</h1>
+
+        <input type="hidden" asp-for="@Model.UserId" />
+
+        <input type="hidden" asp-for="@Model.Id" />
+        <textarea asp-for="@Model.MessageFrom" rows="10" cols="50"></textarea>
+
+        <button type="submit">Submit Edit</button>
+    </form>
+
+    
+
+
+</body>
+</html>

@@ -4,6 +4,7 @@ using Church4Site.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Migrations;
 using System.Security.Claims;
 using System.Security.Cryptography;
 
@@ -13,13 +14,20 @@ namespace Church4Site.Controllers
     {
         private readonly IAuthService _authService;
         private readonly Church4DbContext _context;
-        public MainController(IAuthService authService, Church4DbContext context)
+        private readonly IMainServices _mainServices;
+
+        public MainController(IAuthService authService, Church4DbContext context, IMainServices mainService)
         {
             _authService = authService;
             _context = context;
+            _mainServices = mainService;
         }
 
-
+        public async Task<IActionResult> MainPage()
+        {
+            var events = await _context.Events.ToListAsync();
+            return View(events);
+        }
         public IActionResult LogIn()
         {
             return View();
@@ -29,28 +37,48 @@ namespace Church4Site.Controllers
             return View();
         }
 
-        public IActionResult Calendar()
+        public async Task<IActionResult> Calendar()
+        {
+            var events = await _context.Events.ToListAsync();
+            return View(events);
+        }
+        public IActionResult SunDays()
         {
             return View();
         }
-        public IActionResult Youth()
+        public IActionResult ContactForm()
         {
             return View();
         }
-        public async Task<IActionResult> Testimonies1() 
+        public IActionResult OurBeliefs() 
+        {
+            return View();
+        }
+        
+        public IActionResult LogOut()
+        {
+            Response.Cookies.Delete("AuthToken");
+            return Redirect("LogIn");
+        }
+
+        public async Task<IActionResult> OurStaff()
+        {
+            var staff = await _context.TeamMembers.Where(u => u.IsDisplayed == true).ToListAsync();  
+            return View(staff);
+        }
+        public async Task<IActionResult> Testimonies() 
         {
 
             var messages = new UserMessageViewModel 
             {
-                NewMessage = _context.UserMessages.FirstOrDefault(),
+                NewMessage = new UserMessage(),
                 MessagesLst = await _context.UserMessages.ToListAsync(),
-                userid = await _context.UserMessages.Select(m => m.UserId).Distinct().ToListAsync()
             };
 
             return View(messages);
         }
 
-        public async Task<IActionResult> Testimonies()
+        /*public async Task<IActionResult> Testimonies1()
         {
             var messages = new UserMessageViewModel
             {
@@ -67,8 +95,9 @@ namespace Church4Site.Controllers
                     .Distinct()
                     .ToListAsync()
             };
+
             return View(messages);
-        }
+        }*/
 
         public async Task<IActionResult> EditTestimonie(int id) 
         {
@@ -80,13 +109,16 @@ namespace Church4Site.Controllers
             return View(message);
         }
 
+
+
         [HttpPost, ActionName("EditTestimonieConfirm")]
         public async Task<IActionResult> EditTestimonieConfirm(UserMessage Msg)
         {
-            if (Msg.Id == 0)
+            if (Msg.Id == 0 || Msg.Id == null)
             {
                 return BadRequest("The ID was not provided. Update failed.");
             }
+            
             if (ModelState.IsValid)
             {
                 _context.UserMessages.Update(Msg);
@@ -97,27 +129,43 @@ namespace Church4Site.Controllers
         }
 
 
-        [Authorize]
+
         [HttpPost]
-        public IActionResult PostTestimonie(UserMessage message) 
+        public async Task<IActionResult> PostTestimonie(UserMessage message,[FromForm] IFormFile FormFile ) 
         {
             try
             {
+                var imageUrl = await _mainServices.CreateImageAsync(FormFile, "userPhoto");
+                message.ImageUrl = imageUrl;
+
+                if (imageUrl == null || imageUrl == string.Empty) 
+                {
+                    message.ImageUrl = "/css/Images/DefaultUser.jpg";
+                }
+
+                ModelState.Remove("ImageUrl");
+                ModelState.Remove("UserId");
+                ModelState.Remove("FormFile");
+
                 if (ModelState.IsValid)
                 {
                     var idString = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
                     if (string.IsNullOrEmpty(idString))
                     {
-                        return BadRequest("You must be logged in to post.");
+                        message.UserId = null;
+
+                        _context.UserMessages.Add(message);
+                        await _context.SaveChangesAsync();
+
+                        return RedirectToAction("Testimonies");
                     }
-                    
 
                     // Convert the string GUID from Identity to a C# Guid object
                     message.UserId = Guid.Parse(idString);
 
                     _context.UserMessages.Add(message);
-                    _context.SaveChanges();
+                    await _context.SaveChangesAsync();
 
                     return RedirectToAction("Testimonies");
                 }
@@ -132,16 +180,27 @@ namespace Church4Site.Controllers
         }
 
 
-        public async Task<IActionResult> MainPage() 
+
+
+        [HttpPost, ActionName("DeleteTestimoniesConfirm")]
+        public async Task<IActionResult> DeleteTestimoniesConfirm(int id)
         {
-            var events = await _context.Events.ToListAsync();
-            return View(events);
+            var item = await _context.UserMessages.FindAsync(id);
+
+            string photoPath = item.ImageUrl;
+
+            if (item != null)
+            {
+                _context.UserMessages.Remove(item);
+                await _context.SaveChangesAsync();
+
+                _mainServices.DeleteServerPhoto(photoPath);
+            }
+            else { return BadRequest(id); }
+            return RedirectToAction("Testimonies");
         }
-        public IActionResult LogOut() 
-        {
-            Response.Cookies.Delete("AuthToken");
-            return Redirect("LogIn");
-        }
+
+        
 
 
         [HttpPost]
@@ -154,13 +213,18 @@ namespace Church4Site.Controllers
             }
             return Redirect("MainPage");
         }
+
+
+
+
         [HttpPost]
         public async Task<ActionResult<string>> LogIn(UserDto request)
         {
             var token = await _authService.LoginAsync(request);
             if (token == null)
             {
-                return BadRequest("Wrong UserName or PassWord");
+                TempData["LoginError"] = "Invalid email or password.";
+                return View();
             }
              
             Response.Cookies.Append("AuthToken", token, new CookieOptions
@@ -175,6 +239,7 @@ namespace Church4Site.Controllers
             return Redirect("MainPage");
         }
 
+
         public string GenRefToken()
         {
             var randnum = new byte[32];
@@ -182,9 +247,13 @@ namespace Church4Site.Controllers
             rng.GetBytes(randnum);
             return Convert.ToBase64String(randnum);
         }
-        public IActionResult SunDays()
+
+        
+
+        public async Task<IActionResult> Test()
         {
-            return View();
+            var items = await _context.Events.ToListAsync();
+            return View(items);
         }
 
     }

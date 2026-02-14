@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+﻿using Church4Site.Entities;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
-namespace Church4Site.Entities
+namespace Church4Site.Models
 {
     public class EventsDataViewModel
     {

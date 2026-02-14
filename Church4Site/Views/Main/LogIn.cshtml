@@ -1,76 +1,97 @@
 ﻿@model Church4Site.Models.UserDto
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Login</title>
+    <title>Login</title>
     <link rel="stylesheet" href="~/css/LogIn.css">
+    <script src="~/js/site.js"></script>
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="logo">
-            <a href="#">BrandName</a>
-        </div>
-        <nav class="nav-links-container">
-            <ul class="nav-links">
 
 
-                
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Register">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="MainPage">MainPage</a>
-                </li>
-                
-                <li class="nav-item">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Test">Test</a>
-                </li>
-                
-            </ul>
-            <a class="nav-link text-dark cta-button" asp-area="" asp-controller="Main" asp-action="Register">Sign-Up</a>
-        </nav>
-        <div class="menu-toggle" id="menuToggle">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
-    </header>
-
-    <div class="login-container">
-        <div class="login-card">
-            <h2>Welcome Back</h2>
-            <p>Please enter your credentials to access your account.</p>
-
-            <form asp-action="LogIn" class="login-form">
-                <div class="form-group">
-                    <label for="username">Username or Email</label>
-                    <input asp-for="Username" type="text" id="username" name="username" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input asp-for="Password" type="password" id="password" name="password" required>
-                </div>
-
-                <div class="form-options">
-                    <label>
-                        <input type="checkbox" name="remember"> Remember Me
-                    </label>
-                    <a href="#">Forgot Password?</a>
-                </div>
-
-                <button type="submit" class="login-button">Log In</button>
-            </form>
-
-            <div class="register-link">
-                Don't have an account? <a href="#">Sign Up</a>
-            </div>
-        </div>
+    @*background shapes*@
+    <div class="backgroundrandom-wrapper">
+        <div class="backgroundrandom-shape backgroundrandom-circle" style="--i:1; --c:#ff007f; --x:10vw; --size:120px;"></div>
+        <div class="backgroundrandom-shape backgroundrandom-rect" style="--i:2; --c:#00d4ff; --x:40vw; --size:180px;"></div>
+        <div class="backgroundrandom-shape backgroundrandom-blob" style="--i:3; --c:#ccff00; --x:70vw; --size:140px;"></div>
+        <div class="backgroundrandom-shape backgroundrandom-circle" style="--i:4; --c:#7000ff; --x:85vw; --size:100px;"></div>
     </div>
+
+
+
+    @*navbar*@
+    <nav class="seethronavbar-wrapper">
+        <div class="seethronavbar-container">
+            <a href="#" class="seethronavbar-logo">DESIGN<span>CO</span></a>
+
+            <button class="seethronavbar-toggle" id="navbar-hamburger" aria-label="Toggle Menu">
+                <span class="seethronavbar-icon"></span>
+            </button>
+
+            <ul class="seethronavbar-menu" id="navbar-menu">
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="MainPage">Main</a></li>
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="Register">Register</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    
+
+
+    @*register form*@
+    <div class="registerform-card-wrapper">
+        <form asp-action="LogIn" class="registerform-card" id="registrationForm">
+            <div class="registerform-header">
+                <h2 class="registerform-title">Welcome</h2>
+                <p class="registerform-subtitle">Enter your Login Detalis to Continue</p>
+            </div>
+            <div class="registerform-body">
+
+
+                <div class="registerform-field">
+                    <label class="registerform-label">Email Address</label>
+                    <div class="registerform-input-wrapper">
+                        <input asp-for="@Model.Username" type="text" class="registerform-input" placeholder="name@company.com" required>
+                        <span class="registerform-check-icon"></span>
+                    </div>
+                </div>
+
+                <div class="registerform-field">
+                    <label class="registerform-label">Password</label>
+                    <div class="registerform-input-wrapper">
+                        <input asp-for="@Model.Password" type="password" id="registerform-pass" class="registerform-input" placeholder="••••••••" required>
+                        <span class="registerform-check-icon"></span>
+                    </div>
+                </div>
+
+            </div>
+            <button type="submit" class="registerform-submit-btn">Submit</button>
+
+            <div class="registerform-footer">
+                Dont have an account? <a asp-action="Register" class="registerform-link">Register</a>
+            </div>
+        </form>
+    </div>
+
+
+    @if (TempData["LoginError"] != null)
+    {
+        <script>
+            alert("@TempData["LoginError"]");
+        </script>    
+    }
+
+
+
+
+   
+
 
 </body>
 </html>

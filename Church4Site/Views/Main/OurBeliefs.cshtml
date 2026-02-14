@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Login</title>
+    <link rel="stylesheet" href="~/css/OurBeliefs.css">
+    <script src="~/js/site.js"></script>
+</head>
+
+<body>
+
+
+    @*background shapes*@
+    <div class="backgroundrandom-wrapper">
+        <div class="backgroundrandom-shape backgroundrandom-circle" style="--i:1; --c:#ff007f; --x:10vw; --size:120px;"></div>
+        <div class="backgroundrandom-shape backgroundrandom-rect" style="--i:2; --c:#00d4ff; --x:40vw; --size:180px;"></div>
+        <div class="backgroundrandom-shape backgroundrandom-blob" style="--i:3; --c:#ccff00; --x:70vw; --size:140px;"></div>
+        <div class="backgroundrandom-shape backgroundrandom-circle" style="--i:4; --c:#7000ff; --x:85vw; --size:100px;"></div>
+    </div>
+
+
+    @*navbar*@
+    <nav class="seethronavbar-wrapper">
+        <div class="seethronavbar-container">
+            <a href="#" class="seethronavbar-logo">BL<span>W</span> Church</a>
+
+            <button class="seethronavbar-toggle" id="navbar-hamburger" aria-label="Toggle Menu">
+                <span class="seethronavbar-icon"></span>
+            </button>
+
+            <ul class="seethronavbar-menu" id="navbar-menu">
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="OurStaff">OurStaff</a></li>
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="Testimonies">Testimonies</a></li>
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="Calendar">Calendar</a></li>
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="MainPage">Main</a></li>
+                <li><a asp-action="ContactForm" class="seethronavbar-btn">Get Started</a></li>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <li><a class="seethronavbar-link" asp-area="" asp-controller="AdminFile" asp-action="AdminPage">Admin</a></li>
+                }
+            </ul>
+        </div>
+    </nav>
+
+
+
+
+    @*stylish see thro title*@
+    <div class="titletop-outer-section">
+        <div class="titletop-border-line"></div>
+
+        <div class="titletop-center-box">
+            @*<div class="titletop-eyebrow">HEALING MINISTRY</div>*@
+            <div class="titletop-hero-title">OUR BELIEFS</div>
+            <div class="titletop-hero-subtitle">STORIES OF TRANSFORMATION</div>
+        </div>
+
+        <div class="titletop-border-line"></div>
+    </div>
+
+
+
+    @*beliefs display section*@
+    <section class="ourbeliefs-grid-section">
+        <div class="ourbeliefs-container">
+            <header class="ourbeliefs-header">
+                @*<span class="ourbeliefs-accent">Core Values</span>
+                <h2 class="ourbeliefs-main-title">What We Stand For</h2>*@
+            </header>
+
+            <div class="ourbeliefs-grid">
+                <div class="ourbeliefs-card">
+                    <div class="ourbeliefs-icon-box">🕊️</div>
+                    <h3 class="ourbeliefs-card-title">Grace</h3>
+                    <p class="ourbeliefs-card-text">We believe in unconditional love and the power of transformation through faith.</p>
+                </div>
+
+                <div class="ourbeliefs-card">
+                    <div class="ourbeliefs-icon-box">📖</div>
+                    <h3 class="ourbeliefs-card-title">Truth</h3>
+                    <p class="ourbeliefs-card-text">Guided by ancient wisdom interpreted for a modern, evolving world.</p>
+                </div>
+
+                <div class="ourbeliefs-card">
+                    <div class="ourbeliefs-icon-box">🤝</div>
+                    <h3 class="ourbeliefs-card-title">Unity</h3>
+                    <p class="ourbeliefs-card-text">A diverse community walking together in authentic, shared fellowship.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ourbeliefs-book-wrapper">
+        <div class="ourbeliefs-book-container">
+            <article class="ourbeliefs-book-page">
+                <p class="ourbeliefs-book-text">
+                    It is in the quiet moments of reflection that we truly understand our purpose.
+                    Our journey is not one taken in isolation, but a collective unfolding of faith
+                    and discovery. Like the ancient scribes who carefully preserved the truths
+                    of old, we continue to write our story on the hearts of our community.
+                    Every act of kindness is a new sentence, and every moment of shared
+                    vulnerability is a chapter in our shared history. We believe that the
+                    narrative of grace is still being written today, and you are an
+                    essential character in this divine anthology of light and restoration.
+                    As we turn the pages of tomorrow, we do so with the courage of those
+                    who walked before us, carrying the lantern of hope into the unknown
+                    corners of the world.
+                </p>
+                <footer class="ourbeliefs-book-signature">— The Ministry Records, Vol. I</footer>
+            </article>
+        </div>
+    </section>
+
+
+
+</body>
+</html>

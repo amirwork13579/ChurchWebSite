@@ -1,0 +1,92 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Login</title>
+    <link rel="stylesheet" href="~/css/ContactForm.css">
+    <script src="~/js/site.js"></script>
+</head>
+
+<body>
+
+
+    @*background shapes*@
+    <div class="backgroundrandom-wrapper">
+        <div class="backgroundrandom-shape backgroundrandom-circle" style="--i:1; --c:#ff007f; --x:10vw; --size:120px;"></div>
+        <div class="backgroundrandom-shape backgroundrandom-rect" style="--i:2; --c:#00d4ff; --x:40vw; --size:180px;"></div>
+        <div class="backgroundrandom-shape backgroundrandom-blob" style="--i:3; --c:#ccff00; --x:70vw; --size:140px;"></div>
+        <div class="backgroundrandom-shape backgroundrandom-circle" style="--i:4; --c:#7000ff; --x:85vw; --size:100px;"></div>
+    </div>
+
+
+
+
+    @*navbar*@
+    <nav class="seethronavbar-wrapper">
+        <div class="seethronavbar-container">
+            <a href="#" class="seethronavbar-logo">BL<span>W</span> Church</a>
+
+            <button class="seethronavbar-toggle" id="navbar-hamburger" aria-label="Toggle Menu">
+                <span class="seethronavbar-icon"></span>
+            </button>
+
+            <ul class="seethronavbar-menu" id="navbar-menu">
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="OurStaff">OurStaff</a></li>
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a></li>
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="Testimonies">Testimonies</a></li>
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="MainPage">Main</a></li>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <li><a class="seethronavbar-link" asp-area="" asp-controller="AdminFile" asp-action="AdminPage">Admin</a></li>
+                }
+                <li><a href="#" class="seethronavbar-btn">Get Started</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+
+
+
+    @*contact form*@
+    <div class="contactform-container">
+        <form class="contactform-card" action="" method="post">
+            <div class="contactform-header">
+                <h2 class="contactform-title">Get in Touch</h2>
+                <p class="contactform-subtitle">We would love to pray with you or answer your questions.</p>
+            </div>
+
+            <div class="contactform-group">
+                <label class="contactform-label" for="Name">Full Name</label>
+                <input type="text" id="Name" name="Name" class="contactform-input" placeholder="Enter your name" required>
+            </div>
+
+            <div class="contactform-group">
+                <label class="contactform-label" for="Email">Email Address</label>
+                <input type="email" id="Email" name="Email" class="contactform-input" placeholder="email@example.com" required>
+            </div>
+
+            <div class="contactform-group">
+                <label class="contactform-label" for="Subject">How can we help?</label>
+                <select id="Subject" name="Subject" class="contactform-input">
+                    <option value="General">General Inquiry</option>
+                    <option value="Prayer">Prayer Request</option>
+                    <option value="Visit">Planning a Visit</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="contactform-group">
+                <label class="contactform-label" for="Message">Message</label>
+                <textarea id="Message" name="Message" class="contactform-textarea" rows="4" placeholder="How can we serve you?" required></textarea>
+            </div>
+
+            <button type="submit" class="contactform-button">Send Message</button>
+        </form>
+    </div>
+
+
+</body>
+</html>

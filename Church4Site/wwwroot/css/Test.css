@@ -1,119 +1,141 @@
-﻿.grid-list {
+﻿:root {
+    --devicefile-primary: #6366f1;
+    --devicefile-primary-hover: #4f46e5;
+    --devicefile-bg: #f8fafc;
+    --devicefile-text: #1e293b;
+    --devicefile-border: #e2e8f0;
+}
+
+.devicefileopen-wrapper {
+    min-height: 100vh;
+    padding: 15px;
     display: flex;
-    grid-template-columns: repeat(3, 1fr); /* 3 items per row */
-    gap: 10px; /* spacing between items */
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    color: red;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--devicefile-bg);
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
-    .grid-list li {
-        padding: 20px;
-        text-align: center;
-        border: 1px solid #aaa;
-    }
-
-
-
-
-
-/* Container to center the whole list */
-.events-list-container-grid {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 20px;
-}
-
-/* 1. Define the Grid Layout: 3 equal columns */
-.events-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-}
-
-/* 2. Style the Individual Event Card */
-.event-card {
-    background-color: #ffffff;
-    /* ... other card styles ... */
-    height: 100%;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Don't forget the responsive media queries for screens smaller than 1200px! */
-@media (max-width: 992px) {
-    .events-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-/* ... etc. */
-
-
-
-
-
-
-
-
-
-/*Card==============================*/
-
-
-/* Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Card container */
-.card {
-    max-width: 400px;
-    margin: 50px auto;
+.devicefileopen-modern-form {
     background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-    overflow: hidden;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    width: 100%;
+    max-width: 450px;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
-/* Header */
-.card-header {
-    background: #0a2a66; /* deep blue */
-    color: #fff;
-    padding: 20px;
-}
-
-.card-title {
-    font-size: 1.5em;
-    font-weight: bold;
-}
-
-/* Body */
-.card-body {
-    padding: 20px;
-}
-
-.card-description {
-    font-size: 1em;
-    color: #333;
+.devicefileopen-form-title {
     margin-bottom: 20px;
-    line-height: 1.5;
+    font-size: 1.4rem;
+    color: var(--devicefile-text);
+    text-align: center;
+    font-weight: 700;
 }
 
-/* Info section */
-.card-info {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    font-size: 0.95em;
-    color: #555;
+.devicefileopen-field-group {
+    margin-bottom: 15px;
 }
 
-    .card-info span {
-        display: flex;
-        align-items: center;
-        gap: 6px;
+.devicefileopen-custom-label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--devicefile-text);
+}
+
+.devicefileopen-custom-input {
+    width: 100%;
+    padding: 12px;
+    border: 1.5px solid var(--devicefile-border);
+    border-radius: 10px;
+    font-size: 16px; /* Prevents iOS zoom on focus */
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+    .devicefileopen-custom-input:focus {
+        outline: none;
+        border-color: var(--devicefile-primary);
     }
+
+.devicefileopen-textarea {
+    height: 100px;
+    resize: none;
+}
+
+.devicefileopen-row-flex {
+    display: flex;
+    gap: 12px;
+}
+
+    .devicefileopen-row-flex > div {
+        flex: 1;
+    }
+
+/* Photo Upload Styling */
+.devicefileopen-av-card {
+    background: #f1f5f9;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+    border: 2px dashed #cbd5e1;
+}
+
+.devicefileopen-preview-container {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    margin: 0 auto;
+    border-radius: 12px; /* Square with rounded corners looks modern */
+    overflow: hidden;
+    cursor: pointer;
+    background: #e2e8f0;
+}
+
+.devicefileopen-preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.devicefileopen-upload-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 0;
+}
+
+.devicefileopen-submit-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--devicefile-primary);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+    .devicefileopen-submit-btn:hover {
+        background-color: var(--devicefile-primary-hover);
+    }
+
+/* Mobile Specific Tweaks */
+@media (max-width: 400px) {
+    .devicefileopen-row-flex {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .devicefileopen-modern-form {
+        padding: 15px;
+    }
+}

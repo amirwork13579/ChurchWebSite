@@ -14,5 +14,6 @@ namespace Church4Site.Entities
 
         [DataType(DataType.Time)]
         public TimeOnly ?Time { get; set; } = TimeOnly.MinValue;
+        public string ?ImageUrl { get; set; } = string.Empty;
     }
 }

@@ -1,760 +1,886 @@
 ﻿
+/*background------------------------------------*/
 
-/* card =============================*/
 
-/* Container with warm background */
-.habitat-floor {
-    background: linear-gradient(135deg, #fff9f0 0%, #ffcc80 100%);
-    padding: 30px 0;
-    min-height: 100vh;
-}
-
-.herd-container {
-    padding: 0 10px;
-}
-
-/* 2-Column Grid that grows rows automatically */
-.beehive-matrix {
-    display: grid;
-    /* This forces exactly 2 columns. 3rd item goes to Row 2, 5th to Row 3, etc. */
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-/* Individual Card Styling */
-.fox-unit {
-    background: #ffffff;
-    border: 1px solid #d4a373;
-    border-radius: 12px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-
-.falcon-eye img {
+.backgroundrandom-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 120px;
-    object-fit: cover;
-    display: block;
-}
-
-.koala-pouch {
-    padding: 12px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.lion-roar {
-    margin: 0 0 5px 0;
-    font-size: 1rem;
-    color: #2c3e50;
-    font-weight: 700;
-}
-
-.owl-echo {
-    font-size: 0.8rem;
-    color: #7f8c8d;
-    line-height: 1.4;
-    margin-bottom: 12px;
-    /* Ensures description doesn't break row alignment */
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    height: 100%;
+    background-color: #001b3d; /* Restored Deep Blue Background */
     overflow: hidden;
+    z-index: -2;
 }
 
-.turtle-shell {
-    margin-top: auto;
-    border-top: 1px dashed #fceabb;
-    padding-top: 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+.backgroundrandom-shape {
+    position: absolute;
+    bottom: -200px;
+    left: var(--x);
+    width: var(--size);
+    height: var(--size);
+    background: var(--c);
+    opacity: 0.5; /* Keeps them semi-transparent over the blue */
+    filter: blur(2px); /* Softens the edges slightly */
+    animation: backgroundrandom-float calc(10s + (var(--i) * 2s)) linear infinite;
+    animation-delay: calc(var(--i) * -1.5s);
 }
 
-.ant-path {
-    font-size: 0.7rem;
-    font-weight: bold;
-    color: #d35400;
+.backgroundrandom-circle {
+    border-radius: 50%;
 }
 
-/* Tablet and Desktop scaling */
-@media (min-width: 650px) {
-    .beehive-matrix {
-        gap: 25px;
+.backgroundrandom-rect {
+    border-radius: 15%;
+    transform: rotate(45deg);
+}
+
+.backgroundrandom-blob {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+@keyframes backgroundrandom-float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
     }
 
-    .falcon-eye img {
-        height: 200px;
+    20% {
+        opacity: 0.5;
     }
 
-    .lion-roar {
-        font-size: 1.4rem;
+    80% {
+        opacity: 0.5;
     }
 
-    .ant-path {
-        font-size: 0.85rem;
+    100% {
+        transform: translateY(-125vh) rotate(360deg);
+        opacity: 0;
     }
+}
 
-    .turtle-shell {
-        flex-direction: row;
-        justify-content: space-between;
+/* Mobile responsive sizing */
+@media (max-width: 768px) {
+    .backgroundrandom-shape {
+        width: calc(var(--size) * 0.6);
+        height: calc(var(--size) * 0.6);
     }
 }
 
 
 
-/*Video----------------------------------------------*/
+/*video------------------------------------*/
 
-/* Reset default browser margins */
-* {
+
+/* 1. MASTER WRAPPER - The primary fix for horizontal scrolling */
+.videohero-master-wrapper {
+    width: 100%;
+    overflow-x: hidden; /* Stops the black bar/pole on the right */
+    position: relative;
     margin: 0;
     padding: 0;
+}
+
+/* 2. SECTION STYLING */
+.videohero-section {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    position: relative;
+    background: #000;
+    display: block;
     box-sizing: border-box;
 }
 
-body, html {
-    height: 100%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Container spans the full viewport */
-.hero-container {
-    position: relative;
+.videohero-container {
     width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    background-color: #000; /* Fallback color */
+    height: 100%;
+    position: relative;
+    overflow: hidden; /* Safety for the video object */
 }
 
-/* Video scales to cover the entire area without stretching */
-.bg-video {
+.videohero-video {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transform: translate(-50%, -50%);
     z-index: 1;
 }
 
-/* Darkens the video so text stands out */
-.overlay {
+.videohero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 2;
-}
-
-
-/* Navigation links in top left */
-.social-nav {
-    position: absolute;
-    bottom: 30px;
-    justify-content: center;
     z-index: 10;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.5));
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
 }
 
-    .social-nav a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 0.85rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        transition: opacity 0.3s ease;
-    }
-
-        .social-nav a:hover {
-            opacity: 0.6;
-        }
-
-/* Center text styles */
-.center-content {
-    position: relative;
-    z-index: 5;
+.videohero-center-content {
     text-align: center;
-    color: white;
-    padding: 0 15px;
+    color: #ffffff;
+    font-family: sans-serif;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
-    .center-content h1 {
-        /* Responsive font size: grows with screen width */
-        font-size: clamp(2.5rem, 10vw, 6rem);
-        letter-spacing: 8px;
-        margin-bottom: 10px;
-    }
-
-    .center-content p {
-        font-size: clamp(1rem, 2vw, 1.5rem);
-        font-weight: 300;
-        letter-spacing: 2px;
-    }
-
-/* Mobile Adjustments */
-@media (max-width: 600px) {
-    .social-nav {
-        top: 20px;
-        left: 20px;
-        gap: 12px;
-    }
-
-        .social-nav a {
-            font-size: 0.75rem;
-        }
+.videohero-title {
+    /* clamp prevents text from pushing past screen bounds on narrow phones */
+    font-size: clamp(1.8rem, 8vw, 5.5rem);
+    font-weight: 900;
+    /* Reduced spacing for mobile to stop overflow */
+    letter-spacing: clamp(2px, 2vw, 12px);
+    margin: 0;
+    text-transform: uppercase;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
+
+.videohero-line {
+    width: 40px;
+    height: 3px;
+    background: #ffffff;
+    margin: 15px auto;
+}
+
+.videohero-subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+/* 3. STYLED PILL FOOTER */
+.videohero-footer {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 10px 18px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    /* This prevents the pill from creating a horizontal scroll */
+    max-width: calc(100% - 40px);
+    box-sizing: border-box;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.videohero-social {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    padding: 8px 12px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+    .videohero-social:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+/* 4. MOBILE-SPECIFIC FIXES */
+@media (max-width: 768px) {
+    .videohero-footer {
+        bottom: 60px;
+        width: auto;
+        padding: 8px 12px;
+    }
+
+    .videohero-social {
+        padding: 6px 10px;
+        font-size: 0.6rem;
+        letter-spacing: 1px;
+    }
+}
+
+
+
+
+
 
 
 
 
 
 /*navbar-------------------------------*/
-
-/* Container for the top header */
-.grace-header {
+.seethronavbar-wrapper {
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 9999;
-    background: rgba(255, 255, 255, 0.08); /* Transparent base */
-    backdrop-filter: blur(12px); /* Glass blur effect */
-    -webkit-backdrop-filter: blur(12px);
+    /* Glassmorphism Effect */
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    transition: background 0.4s ease;
-}
-
-.header-inner-flex {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-}
-
-.main-identity {
-    color: white;
-    text-decoration: none;
-    font-size: 1.4rem;
-    font-weight: 800;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-}
-
-    .main-identity span {
-        font-weight: 200;
-        opacity: 0.7;
-    }
-
-/* The list of links */
-.portal-wrapper {
-    display: flex;
-    list-style: none;
-    align-items: center;
-}
-
-    .portal-wrapper li a {
-        color: white;
-        text-decoration: none;
-        margin-left: 30px;
-        font-size: 0.85rem;
-        font-weight: 500;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        transition: color 0.3s ease;
-    }
-
-        .portal-wrapper li a:hover {
-            color: #e67e22;
-        }
-
-.portal-button {
-    border: 1px solid white;
-    padding: 10px 24px;
-    transition: background 0.3s;
-}
-
-    .portal-button:hover {
-        background: white;
-        color: #333 !important;
-    }
-
-/* --- Mobile Trigger & Portal Overlay --- */
-.portal-trigger {
-    display: none;
-    cursor: pointer;
-    z-index: 10001;
-}
-
-.line-element {
-    display: block;
-    width: 28px;
-    height: 2px;
-    margin: 6px 0;
-    background-color: white;
-    transition: 0.3s ease-in-out;
-}
-
-@media (max-width: 850px) {
-    .portal-trigger {
-        display: block;
-    }
-
-    .portal-wrapper {
-        position: fixed;
-        top: 0;
-        right: -100%; /* Hidden off-screen */
-        width: 100%;
-        height: 100vh;
-        background: #111; /* Solid dark background for mobile */
-        flex-direction: column;
-        justify-content: center;
-        transition: 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
-    }
-
-        /* Shown when JS adds the class */
-        .portal-wrapper.is-visible {
-            right: 0;
-        }
-
-        .portal-wrapper li {
-            margin: 20px 0;
-        }
-
-            .portal-wrapper li a {
-                font-size: 1.5rem;
-                margin: 0;
-            }
-
-    /* Hamburger to X Animation */
-    .portal-trigger.is-open .line-element:nth-child(2) {
-        opacity: 0;
-    }
-
-    .portal-trigger.is-open .line-element:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
-
-    .portal-trigger.is-open .line-element:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-    }
-}
-
-
-/*image fade out to right and background-------------------------------*/
-
-
-/* The main wrapper providing the warm color */
-.warm-image-section {
-    position: relative;
-    width: 100%;
-    height: 60vh;
-    background-color: #d35400; /* Rich Terracotta */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-/* The container that handles the transparency fade */
-.image-mask-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    /* Webkit prefix for Safari support */
-    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 15%, rgba(0,0,0,0) 85%);
-    mask-image: linear-gradient(to right, rgba(0,0,0,1) 15%, rgba(0,0,0,0) 85%);
-}
-
-.fading-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Keeps the image from stretching */
-}
-
-/* Positioning the text on top */
-.warm-image-content {
-    position: relative;
-    z-index: 5;
-    text-align: center;
-    color: white;
-    padding: 0 20px;
-}
-
-    .warm-image-content h2 {
-        font-size: clamp(2rem, 5vw, 3.5rem);
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-    }
-
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .warm-image-section {
-        height: 50vh;
-        /* Fade top to bottom on mobile for better text space */
-    }
-
-    .image-mask-container {
-        -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
-        mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
-    }
-}
-
-
-
-
-
-
-/*image fade out to left and background-------------------------------*/
-
-
-
-.warm-image-left-section {
-    position: relative;
-    width: 100%;
-    height: 60vh;
-    background-color: #d35400; /* Warm Terracotta */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-.image-mask-left {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    /* Reverse the direction: now fades out toward the LEFT */
-    -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 15%, rgba(0,0,0,0) 85%);
-    mask-image: linear-gradient(to left, rgba(0,0,0,1) 15%, rgba(0,0,0,0) 85%);
-}
-
-.fading-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* Anchors the image to the right so it doesn't disappear too early */
-    background-position: right center;
-}
-
-.warm-content {
-    position: relative;
-    z-index: 5;
-    text-align: center;
-    color: white;
-    padding: 0 20px;
-}
-
-    .warm-content h2 {
-        font-size: clamp(2rem, 5vw, 3.5rem);
-        letter-spacing: 5px;
-        text-shadow: 2px 2px 15px rgba(0,0,0,0.3);
-    }
-
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .warm-image-left-section {
-        height: 50vh;
-    }
-
-    /* On mobile, usually a top-to-bottom fade works best for text stacking */
-    .image-mask-left {
-        -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
-        mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 100%);
-    }
-}
-
-
-
-
-
-/*seperator text----------------------------*/
-
-.double-border-box {
-    /* 1. Dimensions and Alignment */
-    width: 90%; /* Responsive width for mobile */
-    max-width: 500px; /* Prevents it from getting too wide on desktop */
-    margin: 50px auto; /* Centers the box on the page */
-    padding: 40px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    /* 2. The Double Border Magic */
-    background-color: transparent;
-    border: 2px solid #d35400; /* The INNER border */
-    outline: 1px solid #d35400; /* The OUTER border */
-    outline-offset: 8px; /* The GAP between the borders */
-    /* 3. Smooth Scaling */
-    transition: all 0.3s ease;
-}
-
-.border-content h3 {
-    font-family: serif;
-    font-size: clamp(1.5rem, 5vw, 2.5rem); /* Responsive font */
-    letter-spacing: 4px;
-    color: #333;
-    margin-bottom: 5px;
-}
-
-.border-content p {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #666;
-}
-
-/* Hover Effect (Optional) */
-.double-border-box:hover {
-    outline-offset: 12px; /* Borders "push out" when hovered */
-    background-color: rgba(211, 84, 0, 0.05);
-}
-
-/* Mobile Adjustment */
-@media (max-width: 480px) {
-    .double-border-box {
-        padding: 30px 15px;
-        outline-offset: 5px; /* Tighter borders for smaller screens */
-    }
-}
-
-
-
-/*full width separator text-----------------------------*/
-
-
-/* 1. The Full-Width Container with Gray Background */
-.full-width-frame {
-    position: relative;
-    width: 100%;
-    padding: 120px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* This gray is contained strictly within this div */
-    background-color: #f4f4f4;
-    overflow: hidden;
+    font-family: 'Inter', sans-serif;
     box-sizing: border-box;
 }
 
-    /* The Full-Width Top/Bottom Lines */
-    .full-width-frame::before,
-    .full-width-frame::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        background-color: #1a1a1a;
-    }
-
-    .full-width-frame::before {
-        top: 25px;
-    }
-
-    .full-width-frame::after {
-        bottom: 25px;
-    }
-
-/* 2. The Centered Border Container */
-.center-border-box {
-    border: 1px solid #1a1a1a;
-    padding: 12px; /* Gap for the double border */
-    background-color: transparent;
-    max-width: 90%;
-}
-
-.inner-text {
-    border: 1px solid #1a1a1a;
-    padding: 50px 70px;
-    text-align: center;
-    /* White background inside the gray section makes the text box stand out */
-    background-color: #ffffff;
-}
-
-    /* 3. Typography */
-    .inner-text h2 {
-        font-family: serif;
-        font-size: clamp(1.5rem, 6vw, 3rem);
-        letter-spacing: 8px;
-        margin: 0 0 10px 0;
-        color: #1a1a1a;
-        text-transform: uppercase;
-    }
-
-    .inner-text p {
-        font-family: sans-serif;
-        font-size: 0.8rem;
-        letter-spacing: 4px;
-        color: #666;
-        margin: 0;
-    }
-/* 4. Mobile Responsiveness */
-@media (max-width: 768px) {
-    .full-width-frame {
-        padding: 80px 0;
-    }
-
-    .inner-text {
-        padding: 30px 20px;
-    }
-}
-
-
-
-/*lower site----------------------------*/
-
-
-
-/* Container for the entire lower section */
-.church-lower-section {
-    position: relative;
-    width: 100%;
-    background-color: #f9f9f9; /* Soft light gray */
-    padding: 100px 0 140px 0; /* Extra bottom padding for socials */
+.seethronavbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 80px;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    overflow: hidden;
+    box-sizing: border-box;
 }
 
-/* Horizontal Full-Width Lines */
-.church-frame::before,
-.church-frame::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: #d1d1d1;
+.seethronavbar-logo {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 2px;
 }
 
-.church-frame::before {
-    top: 40px;
+    .seethronavbar-logo span {
+        color: #00d4ff;
+    }
+
+.seethronavbar-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    align-items: center;
 }
 
-.church-frame::after {
-    bottom: 80px;
-}
-
-/* The Centered Information Card */
-.visit-card {
-    border: 1px solid #2c3e50;
-    padding: 10px;
-    max-width: 90%;
-    background-color: transparent;
-    z-index: 2;
-}
-
-.card-inner {
-    border: 1px solid #2c3e50;
-    background-color: #ffffff;
-    padding: 60px 40px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-}
-
-/* Typography */
-.sub-tag {
-    display: block;
-    font-family: sans-serif;
+.seethronavbar-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 0.75rem;
-    color: #e67e22; /* Warm accent color */
-    margin-bottom: 10px;
+    letter-spacing: 1px;
+    font-weight: 500;
+    opacity: 0.8;
+    transition: 0.3s ease;
 }
 
-.card-inner h2 {
-    font-family: 'Playfair Display', serif; /* Or any elegant serif */
-    font-size: clamp(1.8rem, 5vw, 2.8rem);
-    color: #2c3e50;
+    .seethronavbar-link:hover {
+        opacity: 1;
+        color: #00d4ff;
+    }
+
+/* THE BUTTON DESIGN */
+.seethronavbar-btn {
+    display: inline-block;
+    background: #ffffff;
+    color: #000000 !important;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    border: 1px solid #ffffff;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+    .seethronavbar-btn:hover {
+        background: transparent;
+        color: #ffffff !important;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+    }
+
+/* HAMBURGER ICON */
+.seethronavbar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 10001;
+}
+
+.seethronavbar-icon,
+.seethronavbar-icon::before,
+.seethronavbar-icon::after {
+    content: '';
+    display: block;
+    background: #ffffff;
+    height: 2px;
+    width: 25px;
+    transition: 0.3s ease-in-out;
+}
+
+    .seethronavbar-icon::before {
+        transform: translateY(-8px);
+    }
+
+    .seethronavbar-icon::after {
+        transform: translateY(6px);
+    }
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+    .seethronavbar-toggle {
+        display: block;
+    }
+
+    .seethronavbar-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    }
+
+        .seethronavbar-menu.is-active {
+            right: 0;
+        }
+
+        .seethronavbar-menu li {
+            width: 100%;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+    .seethronavbar-btn {
+        width: 70%;
+        padding: 15px 0;
+    }
+
+    /* Hamburger to X Animation */
+    .seethronavbar-toggle.is-active .seethronavbar-icon {
+        background: transparent;
+    }
+
+        .seethronavbar-toggle.is-active .seethronavbar-icon::before {
+            transform: rotate(45deg) translateY(0);
+        }
+
+        .seethronavbar-toggle.is-active .seethronavbar-icon::after {
+            transform: rotate(-45deg) translateY(-1px) translateX(1px);
+        }
+}
+
+
+/*section separator------------------------------*/
+
+.sectionseparator-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%; /* Leaves breathing room on mobile */
+    max-width: 1200px; /* Prevents it from getting too wide on desktop */
+    margin: 0 auto; /* Centers the container */
+    padding-top: 30px; /* Your requested top padding */
+    padding-bottom: 30px;
+}
+
+.sectionseparator-line {
+    flex: 1; /* Makes lines take up remaining space */
+    height: 1px;
+    /* A subtle gradient that fades out toward the edges */
+    background: linear-gradient(to var(--direction, right), rgba(255,255,255,0), rgba(255,255,255,0.5));
+}
+
+    /* Reverses the gradient for the second line */
+    .sectionseparator-line:last-child {
+        background: linear-gradient(to left, rgba(255,255,255,0), rgba(255,255,255,0.5));
+    }
+
+.sectionseparator-text {
+    padding: 0 20px;
+    color: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    white-space: nowrap; /* Prevents text from wrapping on tiny screens */
+    opacity: 0.9;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+    .sectionseparator-text {
+        font-size: 0.75rem; /* Smaller text for mobile */
+        letter-spacing: 2px;
+        padding: 0 10px;
+    }
+
+    .sectionseparator-container {
+        width: 95%;
+        padding-top: 20px; /* Slightly tighter on mobile */
+    }
+}
+
+
+/*image fade out right--------------------------*/
+
+
+.imagefaderight-section {
+    width: 100%;
+    /* Added overflow control to prevent screen bounds issues */
+    overflow: hidden;
+    padding: 60px 0;
+    background: transparent;
+    position: relative;
+}
+
+.imagefaderight-container {
+    /* Using 90% and margin auto ensures it stays inside the screen */
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.imagefaderight-visual-wrapper {
+    flex: 1.5;
+    position: relative;
+    line-height: 0;
+    /* DEEPER FADE: Mask starts fading at 20% and is gone by 90% */
+    -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 20%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 90%);
+    mask-image: linear-gradient(to right, rgba(0,0,0,1) 20%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 90%);
+}
+
+.imagefaderight-img {
+    /* Use max-width to prevent the image from pushing the container out */
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.imagefaderight-content {
+    flex: 1;
+    color: white;
+    font-family: sans-serif;
+    /* Prevent text from pushing bounds on small screens */
+    word-wrap: break-word;
+}
+
+.imagefaderight-title {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    margin-bottom: 15px;
+}
+
+/* Mobile Fixes for Bounds and Fade direction */
+@media (max-width: 850px) {
+    .imagefaderight-container {
+        flex-direction: column;
+        width: 95%; /* Tighten for mobile */
+        gap: 20px;
+    }
+
+    .imagefaderight-visual-wrapper {
+        width: 100%;
+        /* Mobile fade: Top stays solid, bottom disappears more */
+        -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 95%);
+        mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 95%);
+    }
+}
+
+
+
+
+
+
+/*image fade out left--------------------------*/
+
+.imagefadeleft-section {
+    width: 100%;
+    overflow: hidden;
+    padding: 60px 0;
+    background: transparent;
+    position: relative;
+}
+
+.imagefadeleft-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.imagefadeleft-content {
+    flex: 1;
+    color: white;
+    font-family: sans-serif;
+    word-wrap: break-word;
+    /* Text is now on the left, so we align it left */
+    text-align: left;
+}
+
+.imagefadeleft-visual-wrapper {
+    flex: 1.5;
+    position: relative;
+    line-height: 0;
+    /* REVERSED FADE: Fades out toward the LEFT */
+    -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 20%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 90%);
+    mask-image: linear-gradient(to left, rgba(0,0,0,1) 20%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 90%);
+}
+
+.imagefadeleft-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.imagefadeleft-title {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.imagefadeleft-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    border: 1px solid white;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    transition: 0.3s;
+}
+
+    .imagefadeleft-btn:hover {
+        background: white;
+        color: #001b3d;
+    }
+
+/* Mobile Fixes */
+@media (max-width: 850px) {
+    .imagefadeleft-container {
+        /* Reverts to standard stack: Image on top, text below */
+        flex-direction: column-reverse;
+        width: 95%;
+        text-align: center;
+    }
+
+    .imagefadeleft-content {
+        text-align: center;
+    }
+
+    .imagefadeleft-visual-wrapper {
+        width: 100%;
+        /* Mobile fade remains top-to-bottom for consistency */
+        -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 95%);
+        mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 95%);
+        margin-bottom: 20px;
+    }
+}
+
+
+
+/*bottom section------------------------*/
+
+.bottomsection-wrapper {
+    width: 100%;
+    background: #000c1a; /* Darker variant of your deep blue */
+    color: #ffffff;
+    padding: 80px 0 20px 0;
+    font-family: 'Inter', sans-serif;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    box-sizing: border-box;
+}
+
+.bottomsection-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap; /* Allows stacking on mobile */
+    gap: 40px;
+    justify-content: space-between;
+}
+
+.bottomsection-column {
+    flex: 1;
+    min-width: 250px; /* Forces stack on mobile when space is tight */
+}
+
+.bottomsection-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin: 0 0 20px 0;
+}
+
+    .bottomsection-logo span {
+        color: #00d4ff;
+    }
+
+.bottomsection-title {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.bottomsection-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
     margin-bottom: 20px;
 }
 
-.service-times p {
-    font-family: sans-serif;
-    color: #7f8c8d;
-    line-height: 1.6;
-    margin-bottom: 5px;
+.bottomsection-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-/* Button Styling */
-.cta-button {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 15px 35px;
-    background-color: #2c3e50;
-    color: #fff;
+    .bottomsection-list li {
+        margin-bottom: 12px;
+    }
+
+.bottomsection-link {
+    color: #ffffff;
     text-decoration: none;
+    font-size: 0.9rem;
+    transition: 0.3s;
+    opacity: 0.7;
+}
+
+    .bottomsection-link:hover {
+        opacity: 1;
+        color: #00d4ff;
+        padding-left: 5px;
+    }
+
+/* NEWSLETTER FORM */
+.bottomsection-form {
+    display: flex;
+    gap: 10px;
+}
+
+.bottomsection-input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 15px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.bottomsection-submit {
+    background: #ffffff;
+    color: #000;
+    border: none;
+    padding: 0 20px;
+    border-radius: 4px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    .bottomsection-submit:hover {
+        background: #00d4ff;
+        color: #fff;
+    }
+
+/* COPYRIGHT BASE */
+.bottomsection-base {
+    max-width: 1200px;
+    margin: 60px auto 0 auto;
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* MOBILE SCALING */
+@media (max-width: 768px) {
+    .bottomsection-wrapper {
+        padding: 60px 0 20px 0;
+    }
+
+    .bottomsection-column {
+        flex: 1 1 100%; /* Take full width on mobile */
+        text-align: center;
+    }
+
+    .bottomsection-form {
+        flex-direction: column;
+    }
+
+    .bottomsection-submit {
+        padding: 15px;
+    }
+}
+
+
+
+/*event cards---------------------*/
+
+.eventcards-section {
+    width: 100%;
+    padding: 80px 20px;
+    background-color: transparent; /* Blends with your random shapes background */
+    box-sizing: border-box;
+}
+
+.eventcards-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    /* Two columns for desktop */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
+
+.eventcards-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+    .eventcards-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+.eventcards-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+.eventcards-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.eventcards-card:hover .eventcards-img {
+    transform: scale(1.1);
+}
+
+.eventcards-tag {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #00d4ff;
+    color: #000;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.eventcards-content {
+    padding: 30px;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+}
+
+.eventcards-date {
+    font-size: 0.75rem;
+    color: #00d4ff;
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-size: 0.8rem;
-    transition: all 0.3s ease;
+    display: block;
+    margin-bottom: 10px;
 }
 
-    .cta-button:hover {
-        background-color: #e67e22;
-        transform: translateY(-3px);
-    }
-
-/* Bottom Left Socials */
-.church-socials {
-    position: absolute;
-    bottom: 30px;
-    left: 40px;
-    display: flex;
-    gap: 20px;
+.eventcards-title {
+    font-size: 1.5rem;
+    margin: 0 0 15px 0;
+    font-weight: 700;
 }
 
-    .church-socials a {
-        text-decoration: none;
-        color: #2c3e50;
-        font-size: 0.7rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        opacity: 0.6;
-        transition: opacity 0.3s;
+.eventcards-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 25px;
+}
+
+.eventcards-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #00d4ff;
+    padding-bottom: 5px;
+    transition: 0.3s;
+}
+
+    .eventcards-link:hover {
+        letter-spacing: 2px;
     }
 
-        .church-socials a:hover {
-            opacity: 1;
-        }
-
-/* Mobile Scaling */
+/* MOBILE SCALING */
 @media (max-width: 768px) {
-    .church-lower-section {
-        padding: 80px 0 120px 0;
+    .eventcards-container {
+        /* Switch to one column for mobile */
+        grid-template-columns: 1fr;
+        gap: 30px;
     }
 
-    .card-inner {
-        padding: 40px 20px;
+    .eventcards-section {
+        padding: 40px 15px;
     }
 
-    .church-socials {
-        left: 0;
-        width: 100%;
-        justify-content: center; /* Center socials on mobile for easier tapping */
-        bottom: 25px;
+    .eventcards-image-wrapper {
+        height: 200px;
+    }
+
+    .eventcards-title {
+        font-size: 1.3rem;
     }
 }
+
+
+
+
+
 

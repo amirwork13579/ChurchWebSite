@@ -1,0 +1,305 @@
+﻿@using System.Security.Claims
+@model Church4Site.Models.UserMessageViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Login</title>
+    <link rel="stylesheet" href="~/css/testimonies.css">
+</head>
+
+<body>
+
+
+    @*background shapes*@
+    <div class="backgroundrandom-wrapper">
+        <div class="backgroundrandom-shape backgroundrandom-circle" style="--i:1; --c:#ff007f; --x:10vw; --size:120px;"></div>
+        <div class="backgroundrandom-shape backgroundrandom-rect" style="--i:2; --c:#00d4ff; --x:40vw; --size:180px;"></div>
+        <div class="backgroundrandom-shape backgroundrandom-blob" style="--i:3; --c:#ccff00; --x:70vw; --size:140px;"></div>
+        <div class="backgroundrandom-shape backgroundrandom-circle" style="--i:4; --c:#7000ff; --x:85vw; --size:100px;"></div>
+    </div>
+
+
+    @*navbar*@
+    <nav class="seethronavbar-wrapper">
+        <div class="seethronavbar-container">
+            <a href="#" class="seethronavbar-logo">BL<span>W</span> Church</a>
+
+            <button class="seethronavbar-toggle" id="navbar-hamburger" aria-label="Toggle Menu">
+                <span class="seethronavbar-icon"></span>
+            </button>
+
+            <ul class="seethronavbar-menu" id="navbar-menu">
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="OurStaff">OurStaff</a></li>
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="SunDays">Sundays</a></li>
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="Calendar">Calendar</a></li>
+                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="MainPage">Main</a></li>
+                <li><a asp-action="ContactForm" class="seethronavbar-btn">Get Started</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+
+
+
+
+    @*video hero section*@
+    <div class="videohero-master-wrapper">
+        <section class="videohero-section">
+            <div class="videohero-container">
+                <video class="videohero-video" autoplay muted loop playsinline>
+                    <source src="~/css/Videos/Churchvideo2.mp4" type="video/mp4">
+                </video>
+
+                <div class="videohero-overlay">
+                    <div class="videohero-center-content">
+                        <h1 class="videohero-title">AESTHETIC</h1>
+                        <div class="videohero-line"></div>
+                        <p class="videohero-subtitle">Visual Experience</p>
+                    </div>
+
+                    <nav class="videohero-footer">
+                        <a href="#" class="videohero-social">Instagram</a>
+                        <a href="#" class="videohero-social">Twitter</a>
+                        <a href="#" class="videohero-social">YouTube</a>
+                    </nav>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+    @*enctype="multipart/form-data"*@
+    @*user testimonie post*@
+    <div class="userpost-container">
+        <form asp-action="PostTestimonie" class="userpost-form" method="post" id="postForm" enctype="multipart/form-data">
+            <div class="userpost-header">
+                <h2 class="userpost-title">Share Your Story</h2>
+                <p class="userpost-subtitle">We’d love to hear about your experience with us.</p>
+            </div>
+
+            <div class="userpost-group">
+                <label class="userpost-label" for="userName">Testimonie Title</label>
+                <input asp-for="@Model.NewMessage.Title" type="text" id="userName" name="Title" class="userpost-input" placeholder="e.g. Jane Doe" required>
+            </div>
+            
+            <div class="userpost-group">
+                <label class="userpost-label" for="userMessage">Your Testimony</label>
+                <textarea name="MessageFrom" id="MessageFrom" class="userpost-textarea" placeholder="Write your message here..." required></textarea>
+            </div>
+
+            @*image post file open*@
+            <div class="devicefileopen-av-card">
+                <div class="devicefileopen-av-content">
+                    <h3 class="devicefileopen-av-title">Event Cover Image</h3>
+                    <div class="devicefileopen-preview-container" onclick="document.getElementById('device-file-input1').click()">
+                        <img src="#" id="image-select-event" class="devicefileopen-preview-img" />
+                        <div class="devicefileopen-upload-overlay">
+                            <span>Tap to Change</span>
+                        </div>
+                    </div>
+                    <input type="file" name="FormFile" onchange="openDeviceFile(this, 'image-select-event')" accept="image/*" id="device-file-input1" hidden />
+                    <p class="devicefileopen-file-hint">Max size: 5MB (JPG, PNG)</p>
+                </div>
+            </div>
+
+
+            <button type="submit" class="userpost-submit-btn">
+                Post Testimony
+                <span class="userpost-btn-icon">→</span>
+            </button>
+        </form>
+    </div>
+
+
+
+
+
+    @*testimonie will only show up if approved popup*@
+    <div id="testimoniepopup-overlay" class="testimoniepopup-overlay" style="display: none;">
+        <div class="testimoniepopup-card">
+            <div class="testimoniepopup-header">
+                <div class="testimoniepopup-icon-box">
+                    <span class="testimoniepopup-icon">✓</span>
+                </div>
+                <h2 class="testimoniepopup-title">Received!</h2>
+            </div>
+            <div class="testimoniepopup-body">
+                <p>Thank you for sharing your story with us.</p>
+                <div class="testimoniepopup-info-box">
+                    <p>To maintain a safe community, your testimony will be visible once a moderator has approved it.</p>
+                </div>
+            </div>
+            <div class="testimoniepopup-footer">
+                <button type="button" class="testimoniepopup-btn" onclick="closeTestimoniePopup()">Understood</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    @*section separator*@
+    <div class="sectionseparator-container">
+        <div class="sectionseparator-line"></div>
+        <span class="sectionseparator-text">Our Services</span>
+        <div class="sectionseparator-line"></div>
+    </div>
+
+
+
+    
+    <script>
+                /*delete popup button*/
+        function UserTOpenPopup(id, actionUrl, customMessage = "Are you sure you want to continue?") {
+            // 1. Set the ID
+            document.getElementById("UserTPopupId").value = id;
+
+            // 2. Set the Form Action (e.g., /Admin/DeleteEvent or /Admin/DeleteTestimony)
+            document.getElementById("UserTPopupForm").action = actionUrl;
+
+            // 3. Optional: Change the message text
+            document.getElementById("UserTPopupMessage").innerText = customMessage;
+
+            // 4. Show the popup
+            document.getElementById("UserTPopup").style.display = "flex";
+        }
+
+        function UserTClosePopup() {
+            document.getElementById("UserTPopup").style.display = "none";
+        }
+
+
+    </script>
+
+
+    @*user Testimonials lst Section*@
+    <section class="testimonieslst-section">
+        <div class="testimonieslst-container">
+            <header class="testimonieslst-header">
+                <span class="testimonieslst-badge">Testimonials</span>
+                <h2 class="testimonieslst-main-title">What Our Community Says</h2>
+            </header>
+
+            <div class="testimonieslst-grid">
+
+                @foreach(var msg in Model.MessagesLst.Where(x => x.IsApproved))
+                {
+                    <div>
+                        <div class="testimonieslst-card">
+                            <div class="testimonieslst-quote-icon">“</div>
+                            <p class="testimonieslst-content">
+                                Testimonie- @msg.MessageFrom
+                            </p>
+                            <div class="testimonieslst-user">
+                                <img src="@Url.Content(msg.ImageUrl)" alt="User" class="testimonieslst-avatar">
+                                <div class="testimonieslst-meta">
+                                    <h4 class="testimonieslst-name">Title- @msg.Title</h4>
+                                    @*<h1 class="testimonieslst-role">@msg.Title</h1>*@    
+                                </div>
+                            </div>
+                        </div>
+                        @if (msg.UserId.ToString() == User.FindFirstValue(ClaimTypes.NameIdentifier))
+                        {
+                            <button class="deletepopupbutton-trigger"
+                                    data-id="@msg.Id"
+                                    data-actionurl="/Main/DeleteTestimoniesConfirm">
+                                Delete this
+                            </button>
+                        }
+                    </div>
+                }
+            </div>
+            
+        </div>
+    </section>
+
+
+
+
+
+
+    
+    @*delete popup*@
+    <div id="deletepopupbutton-overlay" class="deletepopupbutton-overlay">
+        <form id="deletepopupbutton-form" method="POST" class="deletepopupbutton-card">
+            <input type="hidden" name="id" id="deletepopupbutton-hidden-id">
+
+            <div class="deletepopupbutton-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+            </div>
+
+            <h3 class="deletepopupbutton-title">Confirm Deletion</h3>
+            <p class="deletepopupbutton-text">
+                Are you sure? Item <span id="deletepopupbutton-id-display">#0</span> will be removed forever.
+            </p>
+
+            <div class="deletepopupbutton-footer">
+                <button type="button" id="deletepopupbutton-cancel" class="deletepopupbutton-btn-ghost">Cancel</button>
+                <button type="submit" class="deletepopupbutton-btn-solid">Confirm Delete</button>
+            </div>
+        </form>
+    </div>
+
+    
+
+
+
+
+
+    @*section separator*@
+    <div class="sectionseparator-container">
+        <div class="sectionseparator-line"></div>
+        <span class="sectionseparator-text">Our Services</span>
+        <div class="sectionseparator-line"></div>
+    </div>
+
+
+    @*bottom section*@
+    <footer class="bottomsection-wrapper">
+        <div class="bottomsection-container">
+            <div class="bottomsection-column bottomsection-brand">
+                <h2 class="bottomsection-logo">DESIGN<span>CO</span></h2>
+                <p class="bottomsection-text">
+                    Location-
+                </p>
+            </div>
+
+            <div class="bottomsection-column">
+                <h3 class="bottomsection-title">Navigation</h3>
+                <ul class="bottomsection-list">
+                    <li><a href="#" class="bottomsection-link">Projects</a></li>
+                    <li><a href="#" class="bottomsection-link">Services</a></li>
+                    <li><a href="#" class="bottomsection-link">Our Story</a></li>
+                    <li><a href="#" class="bottomsection-link">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="bottomsection-column bottomsection-newsletter">
+                <h3 class="bottomsection-title">Newsletter</h3>
+                <p class="bottomsection-text">Stay updated with our latest releases.</p>
+                <form class="bottomsection-form">
+                    <input type="email" class="bottomsection-input" placeholder="Your email">
+                    <button type="submit" class="bottomsection-submit">Join</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="bottomsection-base">
+            <p>&copy; 2026 DesignCo. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+
+
+
+    <script src="~/js/Testimonies.js"></script>
+</body>
+</html>

@@ -1,0 +1,516 @@
+﻿
+/*background------------------------------------*/
+
+
+.backgroundrandom-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #001b3d; /* Restored Deep Blue Background */
+    overflow: hidden;
+    z-index: -2;
+}
+
+.backgroundrandom-shape {
+    position: absolute;
+    bottom: -200px;
+    left: var(--x);
+    width: var(--size);
+    height: var(--size);
+    background: var(--c);
+    opacity: 0.5; /* Keeps them semi-transparent over the blue */
+    filter: blur(2px); /* Softens the edges slightly */
+    animation: backgroundrandom-float calc(10s + (var(--i) * 2s)) linear infinite;
+    animation-delay: calc(var(--i) * -1.5s);
+}
+
+.backgroundrandom-circle {
+    border-radius: 50%;
+}
+
+.backgroundrandom-rect {
+    border-radius: 15%;
+    transform: rotate(45deg);
+}
+
+.backgroundrandom-blob {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+@keyframes backgroundrandom-float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.5;
+    }
+
+    80% {
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateY(-125vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Mobile responsive sizing */
+@media (max-width: 768px) {
+    .backgroundrandom-shape {
+        width: calc(var(--size) * 0.6);
+        height: calc(var(--size) * 0.6);
+    }
+}
+
+
+
+
+
+/*navbar-------------------------------*/
+.seethronavbar-wrapper {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+    /* Glassmorphism Effect */
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+}
+
+.seethronavbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.seethronavbar-logo {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+    .seethronavbar-logo span {
+        color: #00d4ff;
+    }
+
+.seethronavbar-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+.seethronavbar-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    opacity: 0.8;
+    transition: 0.3s ease;
+}
+
+    .seethronavbar-link:hover {
+        opacity: 1;
+        color: #00d4ff;
+    }
+
+/* THE BUTTON DESIGN */
+.seethronavbar-btn {
+    display: inline-block;
+    background: #ffffff;
+    color: #000000 !important;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    border: 1px solid #ffffff;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+    .seethronavbar-btn:hover {
+        background: transparent;
+        color: #ffffff !important;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+    }
+
+/* HAMBURGER ICON */
+.seethronavbar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 10001;
+}
+
+.seethronavbar-icon,
+.seethronavbar-icon::before,
+.seethronavbar-icon::after {
+    content: '';
+    display: block;
+    background: #ffffff;
+    height: 2px;
+    width: 25px;
+    transition: 0.3s ease-in-out;
+}
+
+    .seethronavbar-icon::before {
+        transform: translateY(-8px);
+    }
+
+    .seethronavbar-icon::after {
+        transform: translateY(6px);
+    }
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+    .seethronavbar-toggle {
+        display: block;
+    }
+
+    .seethronavbar-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    }
+
+        .seethronavbar-menu.is-active {
+            right: 0;
+        }
+
+        .seethronavbar-menu li {
+            width: 100%;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+    .seethronavbar-btn {
+        width: 70%;
+        padding: 15px 0;
+    }
+
+    /* Hamburger to X Animation */
+    .seethronavbar-toggle.is-active .seethronavbar-icon {
+        background: transparent;
+    }
+
+        .seethronavbar-toggle.is-active .seethronavbar-icon::before {
+            transform: rotate(45deg) translateY(0);
+        }
+
+        .seethronavbar-toggle.is-active .seethronavbar-icon::after {
+            transform: rotate(-45deg) translateY(-1px) translateX(1px);
+        }
+}
+
+
+/*section separator------------------------------*/
+
+.sectionseparator-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%; /* Leaves breathing room on mobile */
+    max-width: 1200px; /* Prevents it from getting too wide on desktop */
+    margin: 0 auto; /* Centers the container */
+    padding-top: 30px; /* Your requested top padding */
+    padding-bottom: 30px;
+}
+
+.sectionseparator-line {
+    flex: 1; /* Makes lines take up remaining space */
+    height: 1px;
+    /* A subtle gradient that fades out toward the edges */
+    background: linear-gradient(to var(--direction, right), rgba(255,255,255,0), rgba(255,255,255,0.5));
+}
+
+    /* Reverses the gradient for the second line */
+    .sectionseparator-line:last-child {
+        background: linear-gradient(to left, rgba(255,255,255,0), rgba(255,255,255,0.5));
+    }
+
+.sectionseparator-text {
+    padding: 0 20px;
+    color: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    white-space: nowrap; /* Prevents text from wrapping on tiny screens */
+    opacity: 0.9;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+    .sectionseparator-text {
+        font-size: 0.75rem; /* Smaller text for mobile */
+        letter-spacing: 2px;
+        padding: 0 10px;
+    }
+
+    .sectionseparator-container {
+        width: 95%;
+        padding-top: 20px; /* Slightly tighter on mobile */
+    }
+}
+
+
+
+
+
+
+
+
+
+/*title top----------------------------*/
+
+/* The Main Wrapper */
+.titletop-outer-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 70px 0; /* Space outside the borders */
+    background: transparent;
+}
+
+/* The Bold Lines */
+.titletop-border-line {
+    width: 100%;
+    /* Heavy 6px thick lines */
+    height: 6px;
+    background-color: #1e3799;
+    /* This makes the line look modern and custom */
+    background: linear-gradient(90deg, rgba(30, 55, 153, 0) 0%, #1e3799 50%, rgba(30, 55, 153, 0) 100%);
+}
+
+/* The Content Box - Positioned close to the lines */
+.titletop-center-box {
+    padding: 30px 20px; /* Reduced vertical padding to bring borders closer */
+    text-align: center;
+    max-width: 1000px;
+}
+
+.titletop-eyebrow {
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 6px;
+    color: #1e3799;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.titletop-hero-title {
+    /* Massive, bold editorial font */
+    font-size: clamp(3.5rem, 15vw, 8rem);
+    font-weight: 900;
+    color: #592f72;
+    line-height: 0.9;
+    letter-spacing: -4px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.titletop-hero-subtitle {
+    font-size: clamp(0.8rem, 2.5vw, 1.2rem);
+    font-weight: 400;
+    letter-spacing: 4px;
+    color: #636e72;
+    margin-top: 15px;
+    text-transform: uppercase;
+}
+
+/* Mobile Styling */
+@media (max-width: 768px) {
+    .titletop-border-line {
+        height: 4px; /* Slightly thinner for small screens */
+    }
+
+    .titletop-center-box {
+        padding: 20px 10px;
+    }
+
+    .titletop-hero-title {
+        letter-spacing: -2px;
+    }
+}
+
+
+
+
+
+
+/*our beliefs section-----------------------------------------*/
+
+/* --- Global Beliefs Styling --- */
+.ourbeliefs-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Section 1: Grid (No Background) --- */
+.ourbeliefs-grid-section {
+    padding: 10px 0;
+    background: transparent;
+}
+
+.ourbeliefs-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.ourbeliefs-accent {
+    color: #6366f1;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.ourbeliefs-main-title {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    color: #ffffff;
+    margin: 0;
+}
+
+.ourbeliefs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.ourbeliefs-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 35px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+    .ourbeliefs-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(99, 102, 241, 0.5);
+        background: rgba(255, 255, 255, 0.06);
+    }
+
+.ourbeliefs-icon-box {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.ourbeliefs-card-title {
+    color: #ffffff;
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+}
+
+.ourbeliefs-card-text {
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* --- Section 2: Book Manifesto --- */
+.ourbeliefs-book-wrapper {
+    padding: 100px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.ourbeliefs-book-container {
+    max-width: 750px;
+    padding: 0 30px;
+}
+
+.ourbeliefs-book-page {
+    position: relative;
+    /* This creates the "spine" look of a book */
+    border-left: 3px solid rgba(99, 102, 241, 0.3);
+    padding-left: 40px;
+}
+
+.ourbeliefs-book-text {
+    font-family: "Georgia", serif;
+    font-size: 1.35rem;
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: justify;
+    margin: 0;
+}
+
+    /* Classic Editorial Drop-Cap */
+    .ourbeliefs-book-text::first-letter {
+        float: left;
+        font-size: 4.5rem;
+        line-height: 0.8;
+        padding-top: 6px;
+        padding-right: 15px;
+        font-weight: 700;
+        color: #6366f1;
+    }
+
+.ourbeliefs-book-signature {
+    margin-top: 40px;
+    font-family: "Georgia", serif;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.4);
+    text-align: right;
+    font-size: 1.1rem;
+}
+
+/* --- Mobile Specific Optimization --- */
+@media (max-width: 768px) {
+    .ourbeliefs-grid-section {
+        padding: 50px 0;
+    }
+
+    .ourbeliefs-book-text {
+        font-size: 1.15rem;
+        text-align: left; /* Justify can be messy on narrow phones */
+    }
+
+    .ourbeliefs-book-page {
+        padding-left: 25px;
+        border-left: 2px solid rgba(99

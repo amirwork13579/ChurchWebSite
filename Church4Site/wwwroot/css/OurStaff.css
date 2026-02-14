@@ -1,0 +1,498 @@
+﻿/*background------------------------------------*/
+
+
+.backgroundrandom-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #001b3d; /* Restored Deep Blue Background */
+    overflow: hidden;
+    z-index: -2;
+}
+
+.backgroundrandom-shape {
+    position: absolute;
+    bottom: -200px;
+    left: var(--x);
+    width: var(--size);
+    height: var(--size);
+    background: var(--c);
+    opacity: 0.5; /* Keeps them semi-transparent over the blue */
+    filter: blur(2px); /* Softens the edges slightly */
+    animation: backgroundrandom-float calc(10s + (var(--i) * 2s)) linear infinite;
+    animation-delay: calc(var(--i) * -1.5s);
+}
+
+.backgroundrandom-circle {
+    border-radius: 50%;
+}
+
+.backgroundrandom-rect {
+    border-radius: 15%;
+    transform: rotate(45deg);
+}
+
+.backgroundrandom-blob {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+@keyframes backgroundrandom-float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.5;
+    }
+
+    80% {
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateY(-125vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Mobile responsive sizing */
+@media (max-width: 768px) {
+    .backgroundrandom-shape {
+        width: calc(var(--size) * 0.6);
+        height: calc(var(--size) * 0.6);
+    }
+}
+
+
+
+
+
+
+
+
+/*team member lst display-----------------------------*/
+
+:root {
+    --tm-primary: #6366f1;
+    --tm-dark: #0f172a;
+    --tm-accent: #818cf8;
+    --tm-text: #64748b;
+    --tm-white: #ffffff;
+}
+
+.teammembercard-section {
+    padding: 0px 0px;
+    background: transparent;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+.teammembercard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.teammembercard-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.teammembercard-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--tm-dark);
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+.teammembercard-subtitle {
+    font-size: 1rem;
+    color: var(--tm-text);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 10px;
+}
+
+/* Grid Layout */
+.teammembercard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+}
+
+.teammembercard-item {
+    background: var(--tm-white);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+    .teammembercard-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+/* Image Interaction */
+.teammembercard-image-wrapper {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+}
+
+.teammembercard-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.teammembercard-item:hover .teammembercard-img {
+    transform: scale(1.1);
+}
+
+.teammembercard-socials {
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    transition: bottom 0.3s ease;
+}
+
+.teammembercard-item:hover .teammembercard-socials {
+    bottom: 0;
+}
+
+.teammembercard-social-link {
+    color: white;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 700;
+    background: var(--tm-primary);
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+    .teammembercard-social-link:hover {
+        background: var(--tm-accent);
+    }
+
+/* Info Section */
+.teammembercard-info {
+    padding: 25px;
+    text-align: center;
+}
+
+.teammembercard-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--tm-dark);
+    margin: 0 0 5px 0;
+}
+
+.teammembercard-position {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--tm-primary);
+    margin-bottom: 15px;
+}
+
+.teammembercard-bio {
+    font-size: 0.9rem;
+    color: var(--tm-text);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .teammembercard-grid {
+        gap: 25px;
+    }
+
+    .teammembercard-image-wrapper {
+        height: 280px;
+    }
+
+    .teammembercard-socials {
+        bottom: 0; /* Always visible on mobile for better UX */
+        background: transparent;
+    }
+
+    .teammembercard-social-link {
+        background: rgba(99, 102, 241, 0.8);
+    }
+}
+
+
+
+
+
+
+/*navbar-------------------------------*/
+.seethronavbar-wrapper {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+    /* Glassmorphism Effect */
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+}
+
+.seethronavbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.seethronavbar-logo {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+    .seethronavbar-logo span {
+        color: #00d4ff;
+    }
+
+.seethronavbar-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+}
+
+.seethronavbar-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    opacity: 0.8;
+    transition: 0.3s ease;
+}
+
+    .seethronavbar-link:hover {
+        opacity: 1;
+        color: #00d4ff;
+    }
+
+/* THE BUTTON DESIGN */
+.seethronavbar-btn {
+    display: inline-block;
+    background: #ffffff;
+    color: #000000 !important;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    border: 1px solid #ffffff;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+    .seethronavbar-btn:hover {
+        background: transparent;
+        color: #ffffff !important;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+    }
+
+/* HAMBURGER ICON */
+.seethronavbar-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 10001;
+}
+
+.seethronavbar-icon,
+.seethronavbar-icon::before,
+.seethronavbar-icon::after {
+    content: '';
+    display: block;
+    background: #ffffff;
+    height: 2px;
+    width: 25px;
+    transition: 0.3s ease-in-out;
+}
+
+    .seethronavbar-icon::before {
+        transform: translateY(-8px);
+    }
+
+    .seethronavbar-icon::after {
+        transform: translateY(6px);
+    }
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+    .seethronavbar-toggle {
+        display: block;
+    }
+
+    .seethronavbar-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    }
+
+        .seethronavbar-menu.is-active {
+            right: 0;
+        }
+
+        .seethronavbar-menu li {
+            width: 100%;
+            text-align: center;
+            margin: 15px 0;
+        }
+
+    .seethronavbar-btn {
+        width: 70%;
+        padding: 15px 0;
+    }
+
+    /* Hamburger to X Animation */
+    .seethronavbar-toggle.is-active .seethronavbar-icon {
+        background: transparent;
+    }
+
+        .seethronavbar-toggle.is-active .seethronavbar-icon::before {
+            transform: rotate(45deg) translateY(0);
+        }
+
+        .seethronavbar-toggle.is-active .seethronavbar-icon::after {
+            transform: rotate(-45deg) translateY(-1px) translateX(1px);
+        }
+}
+
+
+
+
+
+
+
+
+
+
+/*title top----------------------------*/
+
+/* The Main Wrapper */
+.titletop-outer-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 70px 0; /* Space outside the borders */
+    background: transparent;
+}
+
+/* The Bold Lines */
+.titletop-border-line {
+    width: 100%;
+    /* Heavy 6px thick lines */
+    height: 6px;
+    background-color: #1e3799;
+    /* This makes the line look modern and custom */
+    background: linear-gradient(90deg, rgba(30, 55, 153, 0) 0%, #1e3799 50%, rgba(30, 55, 153, 0) 100%);
+}
+
+/* The Content Box - Positioned close to the lines */
+.titletop-center-box {
+    padding: 30px 20px; /* Reduced vertical padding to bring borders closer */
+    text-align: center;
+    max-width: 1000px;
+}
+
+.titletop-eyebrow {
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 6px;
+    color: #1e3799;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.titletop-hero-title {
+    /* Massive, bold editorial font */
+    font-size: clamp(3.5rem, 15vw, 8rem);
+    font-weight: 900;
+    color: #1e3799;
+    line-height: 0.9;
+    letter-spacing: -4px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.titletop-hero-subtitle {
+    font-size: clamp(0.8rem, 2.5vw, 1.2rem);
+    font-weight: 400;
+    letter-spacing: 4px;
+    color: #636e72;
+    margin-top: 15px;
+    text-transform: uppercase;
+}
+
+/* Mobile Styling */
+@media (max-width: 768px) {
+    .titletop-border-line {
+        height: 4px; /* Slightly thinner for small screens */
+    }
+
+    .titletop-center-box {
+        padding: 20px 10px;
+    }
+
+    .titletop-hero-title {
+        letter-spacing: -2px;
+    }
+}
+
+
+
+
+
+
