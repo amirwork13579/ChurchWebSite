@@ -884,3 +884,166 @@
 
 
 
+/*donate options popup---------------------------------*/
+
+/* 1. Backdrop with Glassmorphism */
+.donateOptionsPopup-overlay {
+    /* Initially hidden - you will toggle this with JS */
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.4); /* Dark slate tint */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+/* 2. Modal Container */
+.donateOptionsPopup-container {
+    background: #ffffff;
+    width: 100%;
+    max-width: 420px;
+    border-radius: 32px;
+    padding: 40px 24px 32px 24px;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+    /* Stylish Spring Animation */
+    animation: donateOptionsPopup-slideIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes donateOptionsPopup-slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* 3. Close Button */
+.donateOptionsPopup-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: none;
+    background: #f1f5f9;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+    .donateOptionsPopup-close:hover {
+        background: #e2e8f0;
+    }
+
+/* 4. Typography */
+.donateOptionsPopup-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.donateOptionsPopup-title {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: clamp(1.5rem, 5vw, 1.8rem);
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 8px 0;
+}
+
+.donateOptionsPopup-subtitle {
+    font-size: 0.95rem;
+    color: #64748b;
+    margin: 0;
+}
+
+/* 5. Donation Cards List */
+.donateOptionsPopup-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.donateOptionsPopup-card {
+    display: flex;
+    align-items: center;
+    background: #f8fafc;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+    .donateOptionsPopup-card:hover {
+        background: #ffffff;
+        border-color: #3b82f6;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.1);
+    }
+
+.donateOptionsPopup-icon {
+    width: 48px;
+    height: 48px;
+    background: #ffffff;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-right: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.donateOptionsPopup-details {
+    flex-grow: 1;
+}
+
+.donateOptionsPopup-method-name {
+    display: block;
+    font-weight: 700;
+    color: #1e293b;
+    font-size: 1.1rem;
+}
+
+.donateOptionsPopup-method-meta {
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+.donateOptionsPopup-action-icon {
+    color: #cbd5e1;
+    font-weight: 900;
+    font-size: 1.2rem;
+}
+
+.donateOptionsPopup-footer {
+    margin-top: 32px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    font-style: italic;
+}
+
+/* 6. Mobile Optimization (Small screens) */
+@media (max-width: 480px) {
+    .donateOptionsPopup-container {
+        padding: 32px 20px 24px 20px;
+        border-radius: 24px;
+    }
+}

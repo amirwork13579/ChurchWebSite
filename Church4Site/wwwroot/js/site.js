@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         trigger.addEventListener('click', () => {
             // Toggles the hamburger icon state
             trigger.classList.toggle('is-open');
-            // Toggles the visibility of the menu overlay
+            // Toggles the visibility of the menu overlay0
             wrapper.classList.toggle('is-visible');
         });
 
@@ -106,96 +106,6 @@ document.querySelector(".eventpost-form").addEventListener("submit", async funct
 
 
 
-
-
-
-
-
-/*device open image upload*/
-
-document.addEventListener("DOMContentLoaded", function () {
-    // 1. Find the form safely
-    const eventForm = document.querySelector(".eventpost-form");
-
-    if (eventForm) {
-        eventForm.addEventListener("submit", async function (e) {
-            e.preventDefault(); // Stop the standard form reload
-
-            // 2. Locate the file input and other data
-            const fileInput = eventForm.querySelector(".file-input-hidden");
-            const titleInput = document.getElementById("event-title");
-            // Add other inputs here as needed (e.g., Description, Date)
-
-            // 3. Prepare the FormData object
-            const formData = new FormData();
-
-            // IMPORTANT: "imageFile" must match your C# parameter name exactly
-            if (fileInput && fileInput.files[0]) {
-                formData.append("imageFile", fileInput.files[0]);
-            } else {
-                alert("Please select an image first!");
-                return;
-            }
-
-            // 4. Map the ViewModel data
-            // We use 'event1.NewEvent.' to match your C# EventsDataViewModel
-            if (titleInput) {
-                formData.append("event1.NewEvent.Title", titleInput.value);
-            }
-
-            // You can loop through other inputs or append them manually:
-            // formData.append("event1.NewEvent.Description", document.getElementById("desc").value);
-
-            try {
-                // 5. Send the request
-                const response = await fetch('/Admin/SubmitEvent', {
-                    method: 'POST',
-                    body: formData
-                });
-
-                if (response.ok) {
-                    alert("Event created successfully!");
-                    window.location.href = "/Admin/AdminPage"; // Redirect on success
-                } else {
-                    const errorMsg = await response.text();
-                    console.error("Server Error:", errorMsg);
-                    alert("Error: " + errorMsg);
-                }
-            } catch (error) {
-                console.error("Fetch Error:", error);
-                alert("An error occurred while uploading.");
-            }
-        });
-    }
-});
-
-/* --- Keep your previous helper functions for the UI --- */
-function triggerClick(element) {
-    const parentCard = element.closest('.upload-card');
-    parentCard.querySelector('.file-input-hidden').click();
-}
-
-function handleFileChange(input) {
-    const parentCard = input.closest('.upload-card');
-    const previewContainer = parentCard.querySelector('.preview-container');
-    const previewImage = parentCard.querySelector('.image-preview-element');
-    const file = input.files[0];
-
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            previewImage.src = e.target.result;
-            previewContainer.classList.remove('preview-hidden');
-        };
-        reader.readAsDataURL(file);
-    }
-}
-
-function clearImage(button) {
-    const parentCard = button.closest('.upload-card');
-    parentCard.querySelector('.file-input-hidden').value = "";
-    parentCard.querySelector('.preview-container').classList.add('preview-hidden');
-}
 
 
 
