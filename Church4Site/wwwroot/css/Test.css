@@ -139,3 +139,76 @@
         padding: 15px;
     }
 }
+
+
+
+
+
+
+/*background------------------------------------*/
+
+
+.backgroundrandom-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #001b3d; /* Restored Deep Blue Background */
+    overflow: hidden;
+    z-index: -2;
+}
+
+.backgroundrandom-shape {
+    position: absolute;
+    bottom: -200px;
+    left: var(--x);
+    width: var(--size);
+    height: var(--size);
+    background: var(--c);
+    opacity: 0.5; /* Keeps them semi-transparent over the blue */
+    filter: blur(2px); /* Softens the edges slightly */
+    animation: backgroundrandom-float calc(10s + (var(--i) * 2s)) linear infinite;
+    animation-delay: calc(var(--i) * -1.5s);
+}
+
+.backgroundrandom-circle {
+    border-radius: 50%;
+}
+
+.backgroundrandom-rect {
+    border-radius: 15%;
+    transform: rotate(45deg);
+}
+
+.backgroundrandom-blob {
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+@keyframes backgroundrandom-float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.5;
+    }
+
+    80% {
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateY(-125vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Mobile responsive sizing */
+@media (max-width: 768px) {
+    .backgroundrandom-shape {
+        width: calc(var(--size) * 0.6);
+        height: calc(var(--size) * 0.6);
+    }
+}

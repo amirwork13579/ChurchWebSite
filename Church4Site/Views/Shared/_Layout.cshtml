@@ -3,66 +3,191 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Church4Site</title>
+    <title>@ViewData["Title"] - BLW-Church</title>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Church4Site.styles.css" asp-append-version="true" />
+    <script src="~/js/site.js" asp-append-version="true"></script>
 </head>
 <body>
+
+    @*background shapes*@
+    <div class="backgroundBlackGold-fixed-bg">
+        <div class="backgroundBlackGold-blob backgroundBlackGold-gold-1"></div>
+        <div class="backgroundBlackGold-blob backgroundBlackGold-gold-2"></div>
+
+        <div class="backgroundBlackGold-vignette"></div>
+    </div>
+
+
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Church4Site</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+        @*navbar*@
+        <nav class="seethronavbar-wrapper">
+            <div class="seethronavbar-container">
+                <a href="#" class="seethronavbar-logo">BL<span>W</span> Church</a>
+
+                <button class="seethronavbar-toggle" id="navbar-hamburger" aria-label="Toggle Menu">
+                    <span class="seethronavbar-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="LogIn">LogIn</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Register">Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="MainPage">MainPage</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="LogOut">LogOut</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Main" asp-action="Test">Test</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="AdminFile" asp-action="AdminPage">AdminPage</a>
-                        </li>
-                    </ul>
-                </div>
+
+                <ul class="seethronavbar-menu" id="navbar-menu">
+                    <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="OurStaff">OurStaff</a></li>
+                    <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="OurBeliefs">Our Beliefs</a></li>
+                    <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="Testimonies">Testimonies</a></li>
+                    <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="Calendar">Calendar</a></li>
+                    <li><button onclick="openDonateOptions(this)" class="donateOptionsPopup-trigger-btn">Donate</button></li>
+                    <li><a asp-action="ContactForm" class="seethronavbar-btn">Get Started</a></li>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <li><a class="seethronavbar-link" asp-area="" asp-controller="AdminFile" asp-action="AdminPage">Admin</a></li>
+                    }
+                </ul>
             </div>
         </nav>
+
+
+
+        @*donate options popup*@
+        <div class="donateOptionsPopup-overlay" id="donateOptionsPopup-overlay">
+
+            <div class="donateOptionsPopup-container">
+
+                <button class="donateOptionsPopup-close" onclick="closeDonateOptions(this)" id="donateOptionsPopup-close" aria-label="Close">
+                    &times;
+                </button>
+
+                <div class="donateOptionsPopup-header">
+                    <h2 class="donateOptionsPopup-title">Support Our Church</h2>
+                    <p class="donateOptionsPopup-subtitle">Select a secure payment method to give.</p>
+                </div>
+
+                <div class="donateOptionsPopup-grid">
+
+                    <div class="donateOptionsPopup-card" data-method="paypal">
+                        <div class="donateOptionsPopup-icon">
+                            <span class="donateOptionsPopup-emoji">💳</span>
+                        </div>
+                        <div class="donateOptionsPopup-details">
+                            <span class="donateOptionsPopup-method-name">PayPal</span>
+                            <span class="donateOptionsPopup-method-meta">Credit Card / Account</span>
+                        </div>
+                        <div class="donateOptionsPopup-action-icon">→</div>
+                    </div>
+
+                    <div class="donateOptionsPopup-card" data-method="zelle">
+                        <div class="donateOptionsPopup-icon">
+                            <span class="donateOptionsPopup-emoji">📱</span>
+                        </div>
+                        <div class="donateOptionsPopup-details">
+                            <span class="donateOptionsPopup-method-name">Zelle</span>
+                            <span class="donateOptionsPopup-method-meta">Copy Email Address</span>
+                        </div>
+                        <div class="donateOptionsPopup-action-icon">📋</div>
+                    </div>
+
+                    <div class="donateOptionsPopup-card" data-method="cashapp">
+                        <div class="donateOptionsPopup-icon">
+                            <span class="donateOptionsPopup-emoji">💵</span>
+                        </div>
+                        <div class="donateOptionsPopup-details">
+                            <span class="donateOptionsPopup-method-name">CashApp</span>
+                            <span class="donateOptionsPopup-method-meta">$YourChurchTag</span>
+                        </div>
+                        <div class="donateOptionsPopup-action-icon">→</div>
+                    </div>
+
+                </div>
+
+                <div class="donateOptionsPopup-footer">
+                    <p>Thank you for your generosity!</p>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+                    // Donate options popup and close
+            function openDonateOptions(elmnt) {
+                const overlay = document.getElementById('donateOptionsPopup-overlay');
+                overlay.style.display = 'flex'
+            }
+            function closeDonateOptions(elmnt) {
+                const overlay = document.getElementById('donateOptionsPopup-overlay');
+                overlay.style.display = 'none';
+            }
+
+        </script>
+
+
+
     </header>
-    <div class="container">
+
+    @*for rendering the hero section differently*@
+    @await RenderSectionAsync("FullWidthTop", required: false)
+
+    <div class="">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - Church4Site - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+    <footer class="lowerSiteArea-main-container">
+        <div class="lowerSiteArea-wrapper">
+            <div class="lowerSiteArea-main-grid">
+
+                <div class="lowerSiteArea-brand-col">
+                    <h2 class="lowerSiteArea-logo">BL<span>W</span> Church</h2>
+                    <p class="lowerSiteArea-mission">A community dedicated to the message of grace and the pursuit of purpose.</p>
+                    <div class="lowerSiteArea-socials">
+                        <a href="#" class="lowerSiteArea-social-link">FB</a>
+                        <a href="#" class="lowerSiteArea-social-link">IG</a>
+                    </div>
+                </div>
+
+                <div class="lowerSiteArea-links-col">
+                    <h4 class="lowerSiteArea-heading">Quick Links</h4>
+                    <ul class="lowerSiteArea-list">
+                        @if(User.Identity.IsAuthenticated)
+                        {
+                            <li><a asp-controller="Main" asp-action="Logout" class="lowerSiteArea-link">Logout</a></li>
+                        }
+                        else
+                        {
+                            <li><a asp-controller="Main" asp-action="Register" class="lowerSiteArea-link">Register</a></li>
+                            <li><a asp-controller="Main" asp-action="Login" class="lowerSiteArea-link">Login</a></li>
+
+                        }
+                        <li><a asp-controller="Main" asp-action="Calendar" class="lowerSiteArea-link">for our Schedule - Calendar</a></li>
+                    </ul>
+                </div>
+
+                <div class="lowerSiteArea-contact-col">
+                    <h4 class="lowerSiteArea-heading">Location - Visit Us</h4>
+                    <p class="lowerSiteArea-info">123 Faith Avenue, London</p>
+                    <button class="lowerSiteArea-btn">Get Directions</button>
+                </div>
+
+            </div>
+
+            <div class="lowerSiteArea-bottom-bar">
+                <p>&copy; 2026 BLW Church. All Rights Reserved.</p>
+            </div>
         </div>
     </footer>
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+
+
+
+
+
+
