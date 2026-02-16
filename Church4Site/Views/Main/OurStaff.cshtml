@@ -16,132 +16,19 @@
 
 
 
-    @*background shapes*@
-    <div class="backgroundrandom-wrapper">
-        <div class="backgroundrandom-shape backgroundrandom-circle" style="--i:1; --c:#ff007f; --x:10vw; --size:120px;"></div>
-        <div class="backgroundrandom-shape backgroundrandom-rect" style="--i:2; --c:#00d4ff; --x:40vw; --size:180px;"></div>
-        <div class="backgroundrandom-shape backgroundrandom-blob" style="--i:3; --c:#ccff00; --x:70vw; --size:140px;"></div>
-        <div class="backgroundrandom-shape backgroundrandom-circle" style="--i:4; --c:#7000ff; --x:85vw; --size:100px;"></div>
-    </div>
-
-
-
-
-    @*navbar*@
-    <nav class="seethronavbar-wrapper">
-        <div class="seethronavbar-container">
-            <a href="#" class="seethronavbar-logo">DESIGN<span>CO</span></a>
-
-            <button class="seethronavbar-toggle" id="navbar-hamburger" aria-label="Toggle Menu">
-                <span class="seethronavbar-icon"></span>
-            </button>
-
-            <ul class="seethronavbar-menu" id="navbar-menu">
-                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="OurBeliefs">Our Beliefs</a></li>
-                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="Testimonies">Testimonies</a></li>
-                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="Calendar">Calendar</a></li>
-                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="MainPage">Main</a></li>
-                <li><button onclick="openDonateOptions(this)" class="donateOptionsPopup-trigger-btn">Donate</button></li>
-                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                {
-                    <li><a class="seethronavbar-link" asp-area="" asp-controller="AdminFile" asp-action="AdminPage">Admin</a></li>
-                }
-                <li><a asp-action="ContactForm" class="seethronavbar-btn">Get Started</a></li>
-            </ul>
-        </div>
-    </nav>
-
-  
-
-
-
-
     @*stylish font title*@
     <div class="stylishfonttitle-outer-container">
         <div class="stylishfonttitle-silver-bar"></div>
 
         <div class="stylishfonttitle-header-box">
             <h1 class="stylishfonttitle-text">
-                Stories of Divine <span>Healing</span>
+                Our<span> Team</span>
             </h1>
         </div>
 
         <div class="stylishfonttitle-silver-bar"></div>
     </div>
 
-
-
-
-    @*donate options popup*@
-    <div class="donateOptionsPopup-overlay" id="donateOptionsPopup-overlay">
-
-        <div class="donateOptionsPopup-container">
-
-            <button class="donateOptionsPopup-close" onclick="closeDonateOptions(this)" id="donateOptionsPopup-close" aria-label="Close">
-                &times;
-            </button>
-
-            <div class="donateOptionsPopup-header">
-                <h2 class="donateOptionsPopup-title">Support Our Church</h2>
-                <p class="donateOptionsPopup-subtitle">Select a secure payment method to give.</p>
-            </div>
-
-            <div class="donateOptionsPopup-grid">
-
-                <div class="donateOptionsPopup-card" data-method="paypal">
-                    <div class="donateOptionsPopup-icon">
-                        <span class="donateOptionsPopup-emoji">💳</span>
-                    </div>
-                    <div class="donateOptionsPopup-details">
-                        <span class="donateOptionsPopup-method-name">PayPal</span>
-                        <span class="donateOptionsPopup-method-meta">Credit Card / Account</span>
-                    </div>
-                    <div class="donateOptionsPopup-action-icon">→</div>
-                </div>
-
-                <div class="donateOptionsPopup-card" data-method="zelle">
-                    <div class="donateOptionsPopup-icon">
-                        <span class="donateOptionsPopup-emoji">📱</span>
-                    </div>
-                    <div class="donateOptionsPopup-details">
-                        <span class="donateOptionsPopup-method-name">Zelle</span>
-                        <span class="donateOptionsPopup-method-meta">Copy Email Address</span>
-                    </div>
-                    <div class="donateOptionsPopup-action-icon">📋</div>
-                </div>
-
-                <div class="donateOptionsPopup-card" data-method="cashapp">
-                    <div class="donateOptionsPopup-icon">
-                        <span class="donateOptionsPopup-emoji">💵</span>
-                    </div>
-                    <div class="donateOptionsPopup-details">
-                        <span class="donateOptionsPopup-method-name">CashApp</span>
-                        <span class="donateOptionsPopup-method-meta">$YourChurchTag</span>
-                    </div>
-                    <div class="donateOptionsPopup-action-icon">→</div>
-                </div>
-
-            </div>
-
-            <div class="donateOptionsPopup-footer">
-                <p>Thank you for your generosity!</p>
-            </div>
-        </div>
-    </div>
-
-
-    <script>
-                // Donate options popup and close
-        function openDonateOptions(elmnt) {
-            const overlay = document.getElementById('donateOptionsPopup-overlay');
-            overlay.style.display = 'flex'
-        }
-        function closeDonateOptions(elmnt) {
-            const overlay = document.getElementById('donateOptionsPopup-overlay');
-            overlay.style.display = 'none';
-        }
-
-    </script>
 
 
 

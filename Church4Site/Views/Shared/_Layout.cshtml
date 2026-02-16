@@ -36,8 +36,9 @@
                     <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="OurBeliefs">Our Beliefs</a></li>
                     <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="Testimonies">Testimonies</a></li>
                     <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="Calendar">Calendar</a></li>
-                    <li><button onclick="openDonateOptions(this)" class="donateOptionsPopup-trigger-btn">Donate</button></li>
-                    <li><a asp-action="ContactForm" class="seethronavbar-btn">Get Started</a></li>
+                    <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="MainPage">Main</a></li>
+                    <li><button onclick="openDonateOptions(this)" class="deletepopupbutton-card">Donate</button></li>
+                    <li><a asp-action="ContactForm" class="seethronavbar-btn">Contact Us</a></li>
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                     {
                         <li><a class="seethronavbar-link" asp-area="" asp-controller="AdminFile" asp-action="AdminPage">Admin</a></li>

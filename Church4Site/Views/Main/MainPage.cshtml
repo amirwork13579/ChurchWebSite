@@ -23,76 +23,6 @@
     
 
 
-    @*donate options popup*@
-    <div class="donateOptionsPopup-overlay" id="donateOptionsPopup-overlay">
-
-        <div class="donateOptionsPopup-container">
-
-            <button class="donateOptionsPopup-close" onclick="closeDonateOptions(this)" id="donateOptionsPopup-close" aria-label="Close">
-                &times;
-            </button>
-
-            <div class="donateOptionsPopup-header">
-                <h2 class="donateOptionsPopup-title">Support Our Church</h2>
-                <p class="donateOptionsPopup-subtitle">Select a secure payment method to give.</p>
-            </div>
-
-            <div class="donateOptionsPopup-grid">
-
-                <div class="donateOptionsPopup-card" data-method="paypal">
-                    <div class="donateOptionsPopup-icon">
-                        <span class="donateOptionsPopup-emoji">💳</span>
-                    </div>
-                    <div class="donateOptionsPopup-details">
-                        <span class="donateOptionsPopup-method-name">PayPal</span>
-                        <span class="donateOptionsPopup-method-meta">Credit Card / Account</span>
-                    </div>
-                    <div class="donateOptionsPopup-action-icon">→</div>
-                </div>
-
-                <div class="donateOptionsPopup-card" data-method="zelle">
-                    <div class="donateOptionsPopup-icon">
-                        <span class="donateOptionsPopup-emoji">📱</span>
-                    </div>
-                    <div class="donateOptionsPopup-details">
-                        <span class="donateOptionsPopup-method-name">Zelle</span>
-                        <span class="donateOptionsPopup-method-meta">Copy Email Address</span>
-                    </div>
-                    <div class="donateOptionsPopup-action-icon">📋</div>
-                </div>
-
-                <div class="donateOptionsPopup-card" data-method="cashapp">
-                    <div class="donateOptionsPopup-icon">
-                        <span class="donateOptionsPopup-emoji">💵</span>
-                    </div>
-                    <div class="donateOptionsPopup-details">
-                        <span class="donateOptionsPopup-method-name">CashApp</span>
-                        <span class="donateOptionsPopup-method-meta">$YourChurchTag</span>
-                    </div>
-                    <div class="donateOptionsPopup-action-icon">→</div>
-                </div>
-
-            </div>
-
-            <div class="donateOptionsPopup-footer">
-                <p>Thank you for your generosity!</p>
-            </div>
-        </div>
-    </div>
-
-
-    <script>
-                // Donate options popup and close
-        function openDonateOptions(elmnt) {
-            const overlay = document.getElementById('donateOptionsPopup-overlay');
-            overlay.style.display = 'flex'
-        }
-        function closeDonateOptions(elmnt) {
-            const overlay = document.getElementById('donateOptionsPopup-overlay');
-            overlay.style.display = 'none';
-        }
-
-    </script>
   
 
 
@@ -217,32 +147,6 @@
 
         </div>
     </section>
-
-
-    @*section separator*@
-    <div class="sectionseparator-container">
-        <div class="sectionseparator-line"></div>
-        <span class="sectionseparator-text">Our Services</span>
-        <ul>
-            @if(User.Identity.IsAuthenticated)
-            {
-                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="LogOut">LogOut</a></li>
-            }
-            else
-            {
-                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="Register">Register</a></li>
-                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="Login">Login</a></li>
-            }
-        </ul>
-        <div class="sectionseparator-line"></div>
-    </div>
-
-
-
-   
-
-
-
 
 
 
