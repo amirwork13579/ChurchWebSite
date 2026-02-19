@@ -68,7 +68,7 @@
                 <p class="testimonieformpost-subtitle">Your testimony can strengthen the faith of others.</p>
             </div>
 
-            <form action="/Main/SubmitTestimony" method="post" enctype="multipart/form-data" class="testimonieformpost-form">
+            <form action="/Main/PostTestimonie" method="post" enctype="multipart/form-data" class="testimonieformpost-form">
 
                 <div class="testimonieformpost-input-row">
                     <div class="testimonieformpost-group">
@@ -96,6 +96,8 @@
                     </div>
                 </div>
 
+
+
                 <div class="testimonieformpost-actions">
                     <button type="submit" class="testimonieformpost-submit">Submit Testimony</button>
                 </div>
@@ -111,55 +113,6 @@
     </script>
 
 
-
-
-
-
-
-
-
-
-    @*enctype="multipart/form-data"*@
-    @*user testimonie post*@
-    <div class="userpost-container">
-        <form asp-action="PostTestimonie" class="userpost-form" method="post" id="postForm" enctype="multipart/form-data">
-            <div class="userpost-header">
-                <h2 class="userpost-title">Share Your Story</h2>
-                <p class="userpost-subtitle">We’d love to hear about your experience with us.</p>
-            </div>
-
-            <div class="userpost-group">
-                <label class="userpost-label" for="userName">Testimonie Title</label>
-                <input asp-for="@Model.NewMessage.Title" type="text" id="userName" name="Title" class="userpost-input" placeholder="e.g. Jane Doe" required>
-            </div>
-            
-            <div class="userpost-group">
-                <label class="userpost-label" for="userMessage">Your Testimony</label>
-                <textarea name="MessageFrom" id="MessageFrom" class="userpost-textarea" placeholder="Write your message here..." required></textarea>
-            </div>
-
-            @*image post file open*@
-            <div class="devicefileopen-av-card">
-                <div class="devicefileopen-av-content">
-                    <h3 class="devicefileopen-av-title">Event Cover Image</h3>
-                    <div class="devicefileopen-preview-container" onclick="document.getElementById('device-file-input1').click()">
-                        <img src="#" id="image-select-event" class="devicefileopen-preview-img" />
-                        <div class="devicefileopen-upload-overlay">
-                            <span>Tap to Change</span>
-                        </div>
-                    </div>
-                    <input type="file" name="FormFile" onchange="openDeviceFile(this, 'image-select-event')" accept="image/*" id="device-file-input1" hidden />
-                    <p class="devicefileopen-file-hint">Max size: 5MB (JPG, PNG)</p>
-                </div>
-            </div>
-
-
-            <button type="submit" class="userpost-submit-btn">
-                Post Testimony
-                <span class="userpost-btn-icon">→</span>
-            </button>
-        </form>
-    </div>
 
 
 
@@ -192,7 +145,7 @@
     @*section separator*@
     <div class="sectionseparator-container">
         <div class="sectionseparator-line"></div>
-        <span class="sectionseparator-text">Our Services</span>
+        <span class="sectionseparator-text">Community Testimonies</span>
         <div class="sectionseparator-line"></div>
     </div>
 
@@ -227,8 +180,8 @@
     <section class="testimonieslst-section">
         <div class="testimonieslst-container">
             <header class="testimonieslst-header">
-                <span class="testimonieslst-badge">Testimonials</span>
-                <h2 class="testimonieslst-main-title">What Our Community Says</h2>
+                @*<span class="testimonieslst-badge">Testimonials</span>
+                <h2 class="testimonieslst-main-title">What Our Community Says</h2>*@
             </header>
 
             <div class="testimonieslst-grid">
