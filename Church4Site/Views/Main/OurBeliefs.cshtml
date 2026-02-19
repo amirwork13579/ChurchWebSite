@@ -11,40 +11,6 @@
 <body>
 
 
-    @*background shapes*@
-    <div class="backgroundrandom-wrapper">
-        <div class="backgroundrandom-shape backgroundrandom-circle" style="--i:1; --c:#ff007f; --x:10vw; --size:120px;"></div>
-        <div class="backgroundrandom-shape backgroundrandom-rect" style="--i:2; --c:#00d4ff; --x:40vw; --size:180px;"></div>
-        <div class="backgroundrandom-shape backgroundrandom-blob" style="--i:3; --c:#ccff00; --x:70vw; --size:140px;"></div>
-        <div class="backgroundrandom-shape backgroundrandom-circle" style="--i:4; --c:#7000ff; --x:85vw; --size:100px;"></div>
-    </div>
-
-
-    @*navbar*@
-    <nav class="seethronavbar-wrapper">
-        <div class="seethronavbar-container">
-            <a href="#" class="seethronavbar-logo">BL<span>W</span> Church</a>
-
-            <button class="seethronavbar-toggle" id="navbar-hamburger" aria-label="Toggle Menu">
-                <span class="seethronavbar-icon"></span>
-            </button>
-
-            <ul class="seethronavbar-menu" id="navbar-menu">
-                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="OurStaff">OurStaff</a></li>
-                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="Testimonies">Testimonies</a></li>
-                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="Calendar">Calendar</a></li>
-                <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="MainPage">Main</a></li>
-                <li><button onclick="openDonateOptions(this)" class="donateOptionsPopup-trigger-btn">Donate</button></li>
-                <li><a asp-action="ContactForm" class="seethronavbar-btn">Get Started</a></li>
-                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                {
-                    <li><a class="seethronavbar-link" asp-area="" asp-controller="AdminFile" asp-action="AdminPage">Admin</a></li>
-                }
-            </ul>
-        </div>
-    </nav>
-
-
 
 
 

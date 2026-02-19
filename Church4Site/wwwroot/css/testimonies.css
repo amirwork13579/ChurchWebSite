@@ -307,12 +307,15 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    perspective: 400px;
 }
 
     .testimonieslst-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
         border-color: var(--tl-primary);
+        transform: rotateY(200deg);
+        transform: rotateX(15deg);
     }
 
 .testimonieslst-quote-icon {
@@ -593,141 +596,6 @@
     }
 }
 
-
-
-
-
-/*event cards---------------------*/
-
-.eventcards-section {
-    width: 100%;
-    padding: 80px 20px;
-    background-color: transparent; /* Blends with your random shapes background */
-    box-sizing: border-box;
-}
-
-.eventcards-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    /* Two columns for desktop */
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
-}
-
-.eventcards-card {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    overflow: hidden;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
-    display: flex;
-    flex-direction: column;
-}
-
-    .eventcards-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-.eventcards-image-wrapper {
-    position: relative;
-    width: 100%;
-    height: 250px;
-    overflow: hidden;
-}
-
-.eventcards-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-}
-
-.eventcards-card:hover .eventcards-img {
-    transform: scale(1.1);
-}
-
-.eventcards-tag {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background: #00d4ff;
-    color: #000;
-    padding: 5px 15px;
-    border-radius: 50px;
-    font-size: 0.7rem;
-    font-weight: 800;
-    text-transform: uppercase;
-}
-
-.eventcards-content {
-    padding: 30px;
-    color: #ffffff;
-    font-family: 'Inter', sans-serif;
-}
-
-.eventcards-date {
-    font-size: 0.75rem;
-    color: #00d4ff;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    display: block;
-    margin-bottom: 10px;
-}
-
-.eventcards-title {
-    font-size: 1.5rem;
-    margin: 0 0 15px 0;
-    font-weight: 700;
-}
-
-.eventcards-description {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 25px;
-}
-
-.eventcards-link {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-bottom: 2px solid #00d4ff;
-    padding-bottom: 5px;
-    transition: 0.3s;
-}
-
-    .eventcards-link:hover {
-        letter-spacing: 2px;
-    }
-
-/* MOBILE SCALING */
-@media (max-width: 768px) {
-    .eventcards-container {
-        /* Switch to one column for mobile */
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .eventcards-section {
-        padding: 40px 15px;
-    }
-
-    .eventcards-image-wrapper {
-        height: 200px;
-    }
-
-    .eventcards-title {
-        font-size: 1.3rem;
-    }
-}
 
 
 
@@ -1157,5 +1025,158 @@
 
     .stylishfonttitle-text {
         letter-spacing: 0.15em;
+    }
+}
+
+
+
+
+
+
+
+
+
+/*---------------------------------------*/
+
+
+/* Container & Section */
+.testimonieformpost-wrapper {
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    background: transparent;
+}
+
+.testimonieformpost-card {
+    width: 100%;
+    max-width: 700px;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+}
+
+/* Header */
+.testimonieformpost-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: #fff;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+    .testimonieformpost-title span {
+        color: #c0c0c0; /* Silver Accent */
+        font-style: italic;
+    }
+
+.testimonieformpost-subtitle {
+    color: #777;
+    text-align: center;
+    font-size: 0.9rem;
+    margin-bottom: 40px;
+}
+
+/* Form Layout */
+.testimonieformpost-input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.testimonieformpost-group {
+    margin-bottom: 25px;
+}
+
+.testimonieformpost-label {
+    display: block;
+    color: #c0c0c0;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+/* Input Styling */
+.testimonieformpost-input,
+.testimonieformpost-textarea {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+    .testimonieformpost-input:focus,
+    .testimonieformpost-textarea:focus {
+        outline: none;
+        border-color: #ffffff;
+        background: rgba(255, 255, 255, 0.07);
+    }
+
+/* Modern File Upload */
+.testimonieformpost-file-custom {
+    position: relative;
+    width: 100%;
+}
+
+.testimonieformpost-file-input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.testimonieformpost-file-label {
+    display: block;
+    padding: 20px;
+    border: 2px dashed rgba(255, 255, 255, 0.15);
+    text-align: center;
+    color: #888;
+    transition: 0.3s;
+}
+
+.testimonieformpost-file-input:hover + .testimonieformpost-file-label {
+    border-color: #c0c0c0;
+    color: #fff;
+}
+
+/* Submit Button */
+.testimonieformpost-submit {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #c0c0c0;
+    color: #c0c0c0;
+    padding: 16px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+    .testimonieformpost-submit:hover {
+        background: #fff;
+        color: #000;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+    .testimonieformpost-input-row {
+        grid-template-columns: 1fr;
+    }
+
+    .testimonieformpost-card {
+        padding: 30px 20px;
+    }
+
+    .testimonieformpost-title {
+        font-size: 1.8rem;
     }
 }

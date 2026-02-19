@@ -59,6 +59,66 @@
 
 
 
+
+
+    <section class="testimonieformpost-wrapper">
+        <div class="testimonieformpost-card">
+            <div class="testimonieformpost-header">
+                <h2 class="testimonieformpost-title">Share Your <span>Miracle</span></h2>
+                <p class="testimonieformpost-subtitle">Your testimony can strengthen the faith of others.</p>
+            </div>
+
+            <form action="/Main/SubmitTestimony" method="post" enctype="multipart/form-data" class="testimonieformpost-form">
+
+                <div class="testimonieformpost-input-row">
+                    <div class="testimonieformpost-group">
+                        <label class="testimonieformpost-label">Full Name</label>
+                        <input type="text" name="Name" class="testimonieformpost-input" placeholder="Enter your name" required />
+                    </div>
+                    <div class="testimonieformpost-group">
+                        <label class="testimonieformpost-label">Subject</label>
+                        <input type="text" name="Subject" class="testimonieformpost-input" placeholder="e.g. Healing, Provision" required />
+                    </div>
+                </div>
+
+                <div class="testimonieformpost-group">
+                    <label class="testimonieformpost-label">Your Story</label>
+                    <textarea name="Message" class="testimonieformpost-textarea" rows="5" placeholder="Tell us what God has done..." required></textarea>
+                </div>
+
+                <div class="testimonieformpost-group">
+                    <label class="testimonieformpost-label">Upload a Photo (Optional)</label>
+                    <div class="testimonieformpost-file-custom">
+                        <input type="file" name="ImageFile" id="testimonyImage" class="testimonieformpost-file-input" accept="image/*" onchange="updateFileName(this)" />
+                        <label for="testimonyImage" class="testimonieformpost-file-label">
+                            <span id="fileName">Choose a photo or drag it here</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="testimonieformpost-actions">
+                    <button type="submit" class="testimonieformpost-submit">Submit Testimony</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        function updateFileName(input) {
+            var fileName = input.files[0].name;
+            document.getElementById('fileName').textContent = fileName;
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
     @*enctype="multipart/form-data"*@
     @*user testimonie post*@
     <div class="userpost-container">

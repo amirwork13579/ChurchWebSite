@@ -168,3 +168,30 @@ function openDeviceFile(element, srcid) {
     const imgfinal = URL.createObjectURL(photo);
     imgshower.src = imgfinal;
 }
+
+
+
+
+
+
+
+
+
+const dropZone = document.querySelector('.testimonieformpost-file-label');
+const fileInput = document.getElementById('testimonyImage');
+
+// Add 'active' class when dragging over
+['dragenter', 'dragover'].forEach(eventName => {
+    fileInput.addEventListener(eventName, () => {
+        dropZone.style.borderColor = "#c0c0c0";
+        dropZone.style.background = "rgba(255, 255, 255, 0.1)";
+    }, false);
+});
+
+// Remove 'active' class when dragging leaves
+['dragleave', 'drop'].forEach(eventName => {
+    fileInput.addEventListener(eventName, () => {
+        dropZone.style.borderColor = "rgba(255, 255, 255, 0.15)";
+        dropZone.style.background = "transparent";
+    }, false);
+});

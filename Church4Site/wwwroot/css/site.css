@@ -144,7 +144,7 @@ body {
 }
 
 .seethronavbar-logo {
-    color: #ffffff;
+    color: #cfbd89;
     text-decoration: none;
     font-size: 1.5rem;
     font-weight: 800;
@@ -152,7 +152,7 @@ body {
 }
 
     .seethronavbar-logo span {
-        color: #00d4ff;
+        color: #aa8807;
     }
 
 .seethronavbar-menu {
@@ -573,3 +573,33 @@ main[role="main"] {
     }
 }
 
+
+
+
+
+
+
+/*donate button style-----------------------*/
+
+.donate-main {
+    display: inline-block;
+    padding: 2px 9px; /*outside border spacing high then length*/
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #ffffff;
+    background: rgba(225, 225, 225, 0.5);
+    border: 2px solid #aa8807;
+    border-radius: 25px; /*makes the square shape curve to an elipsa*/
+
+
+    @media(max-width: 768px) {
+        .donate-main {/*mobile version of the button*/
+            padding: 16px 40px;
+            width: 100%;
+            text-align: center;
+        }
+    }
+}
