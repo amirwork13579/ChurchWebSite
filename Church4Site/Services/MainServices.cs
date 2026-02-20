@@ -74,10 +74,6 @@ namespace Church4Site.Services
                     System.IO.File.Delete(filePath);
                 }
             }
-
-            // 3. Delete the record from the Database
-
-
         }
 
 

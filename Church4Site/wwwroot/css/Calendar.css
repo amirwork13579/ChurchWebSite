@@ -418,3 +418,72 @@
         letter-spacing: 0.15em;
     }
 }
+
+
+
+
+
+
+/*border---------------------------*/
+
+/* Container to handle the spill-over onto the hero */
+.bordersection-outer {
+    width: 100%;
+    position: relative;
+    z-index: 100;
+    margin-top: -20px; /* Spills over the Hero section */
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+/* The Thick Solid Bar */
+.bordersection-solid-bar {
+    width: 100%;
+    height: 15px; /* Thick and solid */
+    background: linear-gradient(180deg, #e0e0e0 0%, #888 100%);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* The Interesting Shape in the Middle */
+.bordersection-center-shape {
+    width: 60px;
+    height: 60px;
+    background: #ffffff;
+    /* Creating a sharp 3D diamond/hexagon shape */
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    border: 2px solid #D4AF37; /* Gold rim for style */
+}
+
+/* The Inner Icon/Detail */
+.bordersection-inner-icon {
+    width: 40%;
+    height: 40%;
+    background: #D4AF37;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .bordersection-outer {
+        margin-top: -15px;
+    }
+
+    .bordersection-solid-bar {
+        height: 6px;
+    }
+
+    .bordersection-center-shape {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+
