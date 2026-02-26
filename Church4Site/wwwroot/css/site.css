@@ -583,17 +583,16 @@ main[role="main"] {
 
 .donate-main {
     display: inline-block;
-    padding: 2px 9px; /*outside border spacing high then length*/
+    padding: 3px 10px; /*outside border spacing high then length*/
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-size: 0.85rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #ffffff;
-    background: rgba(225, 225, 225, 0.5);
-    border: 2px solid #aa8807;
+    color: #000000;
+    background: rgba(225, 225, 225, 0.5); /*background color*/
+    border: 2px solid #aa8807; /*border size and color*/
     border-radius: 25px; /*makes the square shape curve to an elipsa*/
-
 
     @media(max-width: 768px) {
         .donate-main {/*mobile version of the button*/
