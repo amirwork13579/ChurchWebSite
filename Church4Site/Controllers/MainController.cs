@@ -48,13 +48,14 @@ namespace Church4Site.Controllers
         }
         public IActionResult ContactForm()
         {
-            return View();
+            var item = new ContactForm();
+            return View(item);
         }
-        public IActionResult OurBeliefs() 
+        public IActionResult OurBeliefs()
         {
             return View();
         }
-        
+
         public IActionResult LogOut()
         {
             Response.Cookies.Delete("AuthToken");
@@ -63,13 +64,13 @@ namespace Church4Site.Controllers
 
         public async Task<IActionResult> OurStaff()
         {
-            var staff = await _context.TeamMembers.Where(u => u.IsDisplayed == true).ToListAsync();  
+            var staff = await _context.TeamMembers.Where(u => u.IsDisplayed == true).ToListAsync();
             return View(staff);
         }
-        public async Task<IActionResult> Testimonies() 
+        public async Task<IActionResult> Testimonies()
         {
 
-            var messages = new UserMessageViewModel 
+            var messages = new UserMessageViewModel
             {
                 NewMessage = new UserMessage(),
                 MessagesLst = await _context.UserMessages.ToListAsync(),
@@ -99,13 +100,13 @@ namespace Church4Site.Controllers
             return View(messages);
         }*/
 
-        public async Task<IActionResult> EditTestimonie(int id) 
+        public async Task<IActionResult> EditTestimonie(int id)
         {
-            if(id == null || id == 0) 
+            if (id == null || id == 0)
             {
                 return NotFound("bad");
             }
-            var message = await _context.UserMessages.FirstOrDefaultAsync(m => m.Id == id);    
+            var message = await _context.UserMessages.FirstOrDefaultAsync(m => m.Id == id);
             return View(message);
         }
 
@@ -118,7 +119,7 @@ namespace Church4Site.Controllers
             {
                 return BadRequest("The ID was not provided. Update failed.");
             }
-            
+
             if (ModelState.IsValid)
             {
                 _context.UserMessages.Update(Msg);
@@ -131,14 +132,14 @@ namespace Church4Site.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> PostTestimonie(UserMessage message,[FromForm] IFormFile FormFile ) 
+        public async Task<IActionResult> PostTestimonie(UserMessage message, [FromForm] IFormFile FormFile)
         {
             try
             {
                 var imageUrl = await _mainServices.CreateImageAsync(FormFile, "userPhoto");
                 message.ImageUrl = imageUrl;
 
-                if (imageUrl == null || imageUrl == string.Empty) 
+                if (imageUrl == null || imageUrl == string.Empty)
                 {
                     message.ImageUrl = "/css/Images/DefaultUser.jpg";
                 }
@@ -200,7 +201,7 @@ namespace Church4Site.Controllers
             return RedirectToAction("Testimonies");
         }
 
-        
+
 
 
         [HttpPost]
@@ -226,7 +227,7 @@ namespace Church4Site.Controllers
                 TempData["LoginError"] = "Invalid email or password.";
                 return View();
             }
-             
+
             Response.Cookies.Append("AuthToken", token, new CookieOptions
             {
                 HttpOnly = true,   // prevents JavaScript access
@@ -248,7 +249,7 @@ namespace Church4Site.Controllers
             return Convert.ToBase64String(randnum);
         }
 
-        
+
 
         public async Task<IActionResult> Test()
         {
@@ -256,5 +257,22 @@ namespace Church4Site.Controllers
             return View(items);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> ContactFormSubmit(ContactForm contactForm)
+        {
+            int id = contactForm.Id;
+            string sender = contactForm.Sender;
+            DateTime dt = contactForm.SentDate;
+            string email = contactForm.Email;   
+
+
+            if (ModelState.IsValid)
+            {
+                _context.ContactForms.Add(contactForm);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("ContactForm");
+            }
+            return BadRequest("dam");
+        }
     }
 }

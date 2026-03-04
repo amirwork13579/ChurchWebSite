@@ -1,4 +1,5 @@
-﻿
+﻿@model Church4Site.Entities.ContactForm
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,14 +24,11 @@
 
 
 
-   
-
-
 
 
     @*contact form*@
     <div class="contactform-container">
-        <form class="contactform-card" action="" method="post">
+        <form asp-action="ContactFormSubmit" class="contactform-card" method="post">
             <div class="contactform-header">
                 <h2 class="contactform-title">Get in Touch</h2>
                 <p class="contactform-subtitle">We would love to pray with you or answer your questions.</p>
@@ -38,12 +36,12 @@
 
             <div class="contactform-group">
                 <label class="contactform-label" for="Name">Full Name</label>
-                <input type="text" id="Name" name="Name" class="contactform-input" placeholder="Enter your name" required>
+                <input asp-for="@Model.Sender" type="text" id="Name" name="Sender" class="contactform-input" placeholder="Enter your name" required>
             </div>
 
             <div class="contactform-group">
                 <label class="contactform-label" for="Email">Email Address</label>
-                <input type="email" id="Email" name="Email" class="contactform-input" placeholder="email@example.com" required>
+                <input asp-for="@Model.Email" type="email" id="Email" name="Email" class="contactform-input" placeholder="email@example.com" required>
             </div>
 
             <div class="contactform-group">
@@ -58,8 +56,9 @@
 
             <div class="contactform-group">
                 <label class="contactform-label" for="Message">Message</label>
-                <textarea id="Message" name="Message" class="contactform-textarea" rows="4" placeholder="How can we serve you?" required></textarea>
+                <textarea asp-for="@Model.Message" id="Message" name="Message" class="contactform-textarea" rows="4" placeholder="How can we serve you?" required></textarea>
             </div>
+
 
             <button type="submit" class="contactform-button">Send Message</button>
         </form>

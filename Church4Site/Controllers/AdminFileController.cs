@@ -46,7 +46,8 @@ namespace Church4Site.Controllers
                 NewTeamMember = new TeamMember(),
                 TeamMembersLst = await _context.TeamMembers.ToListAsync(),
                 NewUser = new User(),
-                UserLst = await _context.Users.ToListAsync()
+                UserLst = await _context.Users.ToListAsync(),
+                contactFormLst = await _context.ContactForms.ToListAsync()
             };
             return View(vm);
         }

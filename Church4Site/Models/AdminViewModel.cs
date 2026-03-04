@@ -11,5 +11,6 @@ namespace Church4Site.Models
         public List<TeamMember> ?TeamMembersLst { get; set; }
         public User ?NewUser { get; set; }
         public List<User> ?UserLst { get; set; }
+        public List<ContactForm> ?contactFormLst { get; set; }
     }
 }
