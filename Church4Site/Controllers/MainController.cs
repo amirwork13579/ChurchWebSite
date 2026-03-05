@@ -159,7 +159,7 @@ namespace Church4Site.Controllers
                         _context.UserMessages.Add(message);
                         await _context.SaveChangesAsync();
 
-                        return RedirectToAction("Testimonies");
+                        return Ok();
                     }
 
                     // Convert the string GUID from Identity to a C# Guid object
@@ -168,7 +168,7 @@ namespace Church4Site.Controllers
                     _context.UserMessages.Add(message);
                     await _context.SaveChangesAsync();
 
-                    return RedirectToAction("Testimonies");
+                    return Ok();
                 }
                 return BadRequest("Invalid Data");
             }
@@ -266,7 +266,8 @@ namespace Church4Site.Controllers
             {
                 _context.ContactForms.Add(contactForm);
                 await _context.SaveChangesAsync();
-                return PartialView("_SuccessMessage", contactForm.Sender);
+                return Ok();
+                //return PartialView("_SuccessMessage", contactForm.Sender);
             }
             return BadRequest("dam");
         }

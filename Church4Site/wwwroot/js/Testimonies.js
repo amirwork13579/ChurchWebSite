@@ -1,96 +1,4 @@
-﻿/*hamburger menu js------------*/
-
-document.addEventListener('DOMContentLoaded', () => {
-    const trigger = document.querySelector('#portal-toggle');
-    const wrapper = document.querySelector('.portal-wrapper');
-
-    if (trigger && wrapper) {
-        trigger.addEventListener('click', () => {
-            // Toggles the hamburger icon state
-            trigger.classList.toggle('is-open');
-            // Toggles the visibility of the menu overlay
-            wrapper.classList.toggle('is-visible');
-        });
-
-        // Close menu if a user clicks a link (helpful for one-page sites)
-        wrapper.querySelectorAll('a').forEach(item => {
-            item.addEventListener('click', () => {
-                trigger.classList.remove('is-open');
-                wrapper.classList.remove('is-visible');
-            });
-        });
-    }
-});
-
-
-
-
-/*new hamburger nav*/
-
-document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.getElementById('navbar-hamburger');
-    const menu = document.getElementById('navbar-menu');
-
-    // Selecting both regular links and the button
-    const allLinks = document.querySelectorAll('.seethronavbar-link, .seethronavbar-btn');
-
-    // Safety check to ensure elements exist
-    if (hamburger && menu) {
-        // Toggle mobile menu
-        hamburger.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevents click from bubbling
-            hamburger.classList.toggle('is-active');
-            menu.classList.toggle('is-active');
-        });
-
-        // Close menu when clicking any link
-        allLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('is-active');
-                menu.classList.remove('is-active');
-            });
-        });
-
-        // Optional: Close menu if clicking outside the navbar
-        document.addEventListener('click', (e) => {
-            if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
-                hamburger.classList.remove('is-active');
-                menu.classList.remove('is-active');
-            }
-        });
-    }
-});
-
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.getElementById('navbar-hamburger');
-    const navMenu = document.getElementById('navbar-menu');
-
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', () => {
-            // Toggle the 'active' class on both elements
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-
-            // Accessibility: Update aria-expanded
-            const isExpanded = hamburger.classList.contains('active');
-            hamburger.setAttribute('aria-expanded', isExpanded);
-        });
-
-        // Optional: Close menu when a link is clicked (useful for mobile)
-        document.querySelectorAll('.seethronavbar-link').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-    }
-});
-
-
-
-
+﻿
 
 
 
@@ -126,6 +34,29 @@ document.addEventListener('click', function (e) {
 
 
 
+//post testimonie form
+async function testimonieFormPost() {
+    const form = document.getElementById("postForm");
+
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }
+
+    const formData = new FormData(form);
+
+    try {
+        const responce = await fetch('/Main/PostTestimonie', { method: 'POST', body: formData });
+        if (responce.ok) {
+            form.reset()
+            alert("Your testimony has been submitted successfully!, It will be visible once approved by a moderator.");
+        }
+
+    }
+    catch { alert("our appologies we are having technical issues right now")}
+
+}
+
 
 
 /*testimonie post popup----------------------------------*/
@@ -159,7 +90,7 @@ function closeTestimoniePopup() {
 
 
 /*device open image upload*/
-//my js fun to open device files and upload the image
+//my js func to open device files and upload the image
 function openDeviceFile(element, srcid) {
     const photo = element.files[0];
 
@@ -175,7 +106,7 @@ function openDeviceFile(element, srcid) {
 
 
 
-
+//lets u drag and drop image to selector and upload it
 
 const dropZone = document.querySelector('.testimonieformpost-file-label');
 const fileInput = document.getElementById('testimonyImage');

@@ -86,54 +86,24 @@ document.querySelector(".eventpost-form").addEventListener("submit", async funct
 async function submitFormAsync() {
     const form = document.getElementById('churchContactForm');
 
+    if (!form.checkValidity())
+    {
+        form.reportValidity();
+        return;
+    }
+
     const formData = new FormData(form);
 
     try {
         const responce = await fetch('/Main/ContactFormSubmit', { method: 'POSt', body: formData });
-        form.reset();
+        if (responce.ok) {
+            form.reset();
+            alert("Your message has been sent successfully! We will get back to you as soon as possible.");
+        }
+        //else { alert("must fill in all feilds before submitting")}
 
     }
     catch(error) {console.error("submit failed", error) }
-}
-
-
-async function submitFormAsync1() {
-    const form = document.getElementById('churchContactForm');
-    const wrapper = document.getElementById('form-wrapper');
-    const spinner = document.getElementById('loading-spinner');
-
-    // 1. Show a loading state (instantly changes UI)
-    form.style.opacity = "0.5";
-    spinner.style.display = "block";
-
-    // 2. Gather the form data
-    const formData = new FormData(form);
-
-    try {
-        // 3. Post to the Controller
-        const response = await fetch('/Home/SubmitContactForm', {
-            method: 'POST',
-            body: formData
-        });
-
-        if (response.ok) {
-            // 4. Get the "Success" HTML from the Partial View
-            const resultHtml = await response.text();
-
-            // 5. Replace the entire form with the success message
-            wrapper.innerHTML = resultHtml;
-
-            // 6. Change CSS to make it pop
-            wrapper.style.backgroundColor = "#e7f3ef";
-            wrapper.style.padding = "20px";
-        } else {
-            alert("Error saving to database.");
-        }
-    } catch (error) {
-        console.error("Submission failed", error);
-    } finally {
-        spinner.style.display = "none";
-    }
 }
 
 
