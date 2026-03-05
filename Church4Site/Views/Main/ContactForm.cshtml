@@ -28,7 +28,7 @@
 
     @*contact form*@
     <div class="contactform-container">
-        <form asp-action="ContactFormSubmit" class="contactform-card" method="post">
+        <form id="churchContactForm" class="contactform-card">
             <div class="contactform-header">
                 <h2 class="contactform-title">Get in Touch</h2>
                 <p class="contactform-subtitle">We would love to pray with you or answer your questions.</p>
@@ -60,13 +60,14 @@
             </div>
 
 
-            <button type="submit" class="contactform-button">Send Message</button>
+            <button onclick="submitFormAsync()" type="button" class="contactform-button">Send Message</button>
         </form>
     </div>
 
 
 
 
+    
 
 
 </body>

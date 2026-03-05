@@ -12,7 +12,7 @@ namespace Church4Site.Controllers
 {
     public class MainController : Controller
     {
-        private readonly IAuthService _authService;
+        private readonly IAuthService _authService; 
         private readonly Church4DbContext _context;
         private readonly IMainServices _mainServices;
 
@@ -260,17 +260,13 @@ namespace Church4Site.Controllers
         [HttpPost]
         public async Task<IActionResult> ContactFormSubmit(ContactForm contactForm)
         {
-            int id = contactForm.Id;
-            string sender = contactForm.Sender;
-            DateTime dt = contactForm.SentDate;
-            string email = contactForm.Email;   
-
+            contactForm.SentDate = DateTime.Now;
 
             if (ModelState.IsValid)
             {
                 _context.ContactForms.Add(contactForm);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("ContactForm");
+                return PartialView("_SuccessMessage", contactForm.Sender);
             }
             return BadRequest("dam");
         }
