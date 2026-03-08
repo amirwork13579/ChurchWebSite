@@ -1251,3 +1251,95 @@
 }
 
 
+
+
+
+/*testimonie message lst section--------------------*/
+
+
+/* 1. The Wrapper - Completely transparent */
+.messagecardlst-outer-section {
+    background: transparent !important;
+    padding: 60px 20px;
+    width: 100%;
+}
+
+/* 2. The Responsive Grid */
+.messagecardlst-grid-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    gap: 30px;
+    /* Mobile: 1 col, Tablet: 2 col, Desktop: 3 col */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* 3. The Solid Card Styling (Black & Gold Theme) */
+.messagecardlst-card-item {
+    background: #0d0d0d; /* Solid Deep Black */
+    border: 1px solid #c5a059; /* Elegant Gold Border */
+    border-radius: 12px;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+    /* 4. Interactive Hover */
+    .messagecardlst-card-item:hover {
+        transform: translateY(-10px) scale(1.02);
+        border-color: #f1d279; /* Glow effect */
+        box-shadow: 0 20px 40px rgba(197, 160, 89, 0.15);
+    }
+
+/* 5. Typography & Details */
+.messagecardlst-status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #c5a059;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px #c5a059;
+}
+
+.messagecardlst-content {
+    color: #ffffff;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 25px;
+    font-family: 'Georgia', serif; /* Elegant serif for quotes */
+}
+
+.messagecardlst-user-footer {
+    border-top: 1px solid rgba(197, 160, 89, 0.3);
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.messagecardlst-user-name {
+    color: #c5a059;
+    font-weight: 700;
+    font-family: 'Segoe UI', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.messagecardlst-session-date {
+    color: #666;
+    font-size: 0.85rem;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+    .messagecardlst-grid-container {
+        grid-template-columns: 1fr;
+    }
+
+    .messagecardlst-card-item {
+        padding: 25px;
+    }
+}
