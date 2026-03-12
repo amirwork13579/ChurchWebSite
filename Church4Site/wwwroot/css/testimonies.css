@@ -1256,7 +1256,6 @@
 
 /*testimonie message lst section--------------------*/
 
-
 /* 1. The Wrapper - Completely transparent */
 .messagecardlst-outer-section {
     background: transparent !important;
@@ -1270,76 +1269,87 @@
     margin: 0 auto;
     display: grid;
     gap: 30px;
-    /* Mobile: 1 col, Tablet: 2 col, Desktop: 3 col */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 /* 3. The Solid Card Styling (Black & Gold Theme) */
 .messagecardlst-card-item {
-    background: #0d0d0d; /* Solid Deep Black */
-    border: 1px solid #c5a059; /* Elegant Gold Border */
+    background: #0d0d0d;
+    border: 1px solid #c5a059;
     border-radius: 12px;
-    padding: 35px;
+    padding: 35px; /* Keep this for text breathing room */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    overflow: hidden; /* CRITICAL: Clips anything popping out */
+    position: relative;
 }
 
     /* 4. Interactive Hover */
     .messagecardlst-card-item:hover {
         transform: translateY(-10px) scale(1.02);
-        border-color: #f1d279; /* Glow effect */
+        border-color: #f1d279;
         box-shadow: 0 20px 40px rgba(197, 160, 89, 0.15);
     }
 
-/* 5. Typography & Details */
-.messagecardlst-status-dot {
-    width: 8px;
-    height: 8px;
-    background-color: #c5a059;
-    border-radius: 50%;
-    margin-bottom: 20px;
-    box-shadow: 0 0 10px #c5a059;
-}
-
+/* 5. Typography */
 .messagecardlst-content {
     color: #ffffff;
     font-size: 1.1rem;
     line-height: 1.7;
     font-style: italic;
     margin-bottom: 25px;
-    font-family: 'Georgia', serif; /* Elegant serif for quotes */
+    font-family: 'Georgia', serif;
 }
 
+/* 6. The Image Section (Bottom Aligned & Contained) */
+.navbarseethro-media-section {
+    background: linear-gradient(180deg, #0d0d0d 0%, #001a33 100%);
+    padding: 15px;
+    border-top: 2px solid #c5a059;
+    /* These negative margins counteract the card's 35px padding */
+    margin-left: -35px;
+    margin-right: -35px;
+    margin-bottom: -35px;
+    margin-top: 20px; /* Space between text and image */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 7. The Image (Strictly Controlled) */
+.navbarseethro-card-img {
+    max-width: 100%; /* Cannot exceed container width */
+    height: auto;
+    max-height: 250px; /* Prevents card from becoming too tall */
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.2);
+    object-fit: contain; /* Ensures the whole image fits without cropping weirdly */
+    transition: transform 0.3s ease;
+}
+
+/* 8. Footer (Placed above the image) */
 .messagecardlst-user-footer {
     border-top: 1px solid rgba(197, 160, 89, 0.3);
     padding-top: 15px;
+    margin-top: auto; /* Pushes footer/image to the bottom */
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.messagecardlst-user-name {
-    color: #c5a059;
-    font-weight: 700;
-    font-family: 'Segoe UI', sans-serif;
-    letter-spacing: 0.5px;
-}
-
-.messagecardlst-session-date {
-    color: #666;
-    font-size: 0.85rem;
-}
-
 /* Mobile Adjustments */
 @media (max-width: 600px) {
-    .messagecardlst-grid-container {
-        grid-template-columns: 1fr;
-    }
-
     .messagecardlst-card-item {
         padding: 25px;
+    }
+
+    .navbarseethro-media-section {
+        margin-left: -25px;
+        margin-right: -25px;
+        margin-bottom: -25px;
     }
 }

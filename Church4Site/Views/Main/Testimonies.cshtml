@@ -79,7 +79,7 @@
                 <p class="testimonieformpost-subtitle">Your testimony can strengthen the faith of others.</p>
             </div>
 
-            <form method="post" id="postForm" enctype="multipart/form-data" class="testimonieformpost-form">
+            <form id="postForm" enctype="multipart/form-data" class="testimonieformpost-form">
 
                 <div class="testimonieformpost-input-row">
                     <div class="testimonieformpost-group">
@@ -196,89 +196,42 @@
     <section class="messagecardlst-outer-section">
         <div class="messagecardlst-grid-container">
 
-            <div class="messagecardlst-card-item">
-                <div class="messagecardlst-status-dot"></div>
-                <p class="messagecardlst-content">
-                    "The peace I felt during the healing session was unlike anything I've experienced. My heart feels lighter and my joy has returned."
-                </p>
-                <div class="messagecardlst-user-footer">
-                    <span class="messagecardlst-user-name">Brother James</span>
-                    <span class="messagecardlst-session-date">March 2026</span>
-                </div>
-            </div>
+            @foreach (var item in Model.MessagesLst)
+            {
+                <div class="messagecardlst-card-item">
+                    <span class="messagecardlst-user-name" style="color:#0055f9">@item.Title</span>
+                    <div class="messagecardlst-status-dot"></div>
+                    <p class="messagecardlst-content">@item.MessageFrom</p>
+                    <div class="messagecardlst-user-footer">
+                        <span class="messagecardlst-user-name">@item.userName</span>
+                        <span class="messagecardlst-session-date" style="color:#64748b">@item.MessageDate</span>
+                    </div>
 
-            <div class="messagecardlst-card-item">
-                <div class="messagecardlst-status-dot"></div>
-                <p class="messagecardlst-content">
-                    "I suffered from migraines for years. Since the last session, I haven't had a single headache. Truly a miracle!"
-                </p>
-                <div class="messagecardlst-user-footer">
-                    <span class="messagecardlst-user-name">Sister Maria</span>
-                    <span class="messagecardlst-session-date">Feb 2026</span>
-                </div>
-            </div>
-
-            <div class="messagecardlst-card-item">
-                <div class="messagecardlst-status-dot"></div>
-                <p class="messagecardlst-content">
-                    "Walking into the room, you could feel the presence of God. My mobility is back to 100% after the prayer team laid hands."
-                </p>
-                <div class="messagecardlst-user-footer">
-                    <span class="messagecardlst-user-name">Samuel K.</span>
-                    <span class="messagecardlst-session-date">Jan 2026</span>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-
-
-    @*user Testimonials lst Section*@
-    <section class="testimonieslst-section">
-        <div class="testimonieslst-container">
-            <header class="testimonieslst-header">
-                @*<span class="testimonieslst-badge">Testimonials</span>
-                <h2 class="testimonieslst-main-title">What Our Community Says</h2>*@
-            </header>
-
-            <div class="testimonieslst-grid">
-
-                @foreach(var msg in Model.MessagesLst.Where(x => x.IsApproved))
-                {
-                    <div>
-                        <div class="testimonieslst-card">
-                            <div class="testimonieslst-quote-icon">“</div>
-                            <p class="testimonieslst-content">
-                                Testimonie- @msg.MessageFrom
-                            </p>
-                            <div class="testimonieslst-user">
-                                <img src="@Url.Content(msg.ImageUrl)" alt="User" class="testimonieslst-avatar">
-                                <div class="testimonieslst-meta">
-                                    <h4 class="testimonieslst-name">Title- @msg.Title</h4>
-                                    @*<h1 class="testimonieslst-role">@msg.Title</h1>*@    
-                                </div>
-                            </div>
-                        </div>
-                        @if (msg.UserId.ToString() == User.FindFirstValue(ClaimTypes.NameIdentifier))
+                    <div class="navbarseethro-card">
+                        @if(item.ImageUrl != "/css/Images/DefaultUser.jpg")
                         {
-                            <button class="deletepopupbutton-trigger"
-                                    data-id="@msg.Id"
-                                    data-actionurl="/Main/DeleteTestimoniesConfirm">
-                                Delete this
-                            </button>
+                            <div class="navbarseethro-media-section">
+                                <img src="@item.ImageUrl" alt="Message Image" class="navbarseethro-card-img" />
+                            </div>
                         }
                     </div>
-                }
-            </div>
-            
+
+                    @if (item.UserId.ToString() == User.FindFirstValue(ClaimTypes.NameIdentifier))
+                    {
+                        <button class="deletepopupbutton-trigger"
+                                data-id="@item.Id"
+                                data-actionurl="/Main/DeleteTestimoniesConfirm">
+                            Delete this
+                        </button>
+                    }
+
+
+
+                </div>
+                
+            }
         </div>
     </section>
-
-
-
-
-
 
     
     @*delete popup*@

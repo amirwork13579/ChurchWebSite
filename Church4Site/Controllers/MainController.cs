@@ -134,6 +134,8 @@ namespace Church4Site.Controllers
         [HttpPost]
         public async Task<IActionResult> PostTestimonie(UserMessage message, [FromForm] IFormFile FormFile)
         {
+            message.MessageDate = DateTime.UtcNow;
+
             try
             {
                 var imageUrl = await _mainServices.CreateImageAsync(FormFile, "userPhoto");

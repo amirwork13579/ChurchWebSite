@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+﻿using Church4Site.Migrations;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Church4Site.Entities
@@ -16,6 +17,7 @@ namespace Church4Site.Entities
         [ValidateNever] /*to ensure its nulllable*/
         public string ?ImageUrl { get; set; } = string.Empty;
         public User ?Users { get; set; }
+        public DateTime? MessageDate { get; set; } = DateTime.Now;
 
     }
 }
