@@ -1,6 +1,42 @@
 ﻿
 
 
+/*new hamburger nav*/
+
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.getElementById('navbar-hamburger');
+    const menu = document.getElementById('navbar-menu');
+
+    // Selecting both regular links and the button
+    const allLinks = document.querySelectorAll('.seethronavbar-link, .seethronavbar-btn');
+
+    // Safety check to ensure elements exist
+    if (hamburger && menu) {
+        // Toggle mobile menu
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevents click from bubbling
+            hamburger.classList.toggle('is-active');
+            menu.classList.toggle('is-active');
+        });
+
+        // Close menu when clicking any link
+        allLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('is-active');
+                menu.classList.remove('is-active');
+            });
+        });
+
+        // Optional: Close menu if clicking outside the navbar
+        document.addEventListener('click', (e) => {
+            if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+                hamburger.classList.remove('is-active');
+                menu.classList.remove('is-active');
+            }
+        });
+    }
+});
+
 
 
 /*delete popup js----------------*/
