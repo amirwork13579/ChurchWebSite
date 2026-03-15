@@ -22,10 +22,14 @@
 
 
     <header>
+
+
         @*navbar*@
         <nav class="seethronavbar-wrapper">
             <div class="seethronavbar-container">
-                <a href="#" class="seethronavbar-logo">BL<span>W</span> Church</a>
+                <a asp-controller="Main" asp-action="MainPage" class="seethronavbar-logo">
+                    <img src="/css/Images/logo.png" alt="BLW Church Logo" class="navbar-logo-img">
+                </a>
 
                 <button class="seethronavbar-toggle" id="navbar-hamburger" aria-label="Toggle Menu">
                     <span class="seethronavbar-icon"></span>
@@ -39,6 +43,7 @@
                     <li><a class="seethronavbar-link" asp-area="" asp-controller="Main" asp-action="MainPage">Main</a></li>
                     <li><button onclick="openDonateOptions(this)" class="donate-main">Donate</button></li>
                     <li><a asp-action="ContactForm" class="seethronavbar-btn">Contact Us</a></li>
+
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                     {
                         <li><a class="seethronavbar-link" asp-area="" asp-controller="AdminFile" asp-action="AdminPage">Admin</a></li>

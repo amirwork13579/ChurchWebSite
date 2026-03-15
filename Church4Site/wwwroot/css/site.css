@@ -118,6 +118,14 @@ body {
 
 
 /*navbar-------------------------------*/
+/* --- Root & Reset (Optional but recommended) --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- Navbar Wrapper --- */
 .seethronavbar-wrapper {
     position: fixed;
     top: 0;
@@ -129,36 +137,45 @@ body {
     -webkit-backdrop-filter: blur(15px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     font-family: 'Inter', sans-serif;
-    box-sizing: border-box;
 }
 
+/* --- Container --- */
 .seethronavbar-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-    height: 80px;
+    height: 80px; /* Fixed height for the header */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-sizing: border-box;
 }
 
+/* --- Logo Styling (NEW) --- */
 .seethronavbar-logo {
-    color: #cfbd89;
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: 2px;
+    height: 100%;
+    padding: 10px 0;
 }
 
-    .seethronavbar-logo span {
-        color: #aa8807;
-    }
+.navbar-logo-img {
+    height: auto;
+    max-height: 55px; /* Adjust this to change logo size */
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
 
+.seethronavbar-logo:hover .navbar-logo-img {
+    transform: scale(1.05);
+}
+
+/* --- Desktop Menu --- */
 .seethronavbar-menu {
     display: flex;
     list-style: none;
-    gap: 30px;
+    gap: 25px;
     margin: 0;
     padding: 0;
     align-items: center;
@@ -177,10 +194,29 @@ body {
 
     .seethronavbar-link:hover {
         opacity: 1;
-        color: #00d4ff;
+        color: #cfbd89; /* Matches your church brand color */
     }
 
-/* THE BUTTON DESIGN */
+/* --- Donate Button --- */
+.donate-main {
+    background: transparent;
+    border: 1px solid #cfbd89;
+    color: #cfbd89;
+    padding: 8px 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+    .donate-main:hover {
+        background: #cfbd89;
+        color: #000;
+    }
+
+/* --- Contact Us Button --- */
 .seethronavbar-btn {
     display: inline-block;
     background: #ffffff;
@@ -205,7 +241,7 @@ body {
         transform: translateY(-2px);
     }
 
-/* HAMBURGER ICON */
+/* --- Mobile Toggle (Hamburger) --- */
 .seethronavbar-toggle {
     display: none;
     background: none;
@@ -234,7 +270,13 @@ body {
         transform: translateY(6px);
     }
 
-/* MOBILE RESPONSIVE */
+/* --- Mobile Responsive Logic --- */
+@media (max-width: 992px) {
+    .seethronavbar-menu {
+        gap: 15px; /* Tighten gap for tablets */
+    }
+}
+
 @media (max-width: 768px) {
     .seethronavbar-toggle {
         display: block;
@@ -243,10 +285,10 @@ body {
     .seethronavbar-menu {
         position: fixed;
         top: 0;
-        right: -100%;
+        right: -100%; /* Hidden off-screen */
         width: 280px;
         height: 100vh;
-        background: rgba(0, 0, 0, 0.95);
+        background: rgba(0, 0, 0, 0.95); /* Solid dark for mobile visibility */
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         flex-direction: column;
@@ -256,6 +298,7 @@ body {
         box-shadow: -10px 0 30px rgba(0,0,0,0.5);
     }
 
+        /* JavaScript Toggle Class */
         .seethronavbar-menu.is-active {
             right: 0;
         }
@@ -271,22 +314,25 @@ body {
         padding: 15px 0;
     }
 
-    /* Hamburger to X Animation */
+    .navbar-logo-img {
+        max-height: 45px; /* Smaller logo for mobile */
+    }
+
+    /* Hamburger Animation to 'X' */
     .seethronavbar-toggle.is-active .seethronavbar-icon {
         background: transparent;
     }
 
         .seethronavbar-toggle.is-active .seethronavbar-icon::before {
             transform: rotate(45deg) translateY(0);
+            background: #ffffff;
         }
 
         .seethronavbar-toggle.is-active .seethronavbar-icon::after {
             transform: rotate(-45deg) translateY(-1px) translateX(1px);
+            background: #ffffff;
         }
 }
-
-
-
 
 
 
