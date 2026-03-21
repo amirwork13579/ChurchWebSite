@@ -82,7 +82,7 @@ document.querySelector(".eventpost-form").addEventListener("submit", async funct
 
 
 
-//page update no reload for contactForm
+//page update no reload for Form
 async function submitFormAsync() {
     const form = document.getElementById('churchContactForm');
 
