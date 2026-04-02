@@ -61,16 +61,27 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+// 1. ERROR HANDLING FIRST
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+else
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    app.UseHsts(); // Tells browsers: "Only talk to me over HTTPS for the next year"
 }
 
+// 2. STATIC FILES SECOND (Fixes CSS/Image loading issues)
 app.UseStaticFiles();
-/*app.UseHttpsRedirection();*/
+
+// 3. THE REDIRECT FIX
+// Only redirect inside your code if NOT on IONOS (Production)
+if (app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
+
 app.UseRouting();
 
 app.UseAuthorization();

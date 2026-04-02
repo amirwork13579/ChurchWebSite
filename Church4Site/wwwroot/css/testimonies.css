@@ -1353,3 +1353,155 @@
         margin-bottom: -25px;
     }
 }
+
+
+
+
+
+
+
+
+
+
+/*user testimonie message card lst--------------------*/
+/* --- THEME: BLACK, GOLD, LIGHT BLUE --- */
+
+/* Container: 75% width and centered */
+.userTestimonieLst-section {
+    width: 75%;
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 0 20px;
+    background: transparent;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    box-sizing: border-box;
+}
+
+/* 2. The Solid Gold Border Card */
+.userTestimonieLst-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    /* Solid Black Background */
+    background: #0a0a0a;
+    /* Solid Gold Border (Metallic Hex) */
+    border: 2px solid #D4AF37;
+    border-radius: 12px; /* Sharper, more "framed" corners */
+
+    padding: 40px;
+    margin-bottom: 30px;
+    /* Subtle outer glow to make the gold pop */
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+    /* Hover: Intensify the Gold and lift */
+    .userTestimonieLst-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
+        border-color: #FFD700; /* Brighter Gold on hover */
+    }
+
+/* 3. Icon Column: Light Blue Accent */
+.userTestimonieLst-iconColumn {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(173, 216, 230, 0.1); /* Light Blue Tint */
+    border: 1px solid #ADD8E6; /* Light Blue Border */
+    color: #ADD8E6; /* Light Blue Icon */
+    border-radius: 8px;
+}
+
+/* 4. Bold Typography Stack */
+.userTestimonieLst-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* Topic: Light Blue & Ultra Bold */
+.userTestimonieLst-topic {
+    font-size: 0.75rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #ADD8E6; /* Light Blue */
+    letter-spacing: 0.3em;
+    display: block;
+}
+
+/* Username: Bold Gold */
+.userTestimonieLst-username {
+    font-weight: 800;
+    color: #D4AF37; /* Gold */
+    font-size: 1.4rem;
+    letter-spacing: -0.01em;
+}
+
+/* Date: Light Blue */
+.userTestimonieLst-timestamp {
+    font-size: 0.85rem;
+    color: rgba(173, 216, 230, 0.7);
+    font-weight: 600;
+}
+
+/* Message: White on Black */
+.userTestimonieLst-message {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #F5F5F5; /* Off-white for readability */
+    font-weight: 500;
+}
+
+/* 5. Constrained Image Area */
+.userTestimonieLst-imageWrapper {
+    margin-top: 25px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #D4AF37; /* Framed in Gold */
+    /* Size Constraints */
+    max-width: 500px;
+    max-height: 350px;
+}
+
+.userTestimonieLst-media {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- Responsive Layout --- */
+
+@media (max-width: 1024px) {
+    .userTestimonieLst-section {
+        width: 85%;
+    }
+}
+
+@media (max-width: 768px) {
+    .userTestimonieLst-section {
+        width: 100%;
+        padding: 10px 15px;
+    }
+
+    .userTestimonieLst-card {
+        padding: 25px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .userTestimonieLst-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .userTestimonieLst-timestamp {
+        margin-top: 5px;
+    }
+}

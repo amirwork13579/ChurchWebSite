@@ -9,6 +9,9 @@
     <title>Modern Login</title>
     <link rel="stylesheet" href="~/css/testimonies.css">
     <script src="~/js/Testimonies.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -71,7 +74,7 @@
 
 
 
-
+    @*testimonie post area*@
     <section class="testimonieformpost-wrapper">
         <div class="testimonieformpost-card">
             <div class="testimonieformpost-header">
@@ -133,6 +136,40 @@
 
 
 
+    @*------------------------------------------*@
+    @{int i = 0;}
+    @foreach (var item in Model.MessagesLst)
+    {
+        i+=1;
+        <div class="userTestimonieLst-card">
+
+            <div class="userTestimonieLst-iconColumn">
+                @if (i%5==0) { /* SVG A Code */ }
+                else if (i%3==0) { /* SVG B Code */ }
+                else if (i % 2 == 0) { /* SVG C Code */ }
+                else { /* SVG C Code */ }
+            </div>
+
+            <div class="userTestimonieLst-contentBody">
+                <div class="userTestimonieLst-header">
+                    <span class="userTestimonieLst-topic">@item.Title</span>
+                    <span class="userTestimonieLst-username">@item.userName</span>
+                    <span class="userTestimonieLst-timestamp">@item.MessageDate</span>
+                </div>
+
+                <div class="userTestimonieLst-message">
+                    @item.MessageFrom
+                </div>
+
+                @if (!string.IsNullOrEmpty(item.ImageUrl))
+                {
+                    <div class="userTestimonieLst-imageWrapper">
+                        <img src="@item.ImageUrl" class="userTestimonieLst-media" alt="Testimony Image" />
+                    </div>
+                }
+            </div>
+        </div>
+    }
 
 
     @*testimonie will only show up if approved popup*@
