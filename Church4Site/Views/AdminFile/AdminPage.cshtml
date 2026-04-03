@@ -93,12 +93,12 @@
 
                         <div class="devicefileopen-input-grid">
                             <div class="devicefileopen-field-group">
-                                <label class="devicefileopen-custom-label">Event Name</label>
+                                <label class="devicefileopen-custom-label">Enter User Email</label>
                                 <input type="text" asp-for="NewTeamMember.Email" class="devicefileopen-custom-input" placeholder="e.g. Annual Gala" />
                             </div>
 
                             <div class="devicefileopen-field-group">
-                                <label class="devicefileopen-custom-label">Event Name</label>
+                                <label class="devicefileopen-custom-label">Enter User Name</label>
                                 <input type="text" asp-for="NewTeamMember.Name" class="devicefileopen-custom-input" placeholder="e.g. Annual Gala" />
                             </div>
 
@@ -109,7 +109,7 @@
 
                             <div class="devicefileopen-row-flex">
                                 <div class="devicefileopen-field-group">
-                                    <label class="devicefileopen-custom-label">Time</label>
+                                    <label class="devicefileopen-custom-label">Team Member Position</label>
                                     <input type="text" asp-for="NewTeamMember.Position" class="devicefileopen-custom-input" />
                                 </div>
 
@@ -179,7 +179,10 @@
 
 
 
+ 
 
+
+    @*popup*@
     <div id="emailPopup" class="emailpopup-container" style="display: none">
         <div class="emailpopup-card">
             <div class="emailpopup-icon-box">
