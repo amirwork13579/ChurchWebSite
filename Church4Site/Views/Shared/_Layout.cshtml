@@ -3,12 +3,47 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BLW-Church</title>
-    <script type="importmap"></script>
+
+    @* --- 1. THE TITLE (Dynamic from each page) --- *@
+    <title>@ViewData["Title"] - BLW Church Sheffield</title>
+
+    @* --- 2. SEO ESSENTIALS --- *@
+    <meta name="description" content="@ViewData["Description"]" />
+    <link rel="canonical" href="https://soft-tech.uk@Context.Request.Path" />
+    <meta name="robots" content="index, follow" />
+
+    @* --- 3. SOCIAL MEDIA (Open Graph) --- *@
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="@ViewData["Title"]" />
+    <meta property="og:description" content="@ViewData["Description"]" />
+    <meta property="og:url" content="https://soft-tech.shop@Context.Request.Path" />
+    <meta property="og:image" content="https://soft-tech.shop/images/social-preview.jpg" />
+
+    @* --- 4. ICONS & MOBILE --- *@
+    <link rel="icon" type="image/png" href="~/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/images/apple-touch-icon.png">
+
+    @* --- 5. STYLES & SCRIPTS --- *@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Church4Site.styles.css" asp-append-version="true" />
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @* --- 6. STRUCTURED DATA (Tells Google you are a real business) --- *@
+    <script type="application/ld+json">
+        {
+          "@@context": "https://schema.org",
+          "@@type": "ChristianChurch",
+          "name": "BLW Church Sheffield",
+          "url": "https://soft-tech.shop",
+          "description": "BLW - Belivers Love World, a church for Belivers in Jesus Christ our Lord and Savior",
+          "address": {
+            "@@type": "PostalAddress",
+            "addressLocality": "Sheffield",
+            "addressRegion": "England"
+          }
+        }
+    </script>
 </head>
 <body>
 
