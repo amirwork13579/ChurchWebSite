@@ -92,9 +92,31 @@
                         <h2 class="devicefileopen-form-title">Create Team Member</h2>
 
                         <div class="devicefileopen-input-grid">
+
+
                             <div class="devicefileopen-field-group">
                                 <label class="devicefileopen-custom-label">Enter User Email</label>
-                                <input type="text" asp-for="NewTeamMember.Email" class="devicefileopen-custom-input" placeholder="e.g. Annual Gala" />
+
+                                <input type="text"
+                                       asp-for="NewTeamMember.Email"
+                                       class="devicefileopen-custom-input"
+                                       list="userEmailsList"
+                                       placeholder="Search name or email..."
+                                       autocomplete="off" />
+
+                                <datalist id="userEmailsList">
+                                    @foreach (var member in Model.TeamMembersLst)
+                                    {
+                                        /* Value: The email that gets saved to the DB
+                                        Label: The name the admin can search for
+                                        */
+                                        <option value="@member.Email">@member.Name</option>
+                                    }
+                                </datalist>
+                            </div>
+
+                            <div>
+                                <h2>hihihi</h2>
                             </div>
 
                             <div class="devicefileopen-field-group">
