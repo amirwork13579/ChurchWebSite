@@ -1,214 +1,69 @@
-﻿:root {
-    --devicefile-primary: #6366f1;
-    --devicefile-primary-hover: #4f46e5;
-    --devicefile-bg: #f8fafc;
-    --devicefile-text: #1e293b;
-    --devicefile-border: #e2e8f0;
+﻿/* 1. Control the scroll depth */
+.zoom-scroll-area {
+    height: 300vh;
+    background: #000;
 }
 
-.devicefileopen-wrapper {
-    min-height: 100vh;
-    padding: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--devicefile-bg);
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-}
-
-.devicefileopen-modern-form {
-    background: #ffffff;
+/* 2. Keep the wrapper sticky so it stays on screen */
+.videohero-master-wrapper {
     width: 100%;
-    max-width: 450px;
-    padding: 25px;
-    border-radius: 16px;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-.devicefileopen-form-title {
-    margin-bottom: 20px;
-    font-size: 1.4rem;
-    color: var(--devicefile-text);
-    text-align: center;
-    font-weight: 700;
-}
-
-.devicefileopen-field-group {
-    margin-bottom: 15px;
-}
-
-.devicefileopen-custom-label {
-    display: block;
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 6px;
-    color: var(--devicefile-text);
-}
-
-.devicefileopen-custom-input {
-    width: 100%;
-    padding: 12px;
-    border: 1.5px solid var(--devicefile-border);
-    border-radius: 10px;
-    font-size: 16px; /* Prevents iOS zoom on focus */
-    transition: border-color 0.2s;
-    box-sizing: border-box;
-}
-
-    .devicefileopen-custom-input:focus {
-        outline: none;
-        border-color: var(--devicefile-primary);
-    }
-
-.devicefileopen-textarea {
-    height: 100px;
-    resize: none;
-}
-
-.devicefileopen-row-flex {
-    display: flex;
-    gap: 12px;
-}
-
-    .devicefileopen-row-flex > div {
-        flex: 1;
-    }
-
-/* Photo Upload Styling */
-.devicefileopen-av-card {
-    background: #f1f5f9;
-    border-radius: 12px;
-    padding: 20px;
-    margin: 20px 0;
-    text-align: center;
-    border: 2px dashed #cbd5e1;
-}
-
-.devicefileopen-preview-container {
-    position: relative;
-    width: 130px;
-    height: 130px;
-    margin: 0 auto;
-    border-radius: 12px; /* Square with rounded corners looks modern */
+    height: 100vh;
+    position: sticky;
+    top: 0;
     overflow: hidden;
-    cursor: pointer;
-    background: #e2e8f0;
 }
 
-.devicefileopen-preview-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.devicefileopen-upload-overlay {
+/* 3. The Image Container */
+.hero-image-bg {
     position: absolute;
-    bottom: 0;
-    width: 100%;
-    background: rgba(0,0,0,0.5);
-    color: #fff;
-    font-size: 12px;
-    padding: 4px 0;
-}
-
-.devicefileopen-submit-btn {
-    width: 100%;
-    padding: 14px;
-    background-color: var(--devicefile-primary);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-    .devicefileopen-submit-btn:hover {
-        background-color: var(--devicefile-primary-hover);
-    }
-
-/* Mobile Specific Tweaks */
-@media (max-width: 400px) {
-    .devicefileopen-row-flex {
-        flex-direction: column;
-        gap: 0;
-    }
-
-    .devicefileopen-modern-form {
-        padding: 15px;
-    }
-}
-
-
-
-
-
-
-/*background------------------------------------*/
-
-
-.backgroundrandom-wrapper {
-    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #001b3d; /* Restored Deep Blue Background */
-    overflow: hidden;
-    z-index: -2;
+    /* Replace with your church image path */
+    background-image: url('/css/Images/ChurchHero.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    /* Animation Link */
+    animation: zoom-image-logic linear;
+    animation-timeline: scroll(root);
+    animation-range: 0% 90%;
 }
 
-.backgroundrandom-shape {
-    position: absolute;
-    bottom: -200px;
-    left: var(--x);
-    width: var(--size);
-    height: var(--size);
-    background: var(--c);
-    opacity: 0.5; /* Keeps them semi-transparent over the blue */
-    filter: blur(2px); /* Softens the edges slightly */
-    animation: backgroundrandom-float calc(10s + (var(--i) * 2s)) linear infinite;
-    animation-delay: calc(var(--i) * -1.5s);
-}
-
-.backgroundrandom-circle {
-    border-radius: 50%;
-}
-
-.backgroundrandom-rect {
-    border-radius: 15%;
-    transform: rotate(45deg);
-}
-
-.backgroundrandom-blob {
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-}
-
-@keyframes backgroundrandom-float {
+@keyframes zoom-image-logic {
     0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0;
+        transform: scale(1);
+        filter: blur(0px);
     }
-
-    20% {
-        opacity: 0.5;
-    }
-
-    80% {
-        opacity: 0.5;
-    }
-
+    /* As we get closer, we scale up massively and fade */
     100% {
-        transform: translateY(-125vh) rotate(360deg);
+        transform: scale(15);
         opacity: 0;
+        filter: blur(10px);
     }
 }
 
-/* Mobile responsive sizing */
-@media (max-width: 768px) {
-    .backgroundrandom-shape {
-        width: calc(var(--size) * 0.6);
-        height: calc(var(--size) * 0.6);
+/* 4. Overlay Text Animation (Fades out earlier for clarity) */
+.videohero-overlay {
+    z-index: 10;
+    animation: fade-out-ui linear;
+    animation-timeline: scroll(root);
+    animation-range: 0% 30%;
+}
+
+@keyframes fade-out-ui {
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
     }
+}
+
+/* Ensure the main content sits on top once the hero is gone */
+.main-page-content {
+    position: relative;
+    z-index: 20;
+    background: #ffffff;
+    min-height: 100vh;
+    padding: 60px 20px;
 }

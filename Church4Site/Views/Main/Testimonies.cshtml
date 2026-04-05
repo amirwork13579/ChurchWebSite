@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Login</title>
+    <title>User Testimonies for the BLW Sheffield Church</title>
     <link rel="stylesheet" href="~/css/testimonies.css">
     <script src="~/js/Testimonies.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -138,6 +138,7 @@
 
     @*------------------------------------------*@
     @{int i = 0;}
+    @*
     @foreach (var item in Model.MessagesLst)
     {
         i+=1;
@@ -167,9 +168,10 @@
                         <img src="@item.ImageUrl" class="userTestimonieLst-media" alt="Testimony Image" />
                     </div>
                 }
-            </div>
+            </div> 
         </div>
     }
+    *@
 
 
     @*testimonie will only show up if approved popup*@

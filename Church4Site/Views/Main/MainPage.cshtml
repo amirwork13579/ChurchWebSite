@@ -5,31 +5,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Welcome to the BLW Sheffield Church. Join us for Sunday services, community events, and spiritual growth in Sheffield for all Christians.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page</title>
+    <title>Main Page for the BLW Sheffield Church</title>
     <link rel="stylesheet" href="~/css/MainPage.css">
     <script src="~/js/site.js"></script>
 </head>
 
 <body>
 
-
-   
-
     @*render hero section differently*@
     @section FullWidthTop {
     }
-
-  
-  
-
 
     @*video hero section*@
     <div class="videohero-master-wrapper">
         <section class="videohero-section">
             <div class="videohero-container">
                 <video class="videohero-video" autoplay muted loop playsinline>
-                    <source src="~/css/Videos/Churchvideo2.mp4" type="video/mp4">
+                    <source src="~/css/Videos/Churchvideo2.mp4" type="video/mp4" alt="Hero video of the church">
                 </video>
 
                 <div class="videohero-overlay">
@@ -87,7 +81,7 @@
                         <span class="eventcards-date">@s.Time</span>
                         <h3 class="eventcards-title">@s.Name</h3>
                         <p class="eventcards-description">@s.Description</p>
-                        <a asp-action="Calendar" class="eventcards-link">Learn More</a>
+                        <a asp-action="Calendar" class="eventcards-link">Learn about Church Events Here</a>
                     </div>
                 </div>
             }
@@ -109,7 +103,7 @@
         <div class="imagefaderight-container">
 
             <div class="imagefaderight-visual-wrapper">
-                <img src="~/css/Images/church.webp" class="imagefaderight-img">
+                <img src="~/css/Images/church.webp" class="imagefaderight-img" alt="people worshiping in church">
             </div>
 
             <div class="imagefaderight-content">
@@ -151,7 +145,7 @@
             </div>
 
             <div class="imagefadeleft-visual-wrapper">
-                <img src="~/css/Images/youngchurch.jpg" class="imagefadeleft-img">
+                <img src="~/css/Images/youngchurch.jpg" class="imagefadeleft-img" alt="Young church members engaged in activities">
             </div>
 
         </div>
