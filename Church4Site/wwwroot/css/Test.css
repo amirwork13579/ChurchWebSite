@@ -75,3 +75,130 @@
     padding: 80px 40px;
     box-shadow: 0 -20px 50px rgba(0,0,0,0.3); /* Adds a shadow to the entrance */
 }
+
+
+
+
+
+
+/*testimonie user lst test*/
+
+/* Theme Variables */
+:root {
+    --lst-bg: #0f172a;
+    --lst-card-bg: rgba(30, 41, 59, 0.7);
+    --lst-accent: #38bdf8;
+    --lst-text-main: #f8fafc;
+    --lst-text-dim: #94a3b8;
+    --lst-border: rgba(255, 255, 255, 0.1);
+}
+
+.testimonie-user-lst-section {
+    background-color: var(--lst-bg);
+    padding: 60px 20px;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* The Masonry Container */
+.testimonie-user-lst-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    /* 3 columns on desktop */
+    column-count: 3;
+    column-gap: 24px;
+}
+
+/* The Card */
+.testimonie-user-lst-card {
+    display: inline-block; /* Required for column-flow to work properly */
+    width: 100%;
+    margin-bottom: 24px;
+    background: var(--lst-card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--lst-border);
+    border-radius: 16px;
+    padding: 24px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+    .testimonie-user-lst-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--lst-accent);
+    }
+
+/* Header Styling */
+.testimonie-user-lst-header {
+    margin-bottom: 16px;
+}
+
+.testimonie-user-lst-name {
+    color: var(--lst-text-main);
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+}
+
+.testimonie-user-lst-date {
+    color: var(--lst-accent);
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+/* Text Content */
+.testimonie-user-lst-text {
+    color: var(--lst-text-dim);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Image Styling */
+.testimonie-user-lst-img-area {
+    width: 100%;
+    max-height: 280px; /* Constrains the image size */
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+    .testimonie-user-lst-img-area img {
+        width: 100%;
+        height: 100%;
+        max-height: 280px;
+        object-fit: cover; /* Keeps image stylish and un-stretched */
+        display: block;
+        filter: grayscale(20%);
+        transition: filter 0.3s ease;
+    }
+
+.testimonie-user-lst-card:hover img {
+    filter: grayscale(0%);
+}
+
+/* Responsive Breakpoints */
+
+/* Tablet: 2 columns */
+@media (max-width: 992px) {
+    .testimonie-user-lst-container {
+        column-count: 2;
+    }
+}
+
+/* Mobile: 1 column */
+@media (max-width: 600px) {
+    .testimonie-user-lst-container {
+        column-count: 1;
+    }
+
+    .testimonie-user-lst-section {
+        padding: 30px 15px;
+    }
+
+    .testimonie-user-lst-card {
+        padding: 20px;
+    }
+}
