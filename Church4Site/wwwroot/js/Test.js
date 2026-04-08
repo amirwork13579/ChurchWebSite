@@ -1,4 +1,6 @@
-﻿/*image file device open*/
+﻿//js for testing purposes only
+
+/*image file device open*/
 
 
 function openFilePicker(element) {
@@ -30,8 +32,7 @@ function handleFileSelected(input) {
 
 
 
-function openDeviceFile(element)
-{   
+function openDeviceFile(element) {
     const photo = element.files[0];
 
     const parent = element.closest('.av');

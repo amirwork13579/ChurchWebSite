@@ -1,69 +1,77 @@
-﻿/* 1. Control the scroll depth */
+﻿/* 1. The Scroll Track */
 .zoom-scroll-area {
-    height: 300vh;
+    height: 300vh; /* Length of the zoom journey */
     background: #000;
+    position: relative;
 }
 
-/* 2. Keep the wrapper sticky so it stays on screen */
+/* 2. The Sticky Wrapper */
 .videohero-master-wrapper {
     width: 100%;
     height: 100vh;
     position: sticky;
     top: 0;
     overflow: hidden;
+    z-index: 1; /* Sits behind the main content eventually */
 }
 
-/* 3. The Image Container */
+/* 3. The Image Logic */
 .hero-image-bg {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* Replace with your church image path */
-    background-image: url('/css/Images/ChurchHero.jpg');
+    background-image: url('/css/Images/churchHeroImage.png');
     background-size: cover;
     background-position: center;
-    z-index: 1;
-    /* Animation Link */
-    animation: zoom-image-logic linear;
+    /* ZOOM SETTINGS */
+    transform-origin: center 80%; /* Zooms into the lower center */
+    /* Animation */
+    animation: window-zoom-effect linear forwards;
     animation-timeline: scroll(root);
-    animation-range: 0% 90%;
+    animation-range: 0% 95%;
 }
 
-@keyframes zoom-image-logic {
+@keyframes window-zoom-effect {
     0% {
         transform: scale(1);
-        filter: blur(0px);
+        opacity: 1;
     }
-    /* As we get closer, we scale up massively and fade */
+
+    85% {
+        opacity: 1; /* Keep it solid until almost through */
+    }
+
     100% {
-        transform: scale(15);
-        opacity: 0;
-        filter: blur(10px);
+        transform: scale(20); /* Large enough to "walk through" */
+        opacity: 0; /* Vanish */
+        visibility: hidden; /* Ensures it doesn't catch clicks */
     }
 }
 
-/* 4. Overlay Text Animation (Fades out earlier for clarity) */
+/* 4. The UI (Text/Buttons) */
 .videohero-overlay {
     z-index: 10;
-    animation: fade-out-ui linear;
+    animation: fade-ui linear forwards;
     animation-timeline: scroll(root);
-    animation-range: 0% 30%;
+    animation-range: 0% 25%;
 }
 
-@keyframes fade-out-ui {
+@keyframes fade-ui {
     to {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(-40px);
     }
 }
 
-/* Ensure the main content sits on top once the hero is gone */
+/* 5. THE "OTHER SIDE" CONTENT */
+/* This is the secret: give it a high z-index and a solid background */
 .main-page-content {
     position: relative;
-    z-index: 20;
-    background: #ffffff;
+    z-index: 100; /* Higher than the sticky hero */
+    background: #ffffff; /* Must be solid to hide the hero behind it */
     min-height: 100vh;
-    padding: 60px 20px;
+    padding: 80px 40px;
+    box-shadow: 0 -20px 50px rgba(0,0,0,0.3); /* Adds a shadow to the entrance */
 }
