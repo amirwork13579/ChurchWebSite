@@ -197,10 +197,12 @@
                     @*delete feature*@
                     @if (item.UserId.ToString() == User.FindFirstValue(ClaimTypes.NameIdentifier))
                     {
-                        <button class="deletepopupbutton-trigger"
-                                data-id="@item.Id"
+                        <button class="testimonie-user-lst-delete-btn deletepopupbutton-trigger" aria-label="Delete testimony" data-id="@item.Id"
                                 data-actionurl="/Main/DeleteTestimoniesConfirm">
-                            Delete this
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            </svg>
                         </button>
                     }
                 </div>
@@ -247,44 +249,6 @@
     </script>
 
 
-    <section class="messagecardlst-outer-section">
-        <div class="messagecardlst-grid-container">
-
-            @foreach (var item in Model.MessagesLst)
-            {
-                if(item.IsApproved==true)
-                {
-                    <div class="messagecardlst-card-item">
-                        <span class="messagecardlst-user-name" style="color:#0055f9">@item.Title</span>
-                        <div class="messagecardlst-status-dot"></div>
-                        <p class="messagecardlst-content">@item.MessageFrom</p>
-                        <div class="messagecardlst-user-footer">
-                            <span class="messagecardlst-user-name">@item.userName</span>
-                            <span class="messagecardlst-session-date" style="color:#64748b">@item.MessageDate</span>
-                        </div>
-
-                        <div class="navbarseethro-card">
-                            @if (item.ImageUrl != "/css/Images/DefaultUser.jpg")
-                            {
-                                <div class="navbarseethro-media-section">
-                                    <img src="@item.ImageUrl" alt="Message Image" class="navbarseethro-card-img" />
-                                </div>
-                            }
-                        </div>
-
-                        @if (item.UserId.ToString() == User.FindFirstValue(ClaimTypes.NameIdentifier))
-                        {
-                            <button class="deletepopupbutton-trigger"
-                                    data-id="@item.Id"
-                                    data-actionurl="/Main/DeleteTestimoniesConfirm">
-                                Delete this
-                            </button>
-                        }
-                    </div>
-                }
-            }
-        </div>
-    </section>
 
     
     @*delete popup*@
