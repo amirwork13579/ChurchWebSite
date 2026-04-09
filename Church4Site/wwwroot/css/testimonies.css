@@ -244,145 +244,6 @@
 
 
 
-/*list of user testimonies*/
-
-
-
-:root {
-    --tl-primary: #6366f1;
-    --tl-text-dark: #1e293b;
-    --tl-text-light: #64748b;
-    --tl-bg-card: rgba(255, 255, 255, 0.7);
-    --tl-border: rgba(0, 0, 0, 0.05);
-}
-
-.testimonieslst-section {
-    padding: 60px 20px;
-    background-color: transparent;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-}
-
-.testimonieslst-container {
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.testimonieslst-header {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.testimonieslst-badge {
-    color: var(--tl-primary);
-    font-size: 2rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    display: block;
-    margin-bottom: 10px;
-}
-
-.testimonieslst-main-title {
-    font-size: 1.5rem;
-    color: #B5338A;
-    font-weight: 800;
-    margin: 0;
-}
-
-/* Responsive Grid System */
-.testimonieslst-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-.testimonieslst-card {
-    background: var(--tl-bg-card);
-    border: 1px solid var(--tl-border);
-    padding: 35px;
-    border-radius: 1.5rem;
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    backdrop-filter: blur(10px);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    perspective: 400px;
-}
-
-    .testimonieslst-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
-        border-color: var(--tl-primary);
-        transform: rotateY(200deg);
-        transform: rotateX(15deg);
-    }
-
-.testimonieslst-quote-icon {
-    font-family: serif;
-    font-size: 4rem;
-    color: var(--tl-primary);
-    opacity: 0.2;
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    line-height: 1;
-}
-
-.testimonieslst-content {
-    color: var(--tl-text-dark);
-    font-size: 1.1rem;
-    line-height: 1.7;
-    font-style: italic;
-    margin-bottom: 25px;
-    position: relative;
-    z-index: 1;
-}
-
-.testimonieslst-user {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.testimonieslst-avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid white;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.testimonieslst-name {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--tl-text-dark);
-}
-
-.testimonieslst-role {
-    font-size: 0.85rem;
-    color: var(--tl-text-light);
-}
-
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-    .testimonieslst-main-title {
-        font-size: 1.75rem;
-    }
-
-    .testimonieslst-grid {
-        grid-template-columns: 1fr; /* Force single column on mobile */
-    }
-
-    .testimonieslst-card {
-        padding: 25px;
-    }
-}
-
-
-
 
 
 
@@ -1254,254 +1115,133 @@
 
 
 
-/*testimonie message lst section--------------------*/
 
-/* 1. The Wrapper - Completely transparent */
-.messagecardlst-outer-section {
-    background: transparent !important;
+/*testimonie user lst test---------------------------------------*/
+
+/* --- Base Theme Variables --- */
+:root {
+    --lst-bg: #0f172a;
+    --lst-card-bg: rgba(30, 41, 59, 0.7);
+    --lst-accent: #38bdf8;
+    --lst-text-main: #f8fafc;
+    --lst-text-dim: #94a3b8;
+    --lst-border: rgba(255, 255, 255, 0.1);
+}
+
+/* --- Section Setup --- */
+.testimonie-user-lst-section {
+    /*background put here*/
     padding: 60px 20px;
-    width: 100%;
-}
-
-/* 2. The Responsive Grid */
-.messagecardlst-grid-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    gap: 30px;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
-
-/* 3. The Solid Card Styling (Black & Gold Theme) */
-.messagecardlst-card-item {
-    background: #0d0d0d;
-    border: 1px solid #c5a059;
-    border-radius: 12px;
-    padding: 35px; /* Keep this for text breathing room */
-    display: flex;
-    flex-direction: column;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    overflow: hidden; /* CRITICAL: Clips anything popping out */
-    position: relative;
-}
-
-    /* 4. Interactive Hover */
-    .messagecardlst-card-item:hover {
-        transform: translateY(-10px) scale(1.02);
-        border-color: #f1d279;
-        box-shadow: 0 20px 40px rgba(197, 160, 89, 0.15);
-    }
-
-/* 5. Typography */
-.messagecardlst-content {
-    color: #ffffff;
-    font-size: 1.1rem;
-    line-height: 1.7;
-    font-style: italic;
-    margin-bottom: 25px;
-    font-family: 'Georgia', serif;
-}
-
-/* 6. The Image Section (Bottom Aligned & Contained) */
-.navbarseethro-media-section {
-    background: linear-gradient(180deg, #0d0d0d 0%, #001a33 100%);
-    padding: 15px;
-    border-top: 2px solid #c5a059;
-    /* These negative margins counteract the card's 35px padding */
-    margin-left: -35px;
-    margin-right: -35px;
-    margin-bottom: -35px;
-    margin-top: 20px; /* Space between text and image */
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* 7. The Image (Strictly Controlled) */
-.navbarseethro-card-img {
-    max-width: 100%; /* Cannot exceed container width */
-    height: auto;
-    max-height: 250px; /* Prevents card from becoming too tall */
-    border-radius: 4px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.2);
-    object-fit: contain; /* Ensures the whole image fits without cropping weirdly */
-    transition: transform 0.3s ease;
-}
-
-/* 8. Footer (Placed above the image) */
-.messagecardlst-user-footer {
-    border-top: 1px solid rgba(197, 160, 89, 0.3);
-    padding-top: 15px;
-    margin-top: auto; /* Pushes footer/image to the bottom */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Mobile Adjustments */
-@media (max-width: 600px) {
-    .messagecardlst-card-item {
-        padding: 25px;
-    }
-
-    .navbarseethro-media-section {
-        margin-left: -25px;
-        margin-right: -25px;
-        margin-bottom: -25px;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-/*user testimonie message card lst--------------------*/
-/* --- THEME: BLACK, GOLD, LIGHT BLUE --- */
-
-/* Container: 75% width and centered */
-.userTestimonieLst-section {
-    width: 75%;
-    max-width: 1000px;
-    margin: 60px auto;
-    padding: 0 20px;
-    background: transparent;
-    font-family: 'Inter', 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     box-sizing: border-box;
 }
 
-/* 2. The Solid Gold Border Card */
-.userTestimonieLst-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 24px;
-    /* Solid Black Background */
-    background: #0a0a0a;
-    /* Solid Gold Border (Metallic Hex) */
-    border: 2px solid #D4AF37;
-    border-radius: 12px; /* Sharper, more "framed" corners */
-
-    padding: 40px;
-    margin-bottom: 30px;
-    /* Subtle outer glow to make the gold pop */
-    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+/* --- Masonry Grid (Prevents gaps left/right) --- */
+.testimonie-user-lst-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    column-count: 3; /* 3 cards per row on PC */
+    column-gap: 24px;
 }
 
-    /* Hover: Intensify the Gold and lift */
-    .userTestimonieLst-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2);
-        border-color: #FFD700; /* Brighter Gold on hover */
+/* --- The Card --- */
+.testimonie-user-lst-card {
+    display: inline-block; /* Essential for masonry flow */
+    width: 100%;
+    margin-bottom: 24px;
+    background: var(--lst-card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--lst-border);
+    border-radius: 16px;
+    padding: 24px;
+    box-sizing: border-box;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s ease;
+    break-inside: avoid; /* Prevents card from splitting between columns */
+}
+
+    .testimonie-user-lst-card:hover {
+        transform: translateY(-8px);
+        border-color: var(--lst-accent);
     }
 
-/* 3. Icon Column: Light Blue Accent */
-.userTestimonieLst-iconColumn {
-    flex-shrink: 0;
-    width: 56px;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(173, 216, 230, 0.1); /* Light Blue Tint */
-    border: 1px solid #ADD8E6; /* Light Blue Border */
-    color: #ADD8E6; /* Light Blue Icon */
-    border-radius: 8px;
+/* --- Header & Text --- */
+.testimonie-user-lst-header {
+    margin-bottom: 12px;
 }
 
-/* 4. Bold Typography Stack */
-.userTestimonieLst-header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 15px;
-}
-
-/* Topic: Light Blue & Ultra Bold */
-.userTestimonieLst-topic {
-    font-size: 0.75rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    color: #ADD8E6; /* Light Blue */
-    letter-spacing: 0.3em;
-    display: block;
-}
-
-/* Username: Bold Gold */
-.userTestimonieLst-username {
-    font-weight: 800;
-    color: #D4AF37; /* Gold */
-    font-size: 1.4rem;
-    letter-spacing: -0.01em;
-}
-
-/* Date: Light Blue */
-.userTestimonieLst-timestamp {
-    font-size: 0.85rem;
-    color: rgba(173, 216, 230, 0.7);
+.testimonie-user-lst-name {
+    color: var(--lst-text-main);
+    margin: 0;
+    font-size: 1.15rem;
     font-weight: 600;
 }
 
-/* Message: White on Black */
-.userTestimonieLst-message {
-    font-size: 1.15rem;
-    line-height: 1.8;
-    color: #F5F5F5; /* Off-white for readability */
+.testimonie-user-lst-date {
+    color: var(--lst-accent);
+    font-size: 0.8rem;
     font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
-/* 5. Constrained Image Area */
-.userTestimonieLst-imageWrapper {
-    margin-top: 25px;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid #D4AF37; /* Framed in Gold */
-    /* Size Constraints */
-    max-width: 500px;
-    max-height: 350px;
+.testimonie-user-lst-text {
+    color: var(--lst-text-dim);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
 }
 
-.userTestimonieLst-media {
-    display: block;
+/* --- Image Area Logic --- */
+
+/* 1. Hide the container entirely if it does not have an <img> */
+.testimonie-user-lst-img-area:not(:has(img)) {
+    display: none;
+}
+
+/* 2. Add spacing only if an image exists */
+.testimonie-user-lst-img-area:has(img) {
+    margin-top: 20px;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-height: 280px; /* Constrains the image size */
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* --- Responsive Layout --- */
+.testimonie-user-lst-img-area img {
+    width: 100%;
+    height: 280px; /* Forces uniform height within the max constraint */
+    object-fit: cover; /* Stylish crop */
+    display: block;
+    filter: brightness(0.9);
+    transition: filter 0.3s ease;
+}
 
-@media (max-width: 1024px) {
-    .userTestimonieLst-section {
-        width: 85%;
+.testimonie-user-lst-card:hover img {
+    filter: brightness(1.1);
+}
+
+/* --- Responsive Breakpoints --- */
+
+/* Tablet: 2 columns */
+@media (max-width: 992px) {
+    .testimonie-user-lst-container {
+        column-count: 2;
     }
 }
 
-@media (max-width: 768px) {
-    .userTestimonieLst-section {
-        width: 100%;
-        padding: 10px 15px;
+/* Mobile: 1 column */
+@media (max-width: 600px) {
+    .testimonie-user-lst-container {
+        column-count: 1;
     }
 
-    .userTestimonieLst-card {
-        padding: 25px;
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .userTestimonieLst-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .userTestimonieLst-timestamp {
-        margin-top: 5px;
+    .testimonie-user-lst-section {
+        padding: 30px 15px;
     }
 }
+
+
+

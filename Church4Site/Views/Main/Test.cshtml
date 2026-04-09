@@ -1,4 +1,6 @@
-﻿
+﻿@model List<Church4Site.Entities.UserMessage>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,6 +38,29 @@
 
     <div class="main-page-content">
     </div>
+
+
+
+    <section class="testimonie-user-lst-section">
+        <div class="testimonie-user-lst-container">
+
+            @foreach (var item in Model) 
+            {
+                <div class="testimonie-user-lst-card">
+                    <div class="testimonie-user-lst-header">
+                        <h3 class="testimonie-user-lst-name">@item.userName</h3>
+                        <span class="testimonie-user-lst-date">@item.MessageDate</span>
+                    </div>
+                    <p class="testimonie-user-lst-text">
+                        @item.MessageFrom
+                    </p>
+                    <div class="testimonie-user-lst-img-area">
+                        <img src="@item.ImageUrl" alt="User Image">
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
 
     <section class="testimonie-user-lst-section">
         <div class="testimonie-user-lst-container">

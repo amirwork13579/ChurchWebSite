@@ -262,6 +262,7 @@ namespace Church4Site.Controllers
                 NewEvent = new EventData()
 
             };
+
             return View(data);
         }
     }

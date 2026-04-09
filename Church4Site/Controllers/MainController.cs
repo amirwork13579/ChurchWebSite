@@ -73,7 +73,7 @@ namespace Church4Site.Controllers
             var messages = new UserMessageViewModel
             {
                 NewMessage = new UserMessage(),
-                MessagesLst = await _context.UserMessages.ToListAsync(),
+                MessagesLst = await _context.UserMessages.Where(m => m.IsApproved == true).ToListAsync(),
             };
 
             return View(messages);
@@ -256,7 +256,10 @@ namespace Church4Site.Controllers
         public async Task<IActionResult> Test()
         {
             var items = await _context.Events.ToListAsync();
-            return View(items);
+
+            var testimonieLst = await _context.UserMessages.ToListAsync();
+
+            return View(testimonieLst);
         }
 
         [HttpPost]

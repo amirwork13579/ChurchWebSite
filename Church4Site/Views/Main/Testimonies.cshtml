@@ -175,25 +175,40 @@
 
 
     @*testimonie will only show up if approved popup*@
-    <div id="testimoniepopup-overlay" class="testimoniepopup-overlay" style="display: none;">
-        <div class="testimoniepopup-card">
-            <div class="testimoniepopup-header">
-                <div class="testimoniepopup-icon-box">
-                    <span class="testimoniepopup-icon">✓</span>
+        <section class="testimonie-user-lst-section">
+            <div class="testimonie-user-lst-container">
+                @foreach (var item in Model.MessagesLst)
+                {
+                <div class="testimonie-user-lst-card">
+                    <div class="testimonie-user-lst-header">
+                        <h3 class="testimonie-user-lst-name">@item.userName</h3>
+                        <span class="testimonie-user-lst-date">@item.MessageDate</span>
+                    </div>
+                    <p class="testimonie-user-lst-text">
+                        @item.MessageFrom
+                    </p>
+                    @if (item.ImageUrl != "/css/Images/DefaultUser.jpg")
+                    {
+                        <div class="testimonie-user-lst-img-area">
+                            <img src="@item.ImageUrl" alt="User Image">
+                        </div>
+                    }            
+                    
+                    @*delete feature*@
+                    @if (item.UserId.ToString() == User.FindFirstValue(ClaimTypes.NameIdentifier))
+                    {
+                        <button class="deletepopupbutton-trigger"
+                                data-id="@item.Id"
+                                data-actionurl="/Main/DeleteTestimoniesConfirm">
+                            Delete this
+                        </button>
+                    }
                 </div>
-                <h2 class="testimoniepopup-title">Received!</h2>
+                }
             </div>
-            <div class="testimoniepopup-body">
-                <p>Thank you for sharing your story with us.</p>
-                <div class="testimoniepopup-info-box">
-                    <p>To maintain a safe community, your testimony will be visible once a moderator has approved it.</p>
-                </div>
-            </div>
-            <div class="testimoniepopup-footer">
-                <button type="button" class="testimoniepopup-btn" onclick="closeTestimoniePopup()">Understood</button>
-            </div>
-        </div>
-    </div>
+        </section>
+
+  
 
 
 
