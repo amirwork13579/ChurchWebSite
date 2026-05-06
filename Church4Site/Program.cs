@@ -14,7 +14,7 @@ builder.Services.AddControllersWithViews();
 /*connection strings= IonosServerDataBase SqlDataBase*/
 builder.Services.AddDbContext<Church4DbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlDataBase"),
+    options.UseSqlServer(builder.Configuration.GetConnectionString("IonosServerDataBase"),
         sqlOptions =>
         {
             sqlOptions.EnableRetryOnFailure(
@@ -97,6 +97,9 @@ if (!app.Environment.IsDevelopment())
     // --- METHOD 3: Security for Browsers ---
     app.UseHsts();
 }
+
+// 2. Add this middleware BEFORE UseHttpsRedirection for cloudflare
+app.UseForwardedHeaders();
 
 //now this is safe to use because of "app.UseForwardedHeaders"
 app.UseHttpsRedirection();
