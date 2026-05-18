@@ -14,7 +14,7 @@ namespace Church4Site.Entities
         [ForeignKey("UserId")]
         [ValidateNever]
         public Guid ?UserId { get; set; }
-        [ValidateNever] /*to ensure its nulllable*/
+        [ValidateNever] 
         public string ?ImageUrl { get; set; } = string.Empty;
         public User ?Users { get; set; }
         public DateTime? MessageDate { get; set; } = DateTime.Now;

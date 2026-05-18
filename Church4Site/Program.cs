@@ -14,7 +14,7 @@ builder.Services.AddControllersWithViews();
 /*connection strings= IonosServerDataBase SqlDataBase*/
 builder.Services.AddDbContext<Church4DbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("IonosServerDataBase"),
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlDataBase"),
         sqlOptions =>
         {
             sqlOptions.EnableRetryOnFailure(
@@ -102,7 +102,7 @@ if (!app.Environment.IsDevelopment())
 app.UseForwardedHeaders();
 
 //now this is safe to use because of "app.UseForwardedHeaders"
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 
 app.UseRouting();
